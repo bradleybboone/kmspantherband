@@ -28,7 +28,7 @@ export default function About() {
       <section className="max-w-4xl mx-auto mb-16">
         <div className="prose prose-lg mx-auto text-gray-dark">
           <p className="text-lg leading-relaxed mb-6">
-            The KMS Panther Band program has been a cornerstone of music education in our community 
+            The KMS Panther Band program has been a cornerstone of instrumental music education in our community 
             for over two decades. We believe that every student has the potential to excel in music, 
             and our program is designed to nurture that potential through comprehensive instruction, 
             engaging performances, and a supportive community.
@@ -181,9 +181,9 @@ export default function About() {
           <div className="p-8">
             <h3 className="text-xl font-semibold mb-3 text-primary">Comprehensive Instruction</h3>
             <p className="text-gray-dark">
-              We offer instruction in all concert band instruments including flute, clarinet, 
-              saxophone, trumpet, trombone, percussion, and more. Students receive both 
-              individual and ensemble instruction.
+              We offer instruction in all concert band instruments including: flute, oboe, bassoon,clarinet, 
+              saxophone, trumpet, horn, trombone, euphonium, tuba, percussion, and more. Students receive both 
+              small group and ensemble instruction.
             </p>
           </div>
           
@@ -199,9 +199,8 @@ export default function About() {
           <div className="p-8">
             <h3 className="text-xl font-semibold mb-3 text-primary">Leadership Development</h3>
             <p className="text-gray-dark">
-              Our program includes student leadership positions such as section leaders 
-              and drum majors, helping students develop valuable leadership and 
-              organizational skills.
+              Our program includes student leadership positions such as section leaders, setup crew, and 
+              load crew, helping students develop valuable leadership and organizational skills.
             </p>
           </div>
           

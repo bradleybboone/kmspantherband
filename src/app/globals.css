@@ -72,11 +72,11 @@
   
   /* Line Heights */
   --leading-none: 1;
-  --leading-tight: 1.25;
-  --leading-snug: 1.45;
-  --leading-normal: 1.65;
-  --leading-relaxed: 1.8;
-  --leading-loose: 2;
+  --leading-tight: 1.2;
+  --leading-snug: 1.35;
+  --leading-normal: 1.5;
+  --leading-relaxed: 1.625;
+  --leading-loose: 1.75;
   
   /* Font Weights */
   --font-light: 300;
@@ -165,7 +165,7 @@ body {
   color: var(--accent);
   font-family: var(--font-body);
   font-size: var(--text-base);
-  line-height: 1.75;
+  line-height: 1.6;
   font-weight: 400;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;

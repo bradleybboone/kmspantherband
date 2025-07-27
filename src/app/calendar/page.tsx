@@ -12,36 +12,29 @@ export default function CalendarPage() {
       {/* Page content */}
       <div className="pb-12">
         <div className="container py-12">
-          <h1 className="text-4xl lg:text-5xl text-center mb-12 text-primary">
+          <h1 className="text-4xl lg:text-5xl text-center mb-8 text-primary">
             CALENDAR
           </h1>
           
-          {/* Calendar content would go here */}
-          <div className="bg-white p-8 shadow-md">
-            <div className="grid grid-cols-7 gap-4">
-              {/* Calendar grid */}
-              <div className="text-center font-bold text-sm uppercase">Sun</div>
-              <div className="text-center font-bold text-sm uppercase">Mon</div>
-              <div className="text-center font-bold text-sm uppercase">Tue</div>
-              <div className="text-center font-bold text-sm uppercase">Wed</div>
-              <div className="text-center font-bold text-sm uppercase">Thu</div>
-              <div className="text-center font-bold text-sm uppercase">Fri</div>
-              <div className="text-center font-bold text-sm uppercase">Sat</div>
-              
-              {/* Sample calendar days */}
-              {Array.from({ length: 35 }, (_, i) => (
-                <div key={i} className="aspect-square border border-gray-200 p-2 hover:bg-gray-50 cursor-pointer">
-                  <div className="text-sm font-medium">{(i % 31) + 1}</div>
-                  {i === 10 && (
-                    <div className="mt-1">
-                      <div className="text-xs bg-primary text-white px-1 py-0.5 rounded">
-                        Concert 7pm
-                      </div>
-                    </div>
-                  )}
-                </div>
-              ))}
-            </div>
+          {/* Calendar description */}
+          <div className="max-w-4xl mx-auto mb-12">
+            <p className="text-base text-gray-dark text-center leading-relaxed">
+              Please see our current KMS Band Calendar for the 2025-2026 school year below. 
+              These dates are subject to change. We will notify parents in the weekly 
+              ParentSquare newsletter of changes, so please be sure the Band Directors 
+              have a parent email address on file.
+            </p>
+          </div>
+          
+          {/* Team Up Calendar Embed */}
+          <div className="bg-white shadow-lg rounded-lg overflow-hidden">
+            <iframe 
+              src="https://teamup.com/ksy2fym655un5pdh88?tz=Calendar%20default&showProfileAndInfo=0&showSidepanel=1&showViewHeader=1&showAgendaDetails=0&showDateControls=1&showDateRange=1" 
+              style={{ width: '100%', height: '600px', border: '1px solid #cccccc' }}
+              loading="lazy" 
+              frameBorder="0"
+              title="KMS Band Calendar"
+            />
           </div>
         </div>
       </div>

@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import Header from "@/components/Header";
+import ImageCarousel from "@/components/ImageCarousel";
 
 export default function Home() {
   return (
@@ -66,18 +67,19 @@ export default function Home() {
           <h2 className="text-center text-3xl lg:text-4xl mb-12 text-primary">
             PANTHER PRIDE
           </h2>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-            {[1, 2, 3, 4, 5, 6, 7, 8].map((i) => (
-              <div key={i} className="relative aspect-square bg-gray-200 overflow-hidden group">
-                <Image
-                  src={`/images/gallery-${i}.jpg`}
-                  alt={`Band photo ${i}`}
-                  fill
-                  className="object-cover group-hover:scale-110 transition-transform duration-300"
-                />
-              </div>
-            ))}
-          </div>
+          <ImageCarousel 
+            images={[
+              "/images/landing1.jpg",
+              "/images/landing2.jpg",
+              "/images/landing3.jpg",
+              "/images/landing4.jpg",
+              "/images/landing5.jpg",
+              "/images/landing6.jpg",
+              "/images/landing7.jpg",
+              "/images/landing8.jpg",
+              "/images/landing9.jpg"
+            ]}
+          />
         </div>
       </section>
 

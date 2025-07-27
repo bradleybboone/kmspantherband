@@ -10,7 +10,9 @@ export default function Footer() {
             <h3 className="text-lg font-display font-medium mb-4 text-white !text-white">KMS PANTHER BAND</h3>
             <p className="text-sm text-gray-lighter">
               Excellence in music education at <br />
-              C.E. King Middle School
+              <a href="https://kms.sheldonisd.com" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">
+                C.E. King Middle School
+              </a>
             </p>
           </div>
 
@@ -39,7 +41,7 @@ export default function Footer() {
           {/* Contact Info */}
           <div>
             <h3 className="text-lg font-display font-medium mb-4 text-white !text-white">CONTACT</h3>
-            <ul className="space-y-2 text-sm text-gray-lighter">
+            <ul className="space-y-1 text-sm text-gray-lighter">
               <li>C.E. King Middle School</li>
               <li>8540 C.E. King Parkway</li>
               <li>Houston, TX 77044</li>

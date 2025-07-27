@@ -14,7 +14,7 @@ export default function InstrumentRental() {
       
       <div className="max-w-4xl mx-auto">
         <section className="mb-12">
-          <p className="text-lg text-gray-dark leading-relaxed">
+          <p className="text-lg text-gray-dark leading-relaxed text-center">
             KMS offers an instrument rental program to ensure every student has access to a 
             quality instrument. We work with local music stores to provide affordable rental 
             options for families.
@@ -22,7 +22,7 @@ export default function InstrumentRental() {
         </section>
         
         <section className="mb-12">
-          <h2 className="text-2xl font-semibold mb-6 text-primary">Rental Options</h2>
+          <h2 className="text-2xl font-semibold mb-6 text-primary text-center">Rental Options</h2>
           
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div className="bg-white p-8 rounded-lg shadow">
@@ -54,7 +54,7 @@ export default function InstrumentRental() {
         </section>
         
         <section className="mb-12">
-          <h2 className="text-2xl font-semibold mb-6 text-primary">How to Rent</h2>
+          <h2 className="text-2xl font-semibold mb-6 text-primary text-center">How to Rent</h2>
           
           <div className="bg-gray-100 p-8 rounded-lg">
             <ol className="space-y-4">
@@ -83,20 +83,103 @@ export default function InstrumentRental() {
         </section>
         
         <section className="mb-12">
-          <h2 className="text-2xl font-semibold mb-6 text-primary">Approved Music Stores</h2>
+          <h2 className="text-2xl font-semibold mb-6 text-primary text-center">Approved Music Stores</h2>
           
-          <div className="space-y-4">
+                      <div className="space-y-6">
             <div className="bg-white p-6 rounded-lg shadow">
-              <h3 className="font-semibold">Music & Arts</h3>
-              <p className="text-gray-dark">123 Main Street • (555) 234-5678</p>
+              <h3 className="font-semibold text-lg mb-2">Brook Mays (H & H Music Company)</h3>
+              <p className="text-gray-dark mb-1">Store #28 - North Houston - 1960</p>
+              <p className="text-gray-dark mb-1">713 Cypress Creek Pkwy, Houston, TX 77090</p>
+              <p className="text-gray-dark text-sm mb-1">(Formerly FM 1960 West)</p>
+              <div className="flex flex-col sm:flex-row sm:items-center gap-2 mb-2">
+                <p className="text-gray-dark">Phone: <a href="tel:2815808000" className="text-primary hover:underline">281.580.8000</a></p>
+                <span className="hidden sm:inline text-gray-light">|</span>
+                <p className="text-gray-dark">Fax: 281.580.5151</p>
+              </div>
+              <div className="mt-2 pt-2 border-t border-gray-lighter">
+                <p className="text-sm font-medium text-gray-dark mb-1">Hours:</p>
+                <p className="text-sm text-gray-dark">Monday - Friday: 10 AM - 6 PM</p>
+                <p className="text-sm text-gray-dark">Saturday: 10 AM - 4 PM</p>
+              </div>
+              <p className="text-sm text-gray-dark mt-2">Available Repair Services: Brass, Woodwind</p>
+              <div className="mt-4">
+                <a 
+                  href="https://rental.brookmays.com/rental_Choose_Instrument.aspx?schoolid=53674" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="inline-block bg-primary hover:bg-primary-hover text-white px-6 py-2 rounded-lg text-sm font-medium transition-colors duration-200"
+                >
+                  Rent Online for KMS Band
+                </a>
+              </div>
             </div>
             <div className="bg-white p-6 rounded-lg shadow">
-              <h3 className="font-semibold">Sam&apos;s Music Center</h3>
-              <p className="text-gray-dark">456 Oak Avenue • (555) 345-6789</p>
+              <h3 className="font-semibold text-lg mb-2">Music & Arts</h3>
+              <p className="text-gray-dark mb-1">Humble, TX</p>
+              <p className="text-gray-dark mb-1">234 FM 1960 Bypass Rd E, Humble, TX 77338</p>
+              <p className="text-gray-dark mb-2">Phone: <a href="tel:2815407260" className="text-primary hover:underline">(281) 540-7260</a></p>
+              <div className="mt-2 pt-2 border-t border-gray-lighter">
+                <p className="text-sm font-medium text-gray-dark mb-1">Store Hours:</p>
+                <p className="text-sm text-gray-dark">Sunday: 12:00 PM - 5:00 PM</p>
+                <p className="text-sm text-gray-dark">Monday - Friday: 11:00 AM - 8:00 PM</p>
+                <p className="text-sm text-gray-dark">Saturday: 10:00 AM - 5:00 PM</p>
+              </div>
+              <div className="mt-2 pt-2 border-t border-gray-lighter">
+                <p className="text-sm font-medium text-gray-dark mb-1">Available Services:</p>
+                <div className="grid grid-cols-2 gap-1">
+                  <p className="text-sm text-gray-dark flex items-center">
+                    <svg className="w-4 h-4 mr-1 text-green-600" fill="currentColor" viewBox="0 0 20 20">
+                      <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd"/>
+                    </svg>
+                    Curbside Pickup
+                  </p>
+                  <p className="text-sm text-gray-dark flex items-center">
+                    <svg className="w-4 h-4 mr-1 text-green-600" fill="currentColor" viewBox="0 0 20 20">
+                      <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd"/>
+                    </svg>
+                    Lessons
+                  </p>
+                  <p className="text-sm text-gray-dark flex items-center">
+                    <svg className="w-4 h-4 mr-1 text-green-600" fill="currentColor" viewBox="0 0 20 20">
+                      <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd"/>
+                    </svg>
+                    Rentals
+                  </p>
+                  <p className="text-sm text-gray-dark flex items-center">
+                    <svg className="w-4 h-4 mr-1 text-green-600" fill="currentColor" viewBox="0 0 20 20">
+                      <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd"/>
+                    </svg>
+                    Returns Allowed
+                  </p>
+                  <p className="text-sm text-gray-dark flex items-center">
+                    <svg className="w-4 h-4 mr-1 text-green-600" fill="currentColor" viewBox="0 0 20 20">
+                      <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd"/>
+                    </svg>
+                    Ship to Store
+                  </p>
+                </div>
+              </div>
+              <div className="mt-4">
+                <a 
+                  href="https://www.musicarts.com/rentals?schoolTypeId=0&schoolId=14443" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="inline-block bg-primary hover:bg-primary-hover text-white px-6 py-2 rounded-lg text-sm font-medium transition-colors duration-200"
+                >
+                  Rent Online for KMS Band
+                </a>
+              </div>
             </div>
             <div className="bg-white p-6 rounded-lg shadow">
-              <h3 className="font-semibold">Melody Music Shop</h3>
-              <p className="text-gray-dark">789 Pine Road • (555) 456-7890</p>
+              <h3 className="font-semibold text-lg mb-2">RG&apos;s Music Repair-Houston</h3>
+              <p className="text-gray-dark mb-1">Houston, TX</p>
+              <p className="text-gray-dark mb-1">Phone: <a href="tel:7135697821" className="text-primary hover:underline">(713) 569-7821</a></p>
+              <p className="text-sm text-gray-dark font-medium mb-2">Call for Appointment</p>
+              <div className="mt-2 pt-2 border-t border-gray-lighter">
+                <p className="text-sm font-bold text-primary mb-1">Introductory Offer - One Month Free</p>
+                <p className="text-sm text-gray-dark">Pay for the first month, then pay nothing for the second month!</p>
+                <p className="text-xs text-gray-dark mt-1 italic">Some instruments do not qualify for offer. Choose instrument for details.</p>
+              </div>
             </div>
           </div>
         </section>
@@ -106,7 +189,6 @@ export default function InstrumentRental() {
           <p className="mb-4">
             Contact the band office for rental forms and assistance.
           </p>
-          <p className="font-semibold">Band Office: (555) 123-4567</p>
         </section>
       </div>
     </div>
