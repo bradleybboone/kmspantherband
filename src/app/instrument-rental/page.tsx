@@ -1,9 +1,16 @@
+import Header from "@/components/Header";
+
 export default function InstrumentRental() {
   return (
-    <div className="container mx-auto px-4 py-12">
-      <h1 className="text-4xl md:text-5xl font-bold text-primary text-center mb-8">
-        Instrument Rental Program
-      </h1>
+    <>
+      <Header variant="solid" />
+      {/* Spacer to prevent content from being hidden under fixed header */}
+      <div className="h-20 lg:h-24" />
+      
+      <div className="container mx-auto px-4 py-12">
+        <h1 className="text-4xl md:text-5xl font-bold text-primary text-center mb-8">
+          Instrument Rental Program
+        </h1>
       
       <div className="max-w-4xl mx-auto">
         <section className="mb-12">
@@ -18,7 +25,7 @@ export default function InstrumentRental() {
           <h2 className="text-2xl font-semibold mb-6 text-primary">Rental Options</h2>
           
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div className="bg-white p-6 rounded-lg shadow">
+            <div className="bg-white p-8 rounded-lg shadow">
               <h3 className="text-xl font-semibold mb-3">School Rental Program</h3>
               <p className="text-gray-dark mb-4">
                 Limited instruments available for students with financial need.
@@ -31,7 +38,7 @@ export default function InstrumentRental() {
               </ul>
             </div>
             
-            <div className="bg-white p-6 rounded-lg shadow">
+            <div className="bg-white p-8 rounded-lg shadow">
               <h3 className="text-xl font-semibold mb-3">Music Store Partners</h3>
               <p className="text-gray-dark mb-4">
                 Rent from our approved local music stores.
@@ -49,7 +56,7 @@ export default function InstrumentRental() {
         <section className="mb-12">
           <h2 className="text-2xl font-semibold mb-6 text-primary">How to Rent</h2>
           
-          <div className="bg-gray-100 p-6 rounded-lg">
+          <div className="bg-gray-100 p-8 rounded-lg">
             <ol className="space-y-4">
               <li className="flex items-start">
                 <span className="font-semibold mr-2">1.</span>
@@ -79,15 +86,15 @@ export default function InstrumentRental() {
           <h2 className="text-2xl font-semibold mb-6 text-primary">Approved Music Stores</h2>
           
           <div className="space-y-4">
-            <div className="bg-white p-4 rounded-lg shadow">
+            <div className="bg-white p-6 rounded-lg shadow">
               <h3 className="font-semibold">Music & Arts</h3>
               <p className="text-gray-dark">123 Main Street • (555) 234-5678</p>
             </div>
-            <div className="bg-white p-4 rounded-lg shadow">
-              <h3 className="font-semibold">Sam's Music Center</h3>
+            <div className="bg-white p-6 rounded-lg shadow">
+              <h3 className="font-semibold">Sam&apos;s Music Center</h3>
               <p className="text-gray-dark">456 Oak Avenue • (555) 345-6789</p>
             </div>
-            <div className="bg-white p-4 rounded-lg shadow">
+            <div className="bg-white p-6 rounded-lg shadow">
               <h3 className="font-semibold">Melody Music Shop</h3>
               <p className="text-gray-dark">789 Pine Road • (555) 456-7890</p>
             </div>
@@ -95,7 +102,7 @@ export default function InstrumentRental() {
         </section>
         
         <section className="text-center bg-primary text-secondary p-8 rounded-lg">
-          <h2 className="text-2xl font-semibold mb-4">Need Help?</h2>
+          <h2 className="text-2xl font-semibold mb-4 text-white !text-white">Need Help?</h2>
           <p className="mb-4">
             Contact the band office for rental forms and assistance.
           </p>
@@ -103,5 +110,6 @@ export default function InstrumentRental() {
         </section>
       </div>
     </div>
+    </>
   );
 }

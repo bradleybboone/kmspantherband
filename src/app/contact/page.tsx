@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import Header from "@/components/Header";
 
 export default function Contact() {
   const [formData, setFormData] = useState({
@@ -25,45 +26,44 @@ export default function Contact() {
   };
 
   return (
-    <div className="max-w-7xl mx-auto px-8 lg:px-16 py-20">
-      <h1 className="text-4xl md:text-5xl font-bold text-primary text-center mb-8">
+    <div className="min-h-screen bg-gray-50">
+      {/* Solid header for contact page */}
+      <Header variant="solid" />
+      
+      {/* Spacer div to push content below fixed header */}
+      <div className="h-20 lg:h-24" />
+      
+      {/* Page content */}
+      <div className="max-w-7xl mx-auto px-8 lg:px-16 py-20">
+      <h1 className="text-4xl md:text-5xl font-bold text-primary text-center mb-24">
         Contact Us
       </h1>
 
-      <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12">
+      <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16">
         {/* Contact Information */}
         <div>
-          <h2 className="text-2xl font-semibold mb-6 text-primary">Get in Touch</h2>
+          <h2 className="text-2xl font-semibold mb-12 text-primary">Get in Touch</h2>
           
-          <div className="space-y-6">
+          <div className="space-y-16">
             <div>
-              <h3 className="text-lg font-semibold mb-2">Band Office</h3>
+              <h3 className="text-lg font-semibold mb-4">Band Office</h3>
               <p className="text-gray-dark">
-                KMS Panther Band<br />
-                123 School Street<br />
-                Your City, State 12345
+                C.E. King Middle School<br />
+                8540 C.E. King Parkway<br />
+                Houston, TX 77044
               </p>
             </div>
 
             <div>
-              <h3 className="text-lg font-semibold mb-2">Contact Information</h3>
+              <h3 className="text-lg font-semibold mb-4">Office Hours</h3>
               <p className="text-gray-dark">
-                <strong>Phone:</strong> (555) 123-4567<br />
-                <strong>Email:</strong> band@kms.edu
+                Monday - Friday: 7:45 AM - 4:00 PM
               </p>
             </div>
 
             <div>
-              <h3 className="text-lg font-semibold mb-2">Office Hours</h3>
-              <p className="text-gray-dark">
-                Monday - Friday: 7:30 AM - 4:00 PM<br />
-                Band Hall Hours: 7:00 AM - 5:00 PM
-              </p>
-            </div>
-
-            <div>
-              <h3 className="text-lg font-semibold mb-2">Directors</h3>
-              <div className="space-y-3">
+              <h3 className="text-lg font-semibold mb-4">Directors</h3>
+              <div className="space-y-6">
                 <div>
                   <p className="font-medium">Dr. Bradley Boone - Band Director</p>
                   <p className="text-gray-dark">Email: bradleyboone@sheldonisd.com</p>
@@ -83,11 +83,11 @@ export default function Contact() {
 
         {/* Contact Form */}
         <div>
-          <h2 className="text-2xl font-semibold mb-6 text-primary">Send us a Message</h2>
+          <h2 className="text-2xl font-semibold mb-12 text-primary">Send us a Message</h2>
           
-          <form onSubmit={handleSubmit} className="space-y-4">
+          <form onSubmit={handleSubmit} className="space-y-6">
             <div>
-              <label htmlFor="name" className="block text-sm font-medium mb-1">
+              <label htmlFor="name" className="block text-sm font-medium mb-2">
                 Your Name *
               </label>
               <input
@@ -102,7 +102,7 @@ export default function Contact() {
             </div>
 
             <div>
-              <label htmlFor="email" className="block text-sm font-medium mb-1">
+              <label htmlFor="email" className="block text-sm font-medium mb-2">
                 Email Address *
               </label>
               <input
@@ -117,7 +117,7 @@ export default function Contact() {
             </div>
 
             <div>
-              <label htmlFor="subject" className="block text-sm font-medium mb-1">
+              <label htmlFor="subject" className="block text-sm font-medium mb-2">
                 Subject *
               </label>
               <select
@@ -138,7 +138,7 @@ export default function Contact() {
             </div>
 
             <div>
-              <label htmlFor="message" className="block text-sm font-medium mb-1">
+              <label htmlFor="message" className="block text-sm font-medium mb-2">
                 Message *
               </label>
               <textarea
@@ -160,6 +160,7 @@ export default function Contact() {
             </button>
           </form>
         </div>
+      </div>
       </div>
     </div>
   );

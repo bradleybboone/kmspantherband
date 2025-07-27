@@ -1,12 +1,28 @@
 import Image from "next/image";
+import Header from "@/components/Header";
 
 export default function About() {
   return (
-    <div className="max-w-7xl mx-auto px-8 lg:px-16 py-20">
-      {/* Page Header */}
-      <h1 className="text-4xl md:text-5xl font-bold text-primary text-center mb-8">
-        About KMS Panther Band
-      </h1>
+    <>
+      {/* Transparent header for about page */}
+      <Header variant="transparent" />
+      
+      {/* Hero Section */}
+      <section className="relative h-96 flex items-center justify-center overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-b from-primary to-white" />
+        <div className="relative z-10 text-center px-8">
+          <h1 className="hero-title mb-4">
+            ABOUT US
+          </h1>
+          <p className="hero-subtitle">
+            Excellence in Music Education
+          </p>
+        </div>
+      </section>
+      
+      {/* Main Content */}
+      <div className="max-w-7xl mx-auto px-8 lg:px-16 py-20">
+      {/* Remove duplicate header as we now have hero section */}
       
       {/* Program Overview */}
       <section className="max-w-4xl mx-auto mb-16">
@@ -27,7 +43,7 @@ export default function About() {
       </section>
 
       {/* Directors Section */}
-      <section className="mb-16">
+      <section id="directors" className="mb-16">
         <h2 className="text-3xl font-bold text-primary text-center mb-12">
           Meet Our Directors
         </h2>
@@ -38,16 +54,16 @@ export default function About() {
             <div className="aspect-square relative">
               <Image
                 src="/images/boone-bio.png"
-                alt="Band Director"
+                alt="Dr. Bradley Boone - Head Band Director"
                 fill
-                className="object-cover"
+                className="object-contain"
               />
             </div>
             <div className="p-6">
               <h3 className="text-xl font-semibold mb-2">Dr. Bradley Boone</h3>
-              <p className="text-primary font-medium mb-3">Band Director</p>
+              <p className="text-primary font-medium mb-3">Head Band Director</p>
               <p className="text-gray-dark mb-3">
-                This is Dr. Boone's fourth year at C.E. King Middle School. He holds a Bachelor 
+                This is Dr. Boone&apos;s fourth year at C.E. King Middle School. He holds a Bachelor 
                 of Music Education from Stetson University in Deland, Florida, as well as Master 
                 of Music and Doctor of Musical Arts degrees from Louisiana State University. He is 
                 a euphonium and trombone player.
@@ -123,7 +139,7 @@ export default function About() {
               <p className="text-gray-dark mb-3">
                 I was born in Germany and came over to the United States when I was 5. I spent 
                 the majority of my life in the Western Texas area, which is very different from 
-                Houston! If you were to ask my parents, they would tell you that I've always 
+                Houston! If you were to ask my parents, they would tell you that I&apos;ve always 
                 loved music. They knew after my 6th grade year of band that I would be pursuing 
                 a career with music. At the end of that year my father gave me my very first 
                 baton, which still travels with me everywhere I go.
@@ -133,7 +149,7 @@ export default function About() {
                 instruments and different music groups. This taught me how important my individual 
                 musicianship, practice and consistency is to every group. I know how lucky I am 
                 that my parents supported my love for music and for band. Music has been such a 
-                wonderful experience and has enriched my life in ways I couldn't even imagine.
+                wonderful experience and has enriched my life in ways I couldn&apos;t even imagine.
               </p>
               <p className="text-gray-dark mb-3">
                 I have been able to travel the country, meet new musicians and composers, 
@@ -144,7 +160,7 @@ export default function About() {
               <p className="text-gray-dark mb-3">
                 <strong>Fun Facts:</strong> My high school is home to the oldest Marching Band in 
                 the State of Texas! John Phillip Sousa was friends with the very first Director 
-                of Bands – Prof. Bynum. Prof. Bynum's son, Mr. Bynum was a frequent substitute 
+                of Bands – Prof. Bynum. Prof. Bynum&apos;s son, Mr. Bynum was a frequent substitute 
                 teacher for my band classes in middle and high school as his second career.
               </p>
               <p className="text-gray-dark">
@@ -200,5 +216,6 @@ export default function About() {
         </div>
       </section>
     </div>
+    </>
   );
 }

@@ -1,9 +1,19 @@
+import Header from "@/components/Header";
+
 export default function Handbook() {
   const handbookUrl = "https://docs.google.com/document/d/1una3PXJwVNUcgznEZXNXnNqMYKTe4eacf_3yeU0BwHA/edit?usp=sharing";
   const handbookEmbedUrl = "https://docs.google.com/document/d/1una3PXJwVNUcgznEZXNXnNqMYKTe4eacf_3yeU0BwHA/preview";
 
   return (
-    <div className="container mx-auto px-4 py-12">
+    <div className="min-h-screen bg-gray-50">
+      {/* Solid header for handbook page */}
+      <Header variant="solid" />
+      
+      {/* Spacer div to push content below fixed header */}
+      <div className="h-20 lg:h-24" />
+      
+      {/* Page content */}
+      <div className="container mx-auto px-4 py-12">
       <h1 className="text-4xl md:text-5xl font-bold text-primary text-center mb-8">
         Band Handbook
       </h1>
@@ -16,18 +26,20 @@ export default function Handbook() {
           </p>
           
           <div className="bg-primary text-secondary p-8 rounded-lg text-center mb-8">
-            <h2 className="text-2xl font-semibold mb-4">View or Download Band Handbook</h2>
+            <h2 className="text-2xl font-semibold mb-4 text-white !text-white">View or Download Band Handbook</h2>
             <p className="mb-6">
               View the handbook below or open in Google Docs to download in your preferred format (PDF, Word, etc.)
             </p>
-            <a 
-              href={handbookUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-block bg-secondary hover:bg-gray-light text-primary px-8 py-3 rounded-lg font-semibold transition-colors duration-200"
-            >
-              Open in Google Docs
-            </a>
+            <div className="mb-4">
+              <a 
+                href={handbookUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-block bg-secondary hover:bg-gray-light text-primary px-8 py-3 font-semibold transition-colors duration-200"
+              >
+                Open in Google Docs
+              </a>
+            </div>
           </div>
 
           {/* Embedded Google Doc Viewer */}
@@ -114,6 +126,7 @@ export default function Handbook() {
             </div>
           </div>
         </section>
+      </div>
       </div>
     </div>
   );
