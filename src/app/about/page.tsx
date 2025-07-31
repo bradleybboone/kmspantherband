@@ -120,15 +120,15 @@ export default function About() {
             </div>
           </div>
 
-          {/* Director 3 - Cooper (Placeholder) */}
+          {/* Director 3 - Cooper */}
           <div className="bg-white overflow-hidden">
-            <div className="aspect-square relative bg-gray-light flex items-center justify-center">
-              <div className="text-center">
-                <svg className="w-32 h-32 mx-auto text-gray-dark" fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
-                </svg>
-                <p className="text-gray-dark mt-2">Photo Coming Soon</p>
-              </div>
+            <div className="aspect-square relative">
+              <Image
+                src="/images/cooper-bio.jpg"
+                alt="Ms. Jenny Cooper - Assistant Band Director"
+                fill
+                className="object-contain"
+              />
             </div>
             <div className="p-6">
               <h3 className="text-xl font-semibold mb-2">Ms. Jenny Cooper</h3>
@@ -155,13 +155,8 @@ export default function About() {
                 I have been able to travel the country, meet new musicians and composers, 
                 performing, teaching and sharing my love for music. DCI has taken me to almost 
                 all 50 states as performer and as a music educator. I am licensed to teach in 
-                Wisconsin, Oklahoma and of course TEXAS!
-              </p>
-              <p className="text-gray-dark mb-3">
-                <strong>Fun Facts:</strong> My high school is home to the oldest Marching Band in 
-                the State of Texas! John Phillip Sousa was friends with the very first Director 
-                of Bands – Prof. Bynum. Prof. Bynum&apos;s son, Mr. Bynum was a frequent substitute 
-                teacher for my band classes in middle and high school as his second career.
+                Wisconsin, Oklahoma and of course TEXAS! I spent the last two years at Null and 
+                I&apos;m excited to be joining the C.E. King Middle School Band team!
               </p>
               <p className="text-gray-dark">
                 <strong>Email:</strong> <a href="mailto:jennycooper@sheldonisd.com" className="text-primary hover:underline">jennycooper@sheldonisd.com</a>
