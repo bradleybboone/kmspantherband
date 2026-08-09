@@ -1,4 +1,11 @@
+import type { Metadata } from "next";
 import Link from "next/link";
+
+export const metadata: Metadata = {
+  title: "Future Panthers",
+  description:
+    "Thinking about band? No experience necessary and no student turned away over cost — what incoming students and families need to know.",
+};
 
 export default function FutureMembers() {
   const schoolOwned = ["Oboe", "Bassoon", "Alto Saxophone", "French Horn", "Euphonium", "Tuba"];

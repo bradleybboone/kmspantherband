@@ -223,27 +223,42 @@ the routine-update loop.
    as static assets.
 
 ## Known Gaps / Next Work
+
+**See `docs/design-audit-2026-08-09.md` for the full technical audit** (a11y,
+performance, theming, responsive, integrity — 23 findings scored 10/20, each
+with a file:line and a measured number). It is the working checklist for the
+next several passes; tick items there rather than re-deriving them here.
+The former headline finding — hover-only nav dropdowns leaving 8 routes with
+no keyboard path (WCAG 2.1.1) — was **fixed 2026-08-09 by `/impeccable
+harden`**, along with the invisible-on-navy focus ring, ARIA state on both nav
+layers, per-route `metadata` + Open Graph, and a styled `not-found.tsx`
+(P0-1, P1-1..4, P1-8 in the audit doc).
+
 - **Content editing friction.** Announcements are hardcoded in `.tsx`, so a
   weekly update is a commit and a deploy. Embedding the Google Calendar handles
   the highest-churn content. Worth solving before November.
 - **Dev-dependency audit warnings.** `npm audit` reports ReDoS/DoS advisories in
   ESLint's transitive tree (ajv, brace-expansion, flatted, js-yaml, minimatch).
   All dev-only build tooling, none shipped to visitors.
-- **Mobile menu cannot be closed by its own toggle button — found 2026-08-09
-  while driving `preview:cf`.** In `Header.tsx`, the full-screen mobile nav
-  panel (`fixed inset-0 z-40`) is a sibling of the hamburger button rather
-  than a positioned ancestor, so once open it paints over the button and
-  swallows the tap that's supposed to close it — confirmed by repeated,
-  reproducible click failures in automated testing (Playwright reported the
-  first nav link, not the button, receiving the click) on two different
-  pages. The menu still closes by tapping any nav link, since those carry
-  their own `onClick={() => setMobileMenuOpen(false)}`, but that also
-  navigates — there is no way to dismiss the menu and stay on the page.
-  Needs either a dedicated close control inside the panel or a z-index/DOM
-  fix so the toggle button stays clickable while the panel is open. Not
-  fixed in this pass — out of scope for a docs-and-gate task.
+- **The closed-mobile-menu focus leak (P1-2) is fixed — 2026-08-09,
+  `/impeccable harden`.** The panel now carries `inert` + `aria-hidden` while
+  closed (not `display: none`, which would kill the slide animation); the
+  comment in `Header.tsx` above the panel records why. Re-measured at 375px:
+  0/8 items focusable while closed. This was a *different* defect from the one
+  fixed in `d1662ae` (the overlay swallowing taps on the hamburger); that one
+  stays held by the `relative z-50` on `<nav>` and its comment.
 
 ## Accessibility & Performance Targets
 - WCAG 2.1 AA; semantic HTML; keyboard navigation; 4.5:1 contrast minimum
 - Touch targets ≥ 44px
 - Lighthouse > 90; FCP < 1.5s; TTI < 3.5s
+
+<!-- BEGIN:nextjs-agent-rules -->
+
+# This is NOT the Next.js you know
+
+This version has breaking changes — APIs, conventions, and file structure may all differ from your training data. Read the relevant guide in `node_modules/next/dist/docs/` (resolved from this file's directory; in monorepos the `next` package may not be visible from the repo root) before writing any code. Heed deprecation notices.
+
+This block is written and re-added by `next dev` — verify at `node_modules/next/dist/server/lib/generate-agent-files.js`. Removing it from a diff only re-creates the uncommitted change; committing it with your work keeps the tree clean.
+
+<!-- END:nextjs-agent-rules -->

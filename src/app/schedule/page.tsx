@@ -1,4 +1,11 @@
+import type { Metadata } from "next";
 import Link from "next/link";
+
+export const metadata: Metadata = {
+  title: "Rehearsal Schedule",
+  description:
+    "Daily band class and after-school sectional times for the KMS Panther Band.",
+};
 
 export default function Schedule() {
   return (

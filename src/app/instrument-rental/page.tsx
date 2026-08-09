@@ -1,3 +1,11 @@
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Instrument Rental",
+  description:
+    "School-owned and parent-provided instruments, recommended vendors, and what it costs — no student is turned away over cost.",
+};
+
 export default function InstrumentRental() {
   return (
     <div className="container mx-auto px-4 py-12">

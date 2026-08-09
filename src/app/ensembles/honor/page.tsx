@@ -1,4 +1,11 @@
+import type { Metadata } from "next";
 import Link from "next/link";
+
+export const metadata: Metadata = {
+  title: "Honor Band",
+  description:
+    "The KMS Panther Band’s top ensemble, entered by director audition.",
+};
 
 export default function HonorBand() {
   return (

@@ -1,4 +1,11 @@
+import type { Metadata } from "next";
 import Link from "next/link";
+
+export const metadata: Metadata = {
+  title: "Forms & Documents",
+  description:
+    "Current KMS Panther Band forms and documents, all in one place.",
+};
 
 export default function FormsDocuments() {
   const handbookUrl =

@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import Image from 'next/image';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { usePathname } from 'next/navigation';
 
 interface SubItem {
@@ -24,7 +24,11 @@ export default function Header() {
   const [scrolled, setScrolled] = useState(false);
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
   const [mobileDropdowns, setMobileDropdowns] = useState<string[]>([]);
+  const mobileToggleRef = useRef<HTMLButtonElement>(null);
   const pathname = usePathname();
+
+  // Stable element id for aria-controls: "ENSEMBLES" -> "ensembles".
+  const menuId = (name: string) => name.toLowerCase().replace(/\s+/g, '-');
 
   const isTransparent = TRANSPARENT_NAV_PAGES.includes(pathname);
 
@@ -123,12 +127,31 @@ export default function Header() {
 
             {/* Desktop Navigation */}
             <div className="hidden lg:flex items-center">
+              {/*
+                Each dropdown group: hover is one of three ways in, not the
+                only one. The trigger button also toggles on click/Enter/Space
+                (aria-expanded below), Escape closes and returns focus to the
+                trigger, and the group closes when focus tabs out of it.
+                Before this, submenus opened on mouseenter only, leaving 8
+                routes with no keyboard path at all (WCAG 2.1.1 -- audit P0-1).
+              */}
               {navigation.map((item) => (
-                <div 
-                  key={item.name} 
+                <div
+                  key={item.name}
                   className="relative"
                   onMouseEnter={() => item.subItems && setOpenDropdown(item.name)}
                   onMouseLeave={() => setOpenDropdown(null)}
+                  onBlur={(e) => {
+                    if (!e.currentTarget.contains(e.relatedTarget as Node)) {
+                      setOpenDropdown(null);
+                    }
+                  }}
+                  onKeyDown={(e) => {
+                    if (e.key === 'Escape' && openDropdown === item.name) {
+                      setOpenDropdown(null);
+                      e.currentTarget.querySelector('button')?.focus();
+                    }
+                  }}
                 >
                   {item.href ? (
                     <Link
@@ -141,6 +164,12 @@ export default function Header() {
                     </Link>
                   ) : (
                     <button
+                      type="button"
+                      aria-expanded={openDropdown === item.name}
+                      aria-controls={`desktop-menu-${menuId(item.name)}`}
+                      onClick={() =>
+                        setOpenDropdown(openDropdown === item.name ? null : item.name)
+                      }
                       className={`nav-link ${textColor} hover:opacity-70 transition-opacity flex items-center ${
                         isActiveNavItem(item) ? 'nav-link-active' : ''
                       }`}
@@ -164,7 +193,10 @@ export default function Header() {
                     the hover target continuous. Do not swap this back to mt-*.
                   */}
                   {item.subItems && openDropdown === item.name && (
-                    <div className="absolute top-full left-0 pt-2 w-56 animate-fadeIn">
+                    <div
+                      id={`desktop-menu-${menuId(item.name)}`}
+                      className="absolute top-full left-0 pt-2 w-56 animate-fadeIn"
+                    >
                       <div className="bg-white shadow-xl py-2">
                         {item.subItems.map((subItem) => (
                           <Link
@@ -186,10 +218,13 @@ export default function Header() {
             {/* Mobile menu button */}
             <button
               type="button"
+              ref={mobileToggleRef}
               className={`lg:hidden p-2 ${textColor}`}
+              aria-expanded={mobileMenuOpen}
+              aria-controls="mobile-menu"
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             >
-              <span className="sr-only">Open menu</span>
+              <span className="sr-only">{mobileMenuOpen ? 'Close menu' : 'Open menu'}</span>
               <div className="w-6 h-6 flex flex-col justify-center space-y-1.5">
                 <span
                   className={`block h-0.5 w-full bg-current transform transition-transform duration-300 ${
@@ -212,8 +247,27 @@ export default function Header() {
         </div>
       </nav>
 
-      {/* Mobile Navigation Menu */}
+      {/*
+        Mobile Navigation Menu.
+
+        Closed state is `translate-x-full`, which keeps the panel rendered
+        (display:block, visibility:visible) so the slide animation works --
+        but that alone left 8 focusable items in the tab order, parked
+        off-screen at left:389px on a 375px viewport (WCAG 2.4.3 -- audit
+        P1-2). `inert` + `aria-hidden` remove it from keyboard and
+        screen-reader reach while closed without touching `display`, so the
+        slide survives. Do not replace this with `display: none`.
+      */}
       <div
+        id="mobile-menu"
+        inert={!mobileMenuOpen}
+        aria-hidden={!mobileMenuOpen}
+        onKeyDown={(e) => {
+          if (e.key === 'Escape') {
+            setMobileMenuOpen(false);
+            mobileToggleRef.current?.focus();
+          }
+        }}
         className={`lg:hidden fixed inset-0 bg-primary z-40 transform transition-transform duration-300 ${
           mobileMenuOpen ? 'translate-x-0' : 'translate-x-full'
         }`}
@@ -235,6 +289,9 @@ export default function Header() {
                 ) : (
                   <>
                     <button
+                      type="button"
+                      aria-expanded={mobileDropdowns.includes(item.name)}
+                      aria-controls={`mobile-submenu-${menuId(item.name)}`}
                       className={`w-full flex items-center justify-between py-3 text-white text-lg font-medium uppercase tracking-wider hover:opacity-80 transition-opacity ${
                         isActiveNavItem(item) ? 'opacity-100' : 'opacity-70'
                       }`}
@@ -253,7 +310,7 @@ export default function Header() {
                       </svg>
                     </button>
                     {item.subItems && mobileDropdowns.includes(item.name) && (
-                      <div className="pl-4 pb-2">
+                      <div id={`mobile-submenu-${menuId(item.name)}`} className="pl-4 pb-2">
                         {item.subItems.map((subItem) => (
                           <Link
                             key={subItem.href}

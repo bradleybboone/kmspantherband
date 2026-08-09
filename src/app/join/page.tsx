@@ -1,4 +1,11 @@
+import type { Metadata } from "next";
 import Link from "next/link";
+
+export const metadata: Metadata = {
+  title: "Join Band",
+  description:
+    "How to join the KMS Panther Band: who can join, the instruments we offer, and the steps to get started.",
+};
 
 export default function Join() {
   return (

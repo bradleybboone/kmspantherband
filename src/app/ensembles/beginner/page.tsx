@@ -1,4 +1,11 @@
+import type { Metadata } from "next";
 import Link from "next/link";
+
+export const metadata: Metadata = {
+  title: "Beginner Band",
+  description:
+    "Where every Panther starts — no experience necessary, classes grouped by instrument.",
+};
 
 export default function BeginnerBand() {
   return (

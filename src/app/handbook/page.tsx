@@ -1,4 +1,11 @@
+import type { Metadata } from "next";
 import Link from "next/link";
+
+export const metadata: Metadata = {
+  title: "Band Handbook",
+  description:
+    "The KMS Panther Band handbook, with a quick reference for grading, attire, and expectations.",
+};
 export default function Handbook() {
   const handbookUrl = "https://docs.google.com/document/d/1una3PXJwVNUcgznEZXNXnNqMYKTe4eacf_3yeU0BwHA/edit?usp=sharing";
   const handbookEmbedUrl = "https://docs.google.com/document/d/1una3PXJwVNUcgznEZXNXnNqMYKTe4eacf_3yeU0BwHA/preview";

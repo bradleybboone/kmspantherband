@@ -1,4 +1,11 @@
+import type { Metadata } from "next";
 import Link from "next/link";
+
+export const metadata: Metadata = {
+  title: "Symphonic Band",
+  description:
+    "A UIL-competing ensemble for skilled players, entered by director audition.",
+};
 
 export default function SymphonicBand() {
   return (

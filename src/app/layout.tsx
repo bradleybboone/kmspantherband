@@ -7,8 +7,25 @@ import HeaderSlot, { HeaderSpacer } from "@/components/HeaderSlot";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "KMS Panther Band",
-  description: "C.E. King Middle School Band - Excellence From Within",
+  metadataBase: new URL("https://kmspantherband.org"),
+  title: {
+    default: "KMS Panther Band",
+    template: "%s | KMS Panther Band",
+  },
+  description:
+    "The C.E. King Middle School Panther Band — over 250 students strong, no experience necessary. Excellence From Within.",
+  openGraph: {
+    siteName: "KMS Panther Band",
+    type: "website",
+    images: [
+      {
+        url: "/images/hero-image.jpg",
+        width: 1600,
+        height: 900,
+        alt: "KMS Panther Band students performing",
+      },
+    ],
+  },
 };
 
 export default function RootLayout({

@@ -1,4 +1,11 @@
+import type { Metadata } from "next";
 import Image from "next/image";
+
+export const metadata: Metadata = {
+  title: "About Us",
+  description:
+    "Meet the KMS Panther Band and its directors — a cornerstone of the community’s instrumental music education for more than two decades.",
+};
 
 export default function About() {
   return (

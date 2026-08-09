@@ -1,3 +1,11 @@
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Contact Us",
+  description:
+    "Reach the KMS Panther Band directors at C.E. King Middle School.",
+};
+
 export default function Contact() {
   const directors = [
     { name: "Dr. Bradley Boone", role: "Head Band Director", email: "bradleyboone@sheldonisd.com" },

@@ -301,10 +301,20 @@ body {
   background-color: currentColor;
 }
 
-/* Focus styles */
+/*
+  Focus ring -- two-tone so it survives every ground on the site.
+
+  The old single navy outline measured 1:1 against the scrolled header, the
+  footer, and every bg-primary CTA panel -- keyboard focus was invisible on
+  exactly the surfaces that hold the primary actions (WCAG 2.4.7 -- audit
+  P1-1). The white inner outline reads on navy grounds; the navy box-shadow
+  band outside it reads on white and gray-lighter grounds. Neither layer
+  alone works everywhere -- keep both.
+*/
 :focus-visible {
-  outline: 2px solid var(--primary);
-  outline-offset: 2px;
+  outline: 2px solid var(--secondary);
+  outline-offset: 0;
+  box-shadow: 0 0 0 4px var(--primary);
 }
 
 /* Selection */
