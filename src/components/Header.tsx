@@ -100,7 +100,7 @@ export default function Header() {
   const textColor = 'text-white';
 
   return (
-    <header className={`w-full fixed top-0 left-0 right-0 z-50 transition-all duration-300`}>
+    <header className="w-full fixed top-0 left-0 right-0 z-50">
       {/*
         `relative z-50` keeps the bar -- and the hamburger toggle -- above the
         mobile menu overlay below, which is `fixed inset-0 z-40`. Without a
@@ -109,7 +109,7 @@ export default function Header() {
         toggle: the menu opened and could not be closed except by following a
         link. The overlay's own `pt-24` already assumes a visible bar above it.
       */}
-      <nav className={`relative z-50 ${navBackground} ${scrolled ? 'shadow-lg' : ''}`}>
+      <nav className={`relative z-50 transition-[background-color,box-shadow] duration-300 ${navBackground} ${scrolled ? 'shadow-lg' : ''}`}>
         <div className="px-6 lg:px-12">
           <div className="flex items-center justify-between h-20 lg:h-24">
             {/* Logo */}
@@ -227,7 +227,7 @@ export default function Header() {
               <span className="sr-only">{mobileMenuOpen ? 'Close menu' : 'Open menu'}</span>
               <div className="w-6 h-6 flex flex-col justify-center space-y-1.5">
                 <span
-                  className={`block h-0.5 w-full bg-current transform transition-transform duration-300 ${
+                  className={`block h-0.5 w-full bg-current transform transition-transform duration-300 motion-reduce:transition-none ${
                     mobileMenuOpen ? 'rotate-45 translate-y-2' : ''
                   }`}
                 />
@@ -237,7 +237,7 @@ export default function Header() {
                   }`}
                 />
                 <span
-                  className={`block h-0.5 w-full bg-current transform transition-transform duration-300 ${
+                  className={`block h-0.5 w-full bg-current transform transition-transform duration-300 motion-reduce:transition-none ${
                     mobileMenuOpen ? '-rotate-45 -translate-y-2' : ''
                   }`}
                 />
@@ -268,8 +268,8 @@ export default function Header() {
             mobileToggleRef.current?.focus();
           }
         }}
-        className={`lg:hidden fixed inset-0 bg-primary z-40 transform transition-transform duration-300 ${
-          mobileMenuOpen ? 'translate-x-0' : 'translate-x-full'
+        className={`lg:hidden fixed inset-0 bg-primary z-40 transform transition-transform motion-reduce:transition-none ${
+          mobileMenuOpen ? 'translate-x-0 duration-300' : 'translate-x-full duration-200'
         }`}
       >
         <div className="pt-24 pb-6 px-6 max-h-screen overflow-y-auto">
@@ -298,10 +298,10 @@ export default function Header() {
                       onClick={() => toggleMobileDropdown(item.name)}
                     >
                       {item.name}
-                      <svg 
-                        className={`h-5 w-5 transform transition-transform ${
+                      <svg
+                        className={`h-5 w-5 transform transition-transform motion-reduce:transition-none ${
                           mobileDropdowns.includes(item.name) ? 'rotate-180' : ''
-                        }`} 
+                        }`}
                         fill="none" 
                         stroke="currentColor" 
                         viewBox="0 0 24 24"

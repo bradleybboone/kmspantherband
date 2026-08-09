@@ -7,20 +7,25 @@ export default function Home() {
     <>
       {/* Hero Section - Rouse Band Style with full-screen background */}
       <section className="relative h-screen flex items-center justify-center overflow-hidden">
+        {/*
+          The entrance classes (hero-enter-*) are the site's one authored
+          motion moment — see globals.css. The overlay stays static so white
+          text never sits on unoverlaid photography mid-animation.
+        */}
         <Image
           src="/images/hero-image.jpg"
           alt="KMS Panther Band performing"
           fill
-          className="object-cover"
+          className="object-cover hero-enter-media"
           priority
         />
         <div className="absolute inset-0 bg-black/50" />
-        
+
         <div className="relative z-10 text-center px-8">
-          <h1 className="hero-title mb-4">
+          <h1 className="hero-title hero-enter-title mb-4">
             KMS PANTHER BAND
           </h1>
-          <p className="hero-subtitle">
+          <p className="hero-subtitle hero-enter-subtitle">
             Excellence From Within
           </p>
         </div>
@@ -64,17 +69,17 @@ export default function Home() {
           <h2 className="text-center text-3xl lg:text-4xl mb-12 text-primary">
             PANTHER PRIDE
           </h2>
-          <ImageCarousel 
+          <ImageCarousel
             images={[
-              "/images/landing1.jpg",
-              "/images/landing2.jpg",
-              "/images/landing3.jpg",
-              "/images/landing4.jpg",
-              "/images/landing5.jpg",
-              "/images/landing6.jpg",
-              "/images/landing7.jpg",
-              "/images/landing8.jpg",
-              "/images/landing9.jpg"
+              { src: "/images/landing1.jpg", alt: "Band students in blue Panther Band polos sharing a treat by the flower beds on the amusement park trip" },
+              { src: "/images/landing2.jpg", alt: "The full band in matching green trip shirts posing in front of the carousel at Six Flags Over Texas" },
+              { src: "/images/landing3.jpg", alt: "Eight band students posing with the giant KING letters outside C.E. King Middle School" },
+              { src: "/images/landing4.jpg", alt: "Students in Panther Band polos huddled around a director for a talk before a performance" },
+              { src: "/images/landing5.jpg", alt: "The band performing on a concert stage under blue lights as the director conducts" },
+              { src: "/images/landing6.jpg", alt: "Three band students smiling arm in arm in front of an arcade claw machine" },
+              { src: "/images/landing7.jpg", alt: "Band members playing in the stadium stands at an evening football game" },
+              { src: "/images/landing8.jpg", alt: "Families in a full auditorium watching the band perform in matching blue shirts" },
+              { src: "/images/landing9.jpg", alt: "Band students crowded together for a group photo, the front row holding up a plaque after a UIL performance" }
             ]}
           />
         </div>
@@ -106,7 +111,7 @@ function QuickLinkCard({ title, description, href }: {
 }) {
   return (
     <Link href={href} className="group block">
-      <div className="bg-white shadow-md hover:shadow-xl transition-all duration-300 h-full min-h-[240px] flex flex-col" style={{ padding: '32px' }}>
+      <div className="bg-white shadow-md hover:shadow-xl motion-safe:hover:-translate-y-0.5 transition-[box-shadow,transform] duration-300 h-full min-h-[240px] flex flex-col" style={{ padding: '32px' }}>
         <h3 className="text-lg font-display font-medium mb-3 text-primary group-hover:text-primary-hover transition-colors">
           {title}
         </h3>

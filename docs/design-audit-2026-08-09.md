@@ -151,7 +151,15 @@ No `aria-expanded`, `aria-haspopup`, or `aria-controls` on any of the three
 
 - **Command**: `/impeccable harden`
 
-### [ ] P1-5 · Carousel autoplays with no pause control
+### [x] P1-5 · Carousel autoplays with no pause control
+
+**Fixed 2026-08-09 by `/impeccable animate`.** 44px pause/play control in the
+frame; rotation pauses on hover/focus and offscreen (IntersectionObserver),
+stops for good on manual navigation, and never starts under
+`prefers-reduced-motion` (matchMedia, verified via Playwright emulation).
+`aria-live` is `off` while rotating, `polite` once the visitor drives; each
+slide carries `role="group"` + "n of 9". All nine photos now have descriptive
+alt text written from the actual images.
 
 - **Location**: `src/components/ImageCarousel.tsx:14-20`
 - **Standard**: WCAG 2.2.2 Pause, Stop, Hide (Level A)
@@ -245,12 +253,27 @@ CLAUDE.md sets ≥44px. Measured:
 
 Dots also fail WCAG 2.5.8's 24px floor. → `/impeccable adapt`
 
-### [ ] P2-3 · No `prefers-reduced-motion` anywhere
+*Partial 2026-08-09 (`/impeccable animate`): rebuilding the carousel controls
+brought arrows, dots, and the new pause button to 44×44 (measured). Only the
+40×40 hamburger remains for `adapt`.*
+
+### [x] P2-3 · No `prefers-reduced-motion` anywhere
+
+**Fixed 2026-08-09 by `/impeccable animate`.** Smooth scroll gated behind
+`no-preference`; the hero entrance falls back to fade-only; card lift and the
+mobile-menu slide / hamburger morph drop their spatial movement
+(`motion-reduce:` variants); carousel autoplay never starts. Opacity and color
+feedback deliberately survives — reduced, not frozen.
 
 **0 matching rules** in the shipped stylesheet. Smooth scroll, 500ms crossfade,
 card lift, and hamburger morph all ignore the OS setting. → `/impeccable animate`
 
-### [ ] P2-4 · `transition: all` globally
+### [x] P2-4 · `transition: all` globally
+
+**Fixed 2026-08-09 by `/impeccable animate`.** Every `transition: all`
+(global element rule, `.nav-link`, `.btn`, `.card`, `.form-control`, the
+header, QuickLinkCard) is now scoped to the properties its states actually
+change.
 
 `globals.css:317` applies it to every `button, a, input, textarea, select`.
 Confirmed `transition-property: all` on links — animates layout properties by
@@ -346,8 +369,8 @@ vocabulary that will drift. Also the only home of the detector's
    `metadata`. *(P0-1, P1-1..4, P1-8)*
 2. ~~**[P1] `/impeccable optimize`** — lazy the carousel, de-duplicate Inter,
    recompress bio images. *(P1-6, P1-7, P2-6)*~~ Done 2026-08-09.
-3. **[P1] `/impeccable animate`** — carousel pause, reduced-motion branch,
-   scoped transitions. *(P1-5, P2-3, P2-4)*
+3. ~~**[P1] `/impeccable animate`** — carousel pause, reduced-motion branch,
+   scoped transitions. *(P1-5, P2-3, P2-4)*~~ Done 2026-08-09.
 4. **[P2] `/impeccable adapt`** — 44px touch targets, fluid iframe heights.
    *(P2-2, P2-8)*
 5. **[P2] `/impeccable colorize`** — `/about` gradient contrast, widen

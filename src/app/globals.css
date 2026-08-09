@@ -104,6 +104,8 @@
   --ease-in: cubic-bezier(0.4, 0, 1, 1);
   --ease-out: cubic-bezier(0, 0, 0.2, 1);
   --ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
+  /* Confident deceleration for entrances: fast arrival, long settle. */
+  --ease-emphatic: cubic-bezier(0.16, 1, 0.3, 1);
   
   /* Border Radius */
   --radius-none: 0;
@@ -161,8 +163,10 @@
   }
 }
 
-html {
-  scroll-behavior: smooth;
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
 }
 
 /*
@@ -273,6 +277,62 @@ body {
   color: var(--secondary);
 }
 
+/*
+  Homepage hero entrance -- "the downbeat". One authored moment, run once:
+  the photo settles into place (a slow scale-down, the room coming into
+  focus), the title rises on the beat, and the motto breathes in with its
+  letterspacing settling from wide to final -- a held chord blooming.
+  Applied only by the homepage markup; /about shares .hero-title but keeps
+  a static hero, so the entrance stays specific to the front door.
+
+  The motto's letter-spacing tween reflows a single centered line for 900ms,
+  once, at page load -- bounded on purpose; don't reuse the technique on
+  anything that repeats or scrolls.
+*/
+@keyframes hero-settle {
+  from { transform: scale(1.05); }
+  to { transform: scale(1); }
+}
+
+@keyframes hero-rise {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes hero-bloom {
+  from {
+    opacity: 0;
+    letter-spacing: 0.34em;
+  }
+  to {
+    opacity: 1;
+    letter-spacing: 0.2em;
+  }
+}
+
+@keyframes fade-only {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.hero-enter-media {
+  animation: hero-settle 1400ms var(--ease-emphatic) both;
+}
+
+.hero-enter-title {
+  animation: hero-rise 700ms var(--ease-emphatic) 120ms both;
+}
+
+.hero-enter-subtitle {
+  animation: hero-bloom 900ms var(--ease-emphatic) 420ms both;
+}
+
 /* Navigation Links */
 .nav-link {
   font-family: var(--font-body);
@@ -283,7 +343,7 @@ body {
   color: var(--secondary);
   text-decoration: none;
   padding: 0.5rem 1rem;
-  transition: all var(--transition-base);
+  transition: opacity var(--transition-base), color var(--transition-base);
   position: relative;
 }
 
@@ -323,9 +383,20 @@ body {
   color: var(--primary);
 }
 
-/* Smooth transitions for interactive elements */
+/*
+  Smooth transitions for interactive elements -- scoped, never `all`.
+  `transition: all` animated layout properties (width, height, padding) on
+  every link and control by default (audit P2-4). Only the properties state
+  changes actually use are listed here.
+*/
 button, a, input, textarea, select {
-  transition: all var(--transition-base);
+  transition:
+    color var(--transition-base),
+    background-color var(--transition-base),
+    border-color var(--transition-base),
+    opacity var(--transition-base),
+    box-shadow var(--transition-base),
+    transform var(--transition-base);
 }
 
 /*
@@ -430,7 +501,10 @@ li {
   text-decoration: none;
   text-align: center;
   border: 2px solid transparent;
-  transition: all var(--transition-base);
+  transition:
+    color var(--transition-base),
+    background-color var(--transition-base),
+    border-color var(--transition-base);
   cursor: pointer;
 }
 
@@ -501,7 +575,7 @@ li {
   border-radius: 0;
   box-shadow: var(--shadow-md);
   overflow: hidden;
-  transition: all var(--transition-base);
+  transition: box-shadow var(--transition-base), transform var(--transition-base);
 }
 
 .card:hover {
@@ -535,7 +609,7 @@ li {
   background-color: var(--secondary);
   border: 2px solid var(--gray-light);
   border-radius: var(--radius-md);
-  transition: all var(--transition-base);
+  transition: border-color var(--transition-base), box-shadow var(--transition-base);
 }
 
 .form-control:focus {
@@ -600,7 +674,7 @@ li {
 }
 
 .animate-fadeIn {
-  animation: fadeIn var(--transition-slow) var(--ease-out);
+  animation: fadeIn 250ms var(--ease-emphatic);
 }
 
 .animate-slideUp {
@@ -609,6 +683,38 @@ li {
 
 .animate-slideDown {
   animation: slideDown var(--transition-slow) var(--ease-out);
+}
+
+/*
+  Reduced motion -- fewer and gentler, not frozen (audit P2-3).
+  Spatial movement (rise, settle, lift, slide) is removed; opacity and color
+  feedback stays so state changes remain legible. Component-level motion
+  (mobile menu slide, hamburger morph, carousel autoplay) is handled at the
+  source with Tailwind `motion-reduce:` variants and a matchMedia check in
+  ImageCarousel -- this block only covers what globals.css itself animates.
+*/
+@media (prefers-reduced-motion: reduce) {
+  .hero-enter-media {
+    animation: none;
+  }
+
+  .hero-enter-title,
+  .hero-enter-subtitle {
+    animation: fade-only 400ms var(--ease-out) both;
+  }
+
+  .animate-fadeIn {
+    animation: fade-only 150ms var(--ease-out);
+  }
+
+  .animate-slideUp,
+  .animate-slideDown {
+    animation: fade-only var(--transition-slow) var(--ease-out);
+  }
+
+  .card:hover {
+    transform: none;
+  }
 }
 
 /*
