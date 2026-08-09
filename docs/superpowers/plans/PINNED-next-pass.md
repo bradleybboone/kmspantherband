@@ -59,6 +59,19 @@ so a student can find their own day.
 
 Depends on item 3 — do not build this against TeamUp.
 
+## 4b. Instagram link — account coming
+
+Director confirmed 2026-08-09: the band has **no Facebook and no Twitter**, and
+**no Instagram yet, but one is coming**.
+
+The footer previously carried all three as `href="#"` placeholders; the season
+refresh removed them (dead links on a live site are worse than none) and replaced
+the column with a "NEW TO BAND?" link to `/future-members`.
+
+When the Instagram account exists, add a single icon back to `src/components/Footer.tsx`
+with the real URL. Do not re-add Facebook or Twitter. Keep the `/future-members`
+link — it earns its place independently of social.
+
 ## 5. Ensemble pages are still placeholders
 
 Not raised by the director, but noted during the refresh: all five
