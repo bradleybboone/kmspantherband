@@ -18,6 +18,8 @@
 - **Source authority order:** 2026-27 Handbook > Elementary Packet (2026-05-04) > director corrections > legacy Google Site. See the spec at `docs/superpowers/specs/2026-08-09-26-27-season-refresh-design.md`.
 - **Copy rule:** "Recommended", never "Approved", when referring to music stores.
 - **Escape apostrophes in JSX** as `&apos;` — `react/no-unescaped-entities` is on and `npm run lint` will fail otherwise.
+- **Never put black or dark text on a navy background — including buttons.** `bg-primary` (`#001689`) takes `text-secondary`/`text-white` only. Buttons on navy use `bg-secondary text-primary` (white on navy-text), never `text-accent` or an unset color that inherits black. A full-site contrast audit is a later pass; this constraint stops new violations landing here.
+- **Practice cards are discontinued for 2026-27.** The practice *expectation* stands, but it is no longer a logged or graded artifact. Do not list practice logs/records as a graded component or as a form.
 - **Facts that must appear exactly:**
   - Activity fee **$25/year**, all students.
   - School-owned instrument usage **$100/year**. Percussion **$100/year starting Year 2**.
@@ -443,8 +445,12 @@ Replace the `<div className="space-y-6">` block and its four children with:
               <h3 className="text-xl font-semibold mb-3">Grading</h3>
               <ul className="space-y-2 text-gray-dark">
                 <li>• 50% Major Grades &mdash; playing tests and performances</li>
-                <li>• 50% Daily Grades &mdash; participation, quizzes, and practice records</li>
+                <li>• 50% Daily Grades &mdash; participation and quizzes</li>
               </ul>
+              <p className="text-gray-dark mt-3">
+                Daily practice at home is still expected of every student, but practice
+                cards are no longer used and are not turned in for a grade.
+              </p>
             </div>
 
             <div className="bg-gray-100 p-6 rounded-lg">
