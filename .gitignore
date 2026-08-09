@@ -51,3 +51,9 @@ Elementary Packet*.pdf
 # Cloudflare / OpenNext build output
 /.open-next/
 .wrangler/
+
+# Impeccable design-skill working context — local design guidance, not site
+# content. Kept out of the repo by the director's call (2026-08-09).
+/PRODUCT.md
+/DESIGN.md
+/.impeccable/
