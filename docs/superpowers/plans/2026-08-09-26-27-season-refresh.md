@@ -1210,7 +1210,12 @@ cd /home/waffles/projects/kmspantherband
 npm run typecheck && npm run lint && npm run build:cf
 ```
 
-Expected: clean. Confirm the route table shows **18** routes, all `○ (Static)`, including `/future-members`.
+Expected: clean. Confirm the route table shows **16** entries, all `○ (Static)`, including `/future-members`.
+
+Note: 16 = 15 page routes + `/_not-found`. CLAUDE.md's existing claim of "17 routes"
+was already inaccurate before this plan (the real count was 15 entries: 14 pages +
+`/_not-found`). Task 12 Step 4 corrects that number in CLAUDE.md rather than
+propagating it.
 
 - [ ] **Step 2: Site-wide fact sweep**
 
@@ -1264,7 +1269,13 @@ authority is: handbook > elementary packet > director correction > anything
 on the legacy Google Site, which is stale and should not be trusted.
 ```
 
-Update the Directory Structure block to include `future-members/`, and change the route count from 17 to 18 in the Stack section.
+Update the Directory Structure block to include `future-members/`.
+
+Also fix the Stack section's route count. It currently reads "All 17 routes are
+`○ (Static)`", which was already wrong before this plan. Replace it with the
+verified figure from Step 1 — **16 entries (15 pages + `/_not-found`)** — phrased
+so it does not need re-counting every time a page is added, e.g. "Every route is
+`○ (Static)` — prerendered at build time."
 
 - [ ] **Step 5: Add a content-refresh note to the runbook**
 
