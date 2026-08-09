@@ -22,7 +22,7 @@ consolidation. Optimize here for *nothing to maintain*, not for capability.
 - **Auth**: none
 - **Node**: 22.x local
 
-All 17 routes are `○ (Static)` — prerendered at build time. There are **no API
+Every route is `○ (Static)` — prerendered at build time. There are **no API
 routes and no server-side data fetching**. Keep it that way (see Decisions).
 
 ## Decisions
@@ -89,6 +89,23 @@ It is now removed from `layout.tsx` entirely; the packages stay in
 `devDependencies`. Re-enable instructions are in the comment in `layout.tsx`.
 Largest client chunk after removal: **223 KB**.
 
+### D5 — Header lives in the root layout (2026-08-09)
+`<Header />` was rendered by each page, and `/join` and `/schedule` simply
+forgot it — they shipped with no navigation. It now renders once from
+`layout.tsx` via `HeaderSlot`, which also owns the spacer. Transparency
+derives from `TRANSPARENT_NAV_PAGES` in `Header.tsx`, so the `variant`
+prop is gone. A new page cannot repeat the bug.
+
+### D6 — Handbook facts are summarized, never re-derived (2026-08-09)
+The `/handbook` Quick Reference had drifted into contradicting the handbook
+it links to: grading published as 40/30/20/10 against an actual 50/50, and
+concert attire as a white button-up against an actual blue performance polo.
+Practice minimums and an absence rule appeared in no source at all.
+
+When the handbook changes, re-check that section against it. Source
+authority is: handbook > elementary packet > director correction > anything
+on the legacy Google Site, which is stale and should not be trusted.
+
 ## Design System
 
 ### Colors (Official School District Colors)
@@ -107,8 +124,9 @@ Largest client chunk after removal: **223 KB**.
 src/
 ├── app/              # App Router pages (all static)
 │   ├── ensembles/    # beginner, cadet, concert, honor, symphonic
+│   ├── future-members/ # Landing page for incoming students/families
 │   ├── resources/    # forms
-│   ├── layout.tsx    # Root layout
+│   ├── layout.tsx    # Root layout — renders Header via HeaderSlot (see D5)
 │   └── page.tsx      # Homepage (hero + ImageCarousel)
 └── components/       # Header, Footer, ImageCarousel, ...
 scripts/
@@ -211,6 +229,19 @@ the routine-update loop.
 - **Dev-dependency audit warnings.** `npm audit` reports ReDoS/DoS advisories in
   ESLint's transitive tree (ajv, brace-expansion, flatted, js-yaml, minimatch).
   All dev-only build tooling, none shipped to visitors.
+- **Mobile menu cannot be closed by its own toggle button — found 2026-08-09
+  while driving `preview:cf`.** In `Header.tsx`, the full-screen mobile nav
+  panel (`fixed inset-0 z-40`) is a sibling of the hamburger button rather
+  than a positioned ancestor, so once open it paints over the button and
+  swallows the tap that's supposed to close it — confirmed by repeated,
+  reproducible click failures in automated testing (Playwright reported the
+  first nav link, not the button, receiving the click) on two different
+  pages. The menu still closes by tapping any nav link, since those carry
+  their own `onClick={() => setMobileMenuOpen(false)}`, but that also
+  navigates — there is no way to dismiss the menu and stay on the page.
+  Needs either a dedicated close control inside the panel or a z-index/DOM
+  fix so the toggle button stays clickable while the panel is open. Not
+  fixed in this pass — out of scope for a docs-and-gate task.
 
 ## Accessibility & Performance Targets
 - WCAG 2.1 AA; semantic HTML; keyboard navigation; 4.5:1 contrast minimum

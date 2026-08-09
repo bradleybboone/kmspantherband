@@ -631,6 +631,56 @@ matter.
 
 ---
 
+## 2026-27 season refresh (2026-08-09)
+
+The site launched carrying 2025-26 content. A same-day follow-up pass (12
+tasks, branch `season-refresh-26-27`) brought it current: staff change
+(Cooper → Chavez), handbook corrections, a `/join`/`/schedule` navigation
+fix, a new `/future-members` page, and assorted fee/vendor corrections. Full
+design record: `docs/superpowers/specs/2026-08-09-26-27-season-refresh-design.md`.
+
+**Source documents, highest authority first:**
+
+| Source | Date | Notes |
+|---|---|---|
+| 2026-27 Band Handbook (Google Doc) | updated 2026-08-05 | Authoritative; embedded at `/handbook`. |
+| Elementary Packet — 6th Graders (PDF) | 2026-05-04 | Authoritative for beginner/vendor/fee detail. |
+| Director-supplied corrections | 2026-08-09 | Overrides both where explicitly given. |
+| Legacy Google Site | stale | Structure only; content verified before reuse, never trusted outright. |
+
+**Five source inconsistencies flagged to the director — not resolved in code,**
+because fixing them means editing a document outside this repo:
+
+1. **Activity fee has two due dates in the handbook itself** — August 21 in the
+   fees section, September 4 in the calendar. The site follows the calendar
+   (Sept 4) for the fee and forms pages; forms besides the fee use Aug 21/14
+   as the handbook states.
+2. **The letter-grade rubric skips C** (100 A / 85 B / 70 D / 50 F) — looks
+   like a typo. The site states the 50/50 grading split only and does not
+   reproduce the rubric.
+3. **The handbook sends every family to `tinyurl.com/kingmsband`**, not
+   kmspantherband.org. If that tinyurl still points at the legacy Google
+   Site, every family reading the new handbook lands off this site.
+   **Someone with access to the tinyurl needs to repoint it here.**
+4. **The "8 in 10 of our 7th & 8th graders" athletics figure is last year's**
+   and unverified for 26-27. The site states the claim without a percentage
+   until a current figure is supplied.
+5. **Activity-fee inclusions vary by source** — the handbook lists T-shirt and
+   method book; the elementary packet lists T-shirt, 1" binder, pencil
+   pouch, case tag, and the method book. The site uses the packet's fuller
+   list, which supersets the handbook's.
+
+**Also flagged: the May 2026 elementary packet still lists Jenny Cooper** as a
+director. It predates the Cooper → Chavez change and needs a reprint before
+the next batch goes out to incoming families.
+
+None of the above blocked this pass — each has a stated fallback on the live
+site — but none of them can be fixed by another commit here. They need a
+person with edit access to the handbook Google Doc, the tinyurl, and the
+packet's source file.
+
+---
+
 ## Sources
 
 - [Cloudflare — Onboard a domain](https://developers.cloudflare.com/fundamentals/manage-domains/add-site/)
