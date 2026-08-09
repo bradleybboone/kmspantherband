@@ -57,9 +57,11 @@ fallback; correcting the source is a separate, off-repo action.
 3. **Handbook directs families to `tinyurl.com/kingmsband`**, not
    kmspantherband.org. If that tinyurl points at the legacy Google Site, every
    family reading the new handbook lands off-site. *Repoint the tinyurl.*
-4. **Enrollment and athletics figures are last year's** ("over 250 members",
-   "8 in 10 of our 7th & 8th graders"). *Site will phrase these without
-   numbers until current figures are supplied.*
+4. **Enrollment confirmed 2026-08-09: 294 pre-school.** "Over 250 members" is
+   therefore valid and is retained — it survives normal in-year attrition,
+   where "nearly 300" would not. The athletics figure ("8 in 10 of our 7th &
+   8th graders") is still last year's and *will be phrased without a number*
+   until a current figure is supplied.
 5. **Activity fee inclusions vary by source** — handbook says T-shirt + method
    book; packet says T-shirt, 1" binder, pencil pouch, case tag, and textbook.
    *Site uses the packet's fuller list, which supersets the handbook's.*
