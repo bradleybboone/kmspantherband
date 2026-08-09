@@ -43,6 +43,11 @@ next-env.d.ts
 # WSL/NTFS alternate data stream artifacts
 *:Zone.Identifier
 
+# Source material handed over for content updates — never served, never committed.
+# Originals carry camera EXIF (including GPS) and are large.
+*.jpeg
+Elementary Packet*.pdf
+
 # Cloudflare / OpenNext build output
 /.open-next/
 .wrangler/
