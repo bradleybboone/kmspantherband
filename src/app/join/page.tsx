@@ -2,7 +2,7 @@ import Link from "next/link";
 
 export default function Join() {
   return (
-    <div className="max-w-7xl mx-auto px-8 lg:px-16 py-20">
+    <div className="container mx-auto px-4 py-12">
       <h1 className="text-4xl md:text-5xl font-bold text-primary text-center mb-8">
         Join the KMS Panther Band
       </h1>

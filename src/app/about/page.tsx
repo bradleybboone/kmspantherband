@@ -17,7 +17,7 @@ export default function About() {
       </section>
       
       {/* Main Content */}
-      <div className="max-w-7xl mx-auto px-8 lg:px-16 py-20">
+      <div className="container mx-auto px-4 py-12">
       {/* Remove duplicate header as we now have hero section */}
       
       {/* Program Overview */}
