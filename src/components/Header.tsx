@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import Image from 'next/image';
 import { useState, useEffect } from 'react';
 import { usePathname } from 'next/navigation';
 
@@ -103,10 +104,13 @@ export default function Header() {
             {/* Logo */}
             <Link href="/" className="flex items-center">
               <div className="relative w-16 h-16 lg:w-20 lg:h-20">
-                {/* Replace with your logo */}
-                <div className={`w-full h-full ${isTransparent && !scrolled ? 'bg-white/20' : 'bg-white/10'} backdrop-blur-sm rounded-sm flex items-center justify-center`}>
-                  <span className={`${textColor} font-display text-2xl lg:text-3xl font-bold`}>K</span>
-                </div>
+                <Image
+                  src="/images/logo.svg"
+                  alt="KMS Panther Band"
+                  fill
+                  priority
+                  className="object-contain brightness-0 invert"
+                />
               </div>
             </Link>
 
