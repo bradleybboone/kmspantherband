@@ -1,63 +1,52 @@
+import Link from "next/link";
+
 export default function Schedule() {
   return (
     <div className="container mx-auto px-4 py-12">
       <h1 className="text-4xl md:text-5xl font-bold text-primary text-center mb-8">
-        Band Schedule
+        Rehearsal Schedule
       </h1>
-      
+
       <div className="max-w-4xl mx-auto">
-        <div className="bg-gray-100 p-8 rounded-lg text-center mb-12">
-          <p className="text-lg text-gray-dark">
-            Daily rehearsal schedules and practice times will be posted here.
+        <section className="mb-12">
+          <h2 className="text-2xl font-semibold mb-6 text-primary">Fall Sectionals</h2>
+          <div className="bg-gray-100 p-6 rounded-lg">
+            <p className="text-gray-dark mb-3">
+              Sectionals run <strong>Monday through Thursday, 4:00&ndash;5:00 PM</strong>,
+              beginning <strong>August 17, 2026</strong>.
+            </p>
+            <p className="text-gray-dark">
+              Your student&apos;s assigned sectional day depends on their instrument. The
+              sectional acknowledgement form is due <strong>August 14</strong>.
+            </p>
+          </div>
+        </section>
+
+        <section className="mb-12">
+          <h2 className="text-2xl font-semibold mb-6 text-primary">Band Class</h2>
+          <div className="bg-gray-100 p-6 rounded-lg">
+            <p className="text-gray-dark">
+              Band meets daily as a regular class period. Placement is set by the campus
+              master schedule &mdash; check your student&apos;s schedule in Skyward.
+            </p>
+          </div>
+        </section>
+
+        <section className="text-center bg-primary text-secondary p-8 rounded-lg">
+          <h2 className="text-2xl font-semibold mb-4 text-white !text-white">
+            Performances &amp; Event Dates
+          </h2>
+          <p className="mb-6">
+            Concerts, contests, and trip dates live on the band calendar. Changes are
+            announced through ParentSquare.
           </p>
-        </div>
-        
-        {/* Sample Schedule */}
-        <div className="space-y-8">
-          <div>
-            <h2 className="text-2xl font-semibold mb-4 text-primary">Daily Class Schedule</h2>
-            <div className="bg-white rounded-lg shadow overflow-hidden">
-              <table className="w-full">
-                <thead className="bg-primary text-secondary">
-                  <tr>
-                    <th className="px-6 py-3 text-left">Period</th>
-                    <th className="px-6 py-3 text-left">Time</th>
-                    <th className="px-6 py-3 text-left">Class</th>
-                  </tr>
-                </thead>
-                <tbody className="divide-y divide-gray-200">
-                  <tr>
-                    <td className="px-6 py-4">1st Period</td>
-                    <td className="px-6 py-4">8:00 - 8:50 AM</td>
-                    <td className="px-6 py-4">6th Grade Band</td>
-                  </tr>
-                  <tr>
-                    <td className="px-6 py-4">3rd Period</td>
-                    <td className="px-6 py-4">10:00 - 10:50 AM</td>
-                    <td className="px-6 py-4">7th Grade Band</td>
-                  </tr>
-                  <tr>
-                    <td className="px-6 py-4">5th Period</td>
-                    <td className="px-6 py-4">1:00 - 1:50 PM</td>
-                    <td className="px-6 py-4">8th Grade Band</td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-          </div>
-          
-          <div>
-            <h2 className="text-2xl font-semibold mb-4 text-primary">After School Rehearsals</h2>
-            <div className="bg-white p-6 rounded-lg shadow">
-              <p className="text-gray-dark mb-2">
-                <strong>Jazz Band:</strong> Tuesdays & Thursdays, 3:30 - 4:30 PM
-              </p>
-              <p className="text-gray-dark">
-                <strong>Full Band (before concerts):</strong> As scheduled, typically 3:30 - 5:00 PM
-              </p>
-            </div>
-          </div>
-        </div>
+          <Link
+            href="/calendar"
+            className="inline-block bg-secondary hover:bg-gray-light text-primary px-8 py-3 font-semibold transition-colors duration-200"
+          >
+            View the Calendar
+          </Link>
+        </section>
       </div>
     </div>
   );

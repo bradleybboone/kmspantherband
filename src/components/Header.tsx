@@ -57,14 +57,16 @@ export default function Header() {
       ]
     },
     { name: 'FUTURE MEMBERS', href: '/future-members' },
-    { 
+    {
       name: 'RESOURCES',
       subItems: [
         { name: 'Band Handbook', href: '/handbook' },
+        { name: 'Rehearsal Schedule', href: '/schedule' },
         { name: 'Instrument Rental', href: '/instrument-rental' },
         { name: 'Forms & Documents', href: '/resources/forms' }
       ]
     },
+    { name: 'JOIN BAND', href: '/join' },
     { name: 'CONTACT', href: '/contact' }
   ];
 
