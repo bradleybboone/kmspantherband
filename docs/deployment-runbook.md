@@ -5,34 +5,39 @@
 survives the propagation wait). This file is the source of truth; republish the
 artifact if you change it.
 
-## ✅ EXECUTED 2026-08-09 — waiting on nameserver propagation only
+## ✅ COMPLETE — kmspantherband.org went live 2026-08-09
 
-Steps 0–8 are **done**. Every UI label below was verified by driving the live
+The migration is finished. **https://kmspantherband.org** and
+**https://www.kmspantherband.org** both serve the site over HTTPS, and HTTP
+301-redirects to HTTPS. Every UI label below was verified by driving the live
 dashboards, not read from documentation.
 
-| Step | State |
+| Step | Result |
 |---|---|
-| 0 · Email forwarding check | ✅ None configured — *"You haven't defined any Email Redirect yet."* |
-| 1 · Deploy Worker | ✅ Live at `kmspantherband.bradleybboone.workers.dev`, version `e10acfb5` |
-| 2 · DNSSEC off | ✅ Was already **off** — no action needed |
-| 3 · Add domain to Cloudflare | ✅ Zone created, Free plan |
-| 4 · Empty the zone | ✅ All 8 parked records deleted |
-| 5 · Nameservers → Cloudflare | ✅ `amos.ns.cloudflare.com` · `nataly.ns.cloudflare.com` |
-| 6 · Wait for Active | ⏳ **Pending** — registrar propagation, 1–2 h typical |
-| 7 · Email routing | ⏭️ Skipped, not applicable |
-| 8 · Attach custom domain | ✅ Apex + `www` attached; two locked `Worker`-type records created |
-| 9 · Verify | ⏳ Blocked on step 6 |
+| 0 · Email forwarding check | None configured — *"You haven't defined any Email Redirect yet."* |
+| 1 · Deploy Worker | Version `e10acfb5`, 51 assets, 46 ms startup |
+| 2 · DNSSEC off | Was already **off** — no action needed |
+| 3 · Add domain to Cloudflare | Zone created, Free plan |
+| 4 · Empty the zone | All 8 parked records deleted |
+| 5 · Nameservers → Cloudflare | `amos.ns.cloudflare.com` · `nataly.ns.cloudflare.com` |
+| 6 · Wait for Active | Propagated in **minutes**, not the 1–2 h quoted |
+| 7 · Email routing | Skipped, not applicable |
+| 8 · Attach custom domain | Apex + `www`; two locked `Worker`-type records created |
+| 9 · Verify | All routes 200 over HTTPS |
 
-**Nothing left to do but wait.** When the zone flips to Active, Cloudflare issues
-the certificate and the site comes up on its own. Check with:
+**Certificate:** issued by Google Trust Services (Cloudflare Universal SSL),
+`CN=kmspantherband.org`, valid 2026-08-09 → 2026-11-07, renews automatically.
+Edge POP is DFW (Dallas), the nearest to Houston.
 
-```bash
-dig +short NS kmspantherband.org        # want amos/nataly.ns.cloudflare.com
-curl -sSI https://kmspantherband.org | head -3
-```
+**Post-launch change not in the original plan:** `Always Use HTTPS` was **off**
+by default, so `http://` served the site in plaintext rather than redirecting.
+Enabled at **SSL/TLS → Edge Certificates → Always Use HTTPS**. Verified: HTTP now
+returns `301 → https://`. The redirect-loop warning on that setting does not
+apply here — the origin is the Worker itself and it issues no redirects.
 
-Meanwhile the site is fully working at
-`https://kmspantherband.bradleybboone.workers.dev`.
+From here, only the **Routine updates** section at the bottom of this document
+matters. The steps below are kept as the record of how it was done and for the
+next domain.
 
 ---
 

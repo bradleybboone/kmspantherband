@@ -134,12 +134,17 @@ Then `npm run preview:cf` and load a page. This mirrors the studio charter's rul
 that the local gate is authoritative.
 
 ## Deployment
-See **`docs/deployment-runbook.md`** for the full DNS and Cloudflare walkthrough,
-including the Namecheap email-forwarding trap.
 
-Short version: `npm run deploy` publishes to Cloudflare. DNS for
-`kmspantherband.org` must be on Cloudflare nameservers for a Workers custom
-domain — this is not optional, and it has an email side effect.
+**Live since 2026-08-09** at https://kmspantherband.org (and `www`), served by
+the `kmspantherband` Worker. HTTP 301-redirects to HTTPS.
+
+`npm run deploy` publishes. The DNS zone is on Cloudflare nameservers
+(`amos` / `nataly.ns.cloudflare.com`); the registration stays at Namecheap.
+The zone contains exactly two records, both locked type `Worker`, created by the
+custom-domain attachment — do not hand-edit them.
+
+See **`docs/deployment-runbook.md`** for the full record of the migration and
+the routine-update loop.
 
 ## Standing Caveats (never prune)
 
