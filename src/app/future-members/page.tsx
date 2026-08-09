@@ -140,7 +140,7 @@ export default function FutureMembers() {
           <h2 className="text-2xl font-semibold mb-4 text-white !text-white">Still Have Questions?</h2>
           <p className="mb-6">
             Call the band office at{" "}
-            <a href="tel:+12817273500" className="underline hover:no-underline">(281) 727-3500</a>{" "}
+            <a href="tel:+12817273500" className="text-white underline hover:no-underline">(281) 727-3500</a>{" "}
             or email a director &mdash; we are happy to talk it through.
           </p>
           <Link
