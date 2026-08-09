@@ -1091,7 +1091,16 @@ All three social `<a>` elements are `href="#"`. Replace the entire `{/* Follow U
 
 - [ ] **Step 3: Use the real logo**
 
-`public/images/logo.svg` exists but the header renders a placeholder `K` box. In `Header.tsx`, replace the inner `<div>` of the logo `<Link>` with:
+`public/images/logo.svg` exists but the header renders a placeholder `K` box.
+
+**Contrast hazard — verified 2026-08-09:** `logo.svg` contains no `fill`, `style`,
+or `class` attributes on any path, so every path inherits the SVG default of
+`fill: black`. Dropped onto the navy (`#001689`) header as-is, it renders a black
+mark on navy — nearly invisible, and a direct violation of the global no-dark-on-navy
+constraint. `brightness-0 invert` forces the artwork to pure white regardless of its
+internal colors, which matches the white nav text. Do not omit those classes.
+
+In `Header.tsx`, replace the inner `<div>` of the logo `<Link>` with:
 
 ```tsx
               <Image
@@ -1099,11 +1108,16 @@ All three social `<a>` elements are `href="#"`. Replace the entire `{/* Follow U
                 alt="KMS Panther Band"
                 fill
                 priority
-                className="object-contain"
+                className="object-contain brightness-0 invert"
               />
 ```
 
 Add `import Image from 'next/image';` at the top of `Header.tsx`.
+
+The logo sits on navy in both header states: `bg-primary` when solid, and over the
+hero image when transparent on `/` and `/about`. White works for both. Verify the
+logo is actually visible against the navy header in the preview at Task 12 — a
+black-on-navy logo passes every automated check in this plan and still ships broken.
 
 - [ ] **Step 4: Verify**
 
