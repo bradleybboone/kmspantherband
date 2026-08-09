@@ -53,45 +53,59 @@ export default function Handbook() {
           
           <div className="space-y-6">
             <div className="bg-gray-100 p-6 rounded-lg">
-              <h3 className="text-xl font-semibold mb-3">Attendance Policy</h3>
-              <p className="text-gray-dark">
-                All rehearsals and performances are mandatory. Students must notify directors 
-                in advance of any conflicts. More than 3 unexcused absences may result in 
-                removal from performances.
+              <h3 className="text-xl font-semibold mb-3">Grading</h3>
+              <ul className="space-y-2 text-gray-dark">
+                <li>• 50% Major Grades &mdash; playing tests and performances</li>
+                <li>• 50% Daily Grades &mdash; participation and quizzes</li>
+              </ul>
+              <p className="text-gray-dark mt-3">
+                Daily practice at home is still expected of every student, but practice
+                cards are no longer used and are not turned in for a grade.
               </p>
             </div>
-            
+
             <div className="bg-gray-100 p-6 rounded-lg">
-              <h3 className="text-xl font-semibold mb-3">Grading Policy</h3>
+              <h3 className="text-xl font-semibold mb-3">Fees</h3>
               <ul className="space-y-2 text-gray-dark">
-                <li>• Participation & Attendance: 40%</li>
-                <li>• Playing Tests & Assessments: 30%</li>
-                <li>• Concert Performances: 20%</li>
-                <li>• Practice Records: 10%</li>
+                <li>• <strong>$25/year</strong> band activity fee &mdash; all students</li>
+                <li>• <strong>$100/year</strong> school-owned instrument usage fee</li>
+                <li>• <strong>$100/year</strong> percussion usage fee, starting Year 2</li>
               </ul>
+              <p className="text-gray-dark mt-3">
+                Pay by Ludus (credit/debit), check made out to the campus, or cash.
+                Partial payments are accepted for cash and check.
+              </p>
             </div>
-            
+
             <div className="bg-gray-100 p-6 rounded-lg">
               <h3 className="text-xl font-semibold mb-3">Concert Attire</h3>
-              <p className="text-gray-dark mb-2"><strong>Formal Concerts:</strong></p>
+              <p className="text-gray-dark mb-2"><strong>Beginners:</strong></p>
               <ul className="space-y-1 text-gray-dark mb-4">
-                <li>• Black dress pants or long black skirt</li>
-                <li>• White button-up shirt or blouse</li>
-                <li>• Black dress shoes</li>
+                <li>• Blue band performance T-shirt, tucked in</li>
+                <li>• Black dress pants and black belt</li>
+                <li>• Black long dress socks and black dress shoes</li>
               </ul>
-              <p className="text-gray-dark">Specific requirements in handbook</p>
+              <p className="text-gray-dark mb-2"><strong>Returning students:</strong></p>
+              <ul className="space-y-1 text-gray-dark mb-4">
+                <li>• Blue performance polo</li>
+                <li>• Black dress pants, black dress shoes and socks</li>
+              </ul>
+              <p className="text-gray-dark">
+                <strong>Not permitted:</strong> jeans, sneakers, Converse, or Crocs.
+              </p>
             </div>
-            
+
             <div className="bg-gray-100 p-6 rounded-lg">
-              <h3 className="text-xl font-semibold mb-3">Practice Expectations</h3>
-              <div className="text-gray-dark">
-                <p className="mb-2"><strong>Minimum Daily Practice:</strong></p>
-                <ul className="space-y-1">
-                  <li>• 6th Grade: 20 minutes</li>
-                  <li>• 7th Grade: 25 minutes</li>
-                  <li>• 8th Grade: 30 minutes</li>
-                </ul>
-              </div>
+              <h3 className="text-xl font-semibold mb-3">Key Dates</h3>
+              <ul className="space-y-2 text-gray-dark">
+                <li>• <strong>Aug 14</strong> &mdash; Sectional acknowledgement form due</li>
+                <li>• <strong>Aug 17</strong> &mdash; Fall sectionals begin (Mon&ndash;Thu, 4:00&ndash;5:00 PM)</li>
+                <li>• <strong>Aug 21</strong> &mdash; Handbook acknowledgement, medical release, and random drug test forms due</li>
+                <li>• <strong>Sept 4</strong> &mdash; Activity fees and shirt orders due</li>
+                <li>• <strong>Sept 28</strong> &mdash; Sheldon ISD District Honor Band</li>
+                <li>• <strong>Oct 31</strong> &mdash; Region 33 All-Region Auditions</li>
+                <li>• <strong>March 2027</strong> &mdash; UIL Concert &amp; Sightreading Assessment</li>
+              </ul>
             </div>
           </div>
         </section>
