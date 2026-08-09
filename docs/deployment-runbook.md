@@ -217,36 +217,82 @@ apex domain like `kmspantherband.org` always needs the zone.)
 
 ---
 
-## Step 4 — Review the imported records by hand
+## Step 4 — Empty the DNS zone
 
-Cloudflare's scan is explicitly not exhaustive:
+### Read this first — it explains why "delete everything" is correct
 
-> "Since the quick scan is not guaranteed to find all existing DNS records, you
-> need to review your records, paying special attention to the following:
-> Zone apex records · Subdomain records · **Email records**"
->
-> "You should always review your DNS records and manually add any missing ones
-> **before changing your nameservers**."
+The end state for this zone, before Step 8, is **zero DNS records**. That feels
+wrong, so here is why it isn't:
 
-Compare against the table at the top of this document.
+Every record the scan imported belongs to the old parked domain. The `A` record
+points at Namecheap's parking IP. The `CNAME` points at Namecheap's parking page
+and will actively **block** Step 8. The five `MX` records and the SPF `TXT`
+record describe a mail service that Step 0 proved was never switched on, and
+which stops working for this domain the moment nameservers move regardless.
 
-**Delete these two** (parking, and the `www` CNAME will block Step 8):
+None of it survives the migration. And you do not need to hand-build
+replacements, because **Step 8 creates the records for you** — attaching the
+Worker as a Custom Domain is what writes the `A`/`AAAA` records for
+`kmspantherband.org` and `www`, and provisions the certificate.
 
-| Type | Name | Content |
+So: empty zone now, Cloudflare fills it in Step 8.
+
+### You do not have to do this on the onboarding screen
+
+Cloudflare began rolling out a redesigned, card-based DNS interface on
+**2026-05-20**, and their own documentation has not caught up — so the scan
+screen may not match any published walkthrough, including an earlier version of
+this one.
+
+Do not fight it. **The onboarding scan screen is a formality you can click
+straight past.**
+
+1. On the screen listing the records Cloudflare found, select **Continue**
+2. Cloudflare moves you on to the nameserver instructions (Step 5)
+3. Do the actual record cleanup afterwards on the normal **DNS → Records**
+   page, which is the stable, everyday interface
+
+This is safe because **nothing is live until you change nameservers in Step 5.**
+Until that moment Namecheap is still answering for the domain and Cloudflare's
+zone is inert. You have as long as you want between Continue and the cleanup.
+
+> The one hard rule: **finish the cleanup before Step 5**, not after. Once
+> nameservers move, whatever is in this zone is what the world sees, and
+> *"visitors may experience DNS_PROBE_FINISHED_NXDOMAIN errors"* if it is wrong.
+> An empty zone during that gap is fine — the site is not reachable today anyway.
+
+### Doing the cleanup
+
+Go to your domain → **DNS** → **Records**. Delete every record listed. When you
+are done the record list should be empty.
+
+The published delete path is **Edit** on a record, then **Delete**, then
+**Delete** again to confirm. In the newer card-based interface this may instead
+be a menu or trash control on each row **[unverified — the docs predate the
+redesign]**. Either way you are looking for a per-record delete; there is no
+documented bulk-delete.
+
+**Target state — nothing left:**
+
+| Type | Name | Why it goes |
 |---|---|---|
-| A | `kmspantherband.org` | `192.64.119.217` |
-| CNAME | `www` | `parkingpage.namecheap.com` |
+| A | `kmspantherband.org` | Namecheap parking IP |
+| CNAME | `www` | Parking page — also blocks Step 8 |
+| MX ×5 | `kmspantherband.org` | Dead mail route, no forwarding configured |
+| TXT | `kmspantherband.org` | SPF for that dead route |
 
-**Also delete the email records.** Step 0 confirmed no forwarding rules exist,
-so these point at a Namecheap service that will not serve this domain once the
-nameservers move. Leaving them would advertise a mail route that silently
-rejects everything. Delete all five `MX` records and the `v=spf1` `TXT` record.
+If the scan found something not in this table, it is a record neither of us knew
+about — leave it alone and check what it is before deleting.
 
-If you later want a band email address, Cloudflare Email Routing (Step 7)
-creates its own MX and SPF records from scratch.
+**Ignore the orange cloud here.** The **Proxy status** column
+(**Proxied** / **DNS only**) only matters for records you keep, and you are
+keeping none. Step 8 sets it correctly on the records it creates.
+
+If a band email address is ever wanted, Cloudflare Email Routing (Step 7) builds
+its own MX, SPF and DKIM records from scratch.
 
 <details>
-<summary>Retained for reference — the records as they existed</summary>
+<summary>Retained for reference — the mail records as they existed</summary>
 
 Type `MX`, Name `kmspantherband.org`:
 
@@ -258,21 +304,13 @@ Type `MX`, Name `kmspantherband.org`:
 20   eforward5.registrar-servers.com
 ```
 
-**Confirm this TXT record exists.** Type `TXT`, Name `kmspantherband.org`:
+Type `TXT`, Name `kmspantherband.org`:
 
 ```
 v=spf1 include:spf.efwd.registrar-servers.com ~all
 ```
 
 </details>
-
-**On the orange cloud:** you will see a **Proxy status** column with **Proxied**
-(orange) and **DNS only** (gray). Proxying is on by default for new records. You
-do not need to worry about it for email — *"Other record types (such as MX or
-TXT) are always DNS-only"* and have no toggle at all.
-
-> If you activate the domain without correct records, *"your visitors may
-> experience DNS_PROBE_FINISHED_NXDOMAIN errors."*
 
 ---
 
