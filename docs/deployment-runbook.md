@@ -237,56 +237,61 @@ Worker as a Custom Domain is what writes the `A`/`AAAA` records for
 
 So: empty zone now, Cloudflare fills it in Step 8.
 
-### You do not have to do this on the onboarding screen
+### Do this — two clicks
 
-Cloudflare began rolling out a redesigned, card-based DNS interface on
-**2026-05-20**, and their own documentation has not caught up — so the scan
-screen may not match any published walkthrough, including an earlier version of
-this one.
+**Verified by driving the live dashboard on 2026-08-09**, not from
+documentation. Page heading is **Review your DNS records**; URL ends
+`/confirm-scanned-records`.
 
-Do not fight it. **The onboarding scan screen is a formality you can click
-straight past.**
+1. Tick the **checkbox in the table header row**, immediately left of the
+   **Type** column. All eight records select at once and a control bar appears
+   above the table reading **8 of 8 selected · Clear selection**, with two
+   buttons on the right.
+2. Click the red **Delete 8 records** button. Confirm if prompted.
+3. Click the blue **Continue to activation** button at the bottom of the page.
 
-1. On the screen listing the records Cloudflare found, select **Continue**
-2. Cloudflare moves you on to the nameserver instructions (Step 5)
-3. Do the actual record cleanup afterwards on the normal **DNS → Records**
-   page, which is the stable, everyday interface
+That is the entire step. It goes to Step 5.
 
-This is safe because **nothing is live until you change nameservers in Step 5.**
-Until that moment Namecheap is still answering for the domain and Cloudflare's
-zone is inert. You have as long as you want between Continue and the cleanup.
+### What you should be looking at
 
-> The one hard rule: **finish the cleanup before Step 5**, not after. Once
-> nameservers move, whatever is in this zone is what the world sees, and
-> *"visitors may experience DNS_PROBE_FINISHED_NXDOMAIN errors"* if it is wrong.
-> An empty zone during that gap is fine — the site is not reachable today anyway.
+The scan finds exactly **eight** records, all belonging to the parked domain:
 
-### Doing the cleanup
-
-Go to your domain → **DNS** → **Records**. Delete every record listed. When you
-are done the record list should be empty.
-
-The published delete path is **Edit** on a record, then **Delete**, then
-**Delete** again to confirm. In the newer card-based interface this may instead
-be a menu or trash control on each row **[unverified — the docs predate the
-redesign]**. Either way you are looking for a per-record delete; there is no
-documented bulk-delete.
-
-**Target state — nothing left:**
-
-| Type | Name | Why it goes |
+| Type | Content | Proxy status |
 |---|---|---|
-| A | `kmspantherband.org` | Namecheap parking IP |
-| CNAME | `www` | Parking page — also blocks Step 8 |
-| MX ×5 | `kmspantherband.org` | Dead mail route, no forwarding configured |
-| TXT | `kmspantherband.org` | SPF for that dead route |
+| A | `192.64.119.217` | Proxied |
+| CNAME (`www`) | `parkingpage.na…` | Proxied |
+| MX | `eforward5.re…` priority 20 | DNS only |
+| MX | `eforward4.re…` priority 15 | DNS only |
+| MX | `eforward3.re…` priority 10 | DNS only |
+| MX | `eforward2.re…` priority 10 | DNS only |
+| MX | `eforward1.reg…` priority 10 | DNS only |
+| TXT | `"v=spf1 include:…` | DNS only |
 
-If the scan found something not in this table, it is a record neither of us knew
-about — leave it alone and check what it is before deleting.
+Two things that look alarming and are not:
 
-**Ignore the orange cloud here.** The **Proxy status** column
-(**Proxied** / **DNS only**) only matters for records you keep, and you are
-keeping none. Step 8 sets it correctly on the records it creates.
+- **The ⚠️ triangles** beside the `A` and `CNAME` rows refer to those records
+  being proxied. Both rows are being deleted, so ignore them.
+- **The orange banner** — *"Our scan may have missed uncommon records or custom
+  subdomains…"* — is generic advice shown to everyone. Step 0 already
+  established there is nothing to preserve here.
+
+If the scan shows something **not** in the eight rows above, stop and find out
+what it is before deleting. That would be a record neither of us knew about.
+
+### Why the per-row Actions column is inconsistent
+
+Worth knowing, because it is what made this step confusing before the bulk path
+was found: the `A` and `CNAME` rows offer a direct **Delete** link, while the
+five `MX` rows and the `TXT` row offer **Edit ▶** instead, with no visible
+delete. Selecting all and using **Delete 8 records** sidesteps that entirely.
+
+### An empty zone here is intended
+
+Cloudflare warns that activating *"without setting up the correct DNS records…
+may [cause] DNS_PROBE_FINISHED_NXDOMAIN errors."* That is exactly the state you
+want between now and Step 8, when attaching the Custom Domain writes the real
+records and provisions the certificate. Nothing is live until nameservers change
+in Step 5, and the site is not reachable today anyway.
 
 If a band email address is ever wanted, Cloudflare Email Routing (Step 7) builds
 its own MX, SPF and DKIM records from scratch.
