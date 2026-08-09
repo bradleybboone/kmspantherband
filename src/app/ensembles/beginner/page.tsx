@@ -18,7 +18,7 @@ export default function BeginnerBand() {
             <div className="bg-gray-100 p-12 rounded-lg text-center">
               <h2 className="text-2xl font-semibold mb-4 text-primary">Coming Soon!</h2>
               <p className="text-lg text-gray-dark mb-6">
-                We're currently updating information about our Beginner Band program. 
+                We&apos;re currently updating information about our Beginner Band program. 
                 Please check back soon for details about this ensemble.
               </p>
               <p className="text-gray-dark mb-8">

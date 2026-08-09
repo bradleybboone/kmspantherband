@@ -11,8 +11,8 @@ export default function Join() {
         {/* Introduction */}
         <section className="mb-12">
           <p className="text-lg text-gray-dark leading-relaxed">
-            We're thrilled that you're interested in joining the KMS Panther Band! Whether you're 
-            a complete beginner or have previous musical experience, there's a place for you in 
+            We&apos;re thrilled that you&apos;re interested in joining the KMS Panther Band! Whether you&apos;re 
+            a complete beginner or have previous musical experience, there&apos;s a place for you in 
             our program. Band is an exciting journey that will challenge you, help you make new 
             friends, and create memories that will last a lifetime.
           </p>
@@ -104,7 +104,7 @@ export default function Join() {
               <div className="ml-4">
                 <h3 className="font-semibold mb-1">Attend an Instrument Fitting</h3>
                 <p className="text-gray-dark">
-                  We'll help you find the instrument that's the best fit for you based on your 
+                  We&apos;ll help you find the instrument that&apos;s the best fit for you based on your 
                   interests and physical characteristics.
                 </p>
               </div>
@@ -155,7 +155,7 @@ export default function Join() {
             <div className="bg-gray-100 p-6 rounded-lg">
               <h3 className="font-semibold mb-2">Daily Band Class</h3>
               <p className="text-gray-dark">
-                Band meets every day during the regular school schedule. You'll learn 
+                Band meets every day during the regular school schedule. You&apos;ll learn 
                 fundamentals, practice ensemble playing, and prepare for performances.
               </p>
             </div>

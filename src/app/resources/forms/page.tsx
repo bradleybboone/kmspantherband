@@ -18,7 +18,7 @@ export default function FormsDocuments() {
             <div className="bg-gray-100 p-12 rounded-lg text-center">
               <h2 className="text-2xl font-semibold mb-4 text-primary">Coming Soon!</h2>
               <p className="text-lg text-gray-dark mb-6">
-                We're currently organizing all band forms and documents. 
+                We&apos;re currently organizing all band forms and documents. 
                 Please check back soon for downloadable forms and important documents.
               </p>
               <p className="text-gray-dark mb-8">
