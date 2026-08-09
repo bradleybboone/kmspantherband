@@ -101,7 +101,7 @@ export default function InstrumentRental() {
                   href="https://rental.brookmays.com/rental_Choose_Instrument.aspx?schoolid=53674" 
                   target="_blank" 
                   rel="noopener noreferrer"
-                  className="inline-block bg-primary hover:bg-primary-hover text-white px-6 py-2 rounded-lg text-sm font-medium transition-colors duration-200"
+                  className="block w-full text-center sm:inline-block sm:w-auto bg-primary hover:bg-primary-hover text-white px-6 py-3 rounded-lg text-sm font-semibold transition-colors duration-200"
                 >
                   Rent Online for KMS Band
                 </a>
@@ -158,40 +158,39 @@ export default function InstrumentRental() {
                   href="https://www.musicarts.com/rentals?schoolTypeId=0&schoolId=14443" 
                   target="_blank" 
                   rel="noopener noreferrer"
-                  className="inline-block bg-primary hover:bg-primary-hover text-white px-6 py-2 rounded-lg text-sm font-medium transition-colors duration-200"
+                  className="block w-full text-center sm:inline-block sm:w-auto bg-primary hover:bg-primary-hover text-white px-6 py-3 rounded-lg text-sm font-semibold transition-colors duration-200"
                 >
                   Rent Online for KMS Band
                 </a>
               </div>
             </div>
             <div className="bg-white p-6 rounded-lg shadow">
-              <h3 className="font-semibold text-lg mb-2">Veritas Instrument Rental</h3>
-              <p className="text-gray-dark mb-2">
+              <h3 className="font-semibold text-lg mb-2">Veritas Instrument Rental (RG&apos;s Music Repair)</h3>
+              <p className="text-gray-dark mb-1">Houston, TX</p>
+              <p className="text-gray-dark mb-1">
+                Phone: <a href="tel:+17135697821" className="text-primary hover:underline">(713) 569-7821</a>
+              </p>
+              <p className="text-sm text-gray-dark font-medium mb-2">Call for repair appointments</p>
+              <p className="text-gray-dark mb-1">
                 Rentals delivered to your door, with weekly service visits to our campus.
               </p>
-              <p className="text-gray-dark text-sm mb-2">
+              <p className="text-gray-dark text-sm">
                 Rental runs approximately $30&ndash;$50/month depending on instrument and brand.
               </p>
+              <div className="mt-2 pt-2 border-t border-gray-lighter">
+                <p className="text-sm font-bold text-primary mb-1">Introductory Offer &ndash; One Month Free</p>
+                <p className="text-sm text-gray-dark">Pay for the first month, then pay nothing for the second month!</p>
+                <p className="text-xs text-gray-dark mt-1 italic">Some instruments do not qualify for the offer. Choose an instrument for details.</p>
+              </div>
               <div className="mt-4">
                 <a
                   href="https://www.rentfromhome.com"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-block bg-primary hover:bg-primary-hover text-white px-6 py-2 rounded-lg text-sm font-medium transition-colors duration-200"
+                  className="block w-full text-center sm:inline-block sm:w-auto bg-primary hover:bg-primary-hover text-white px-6 py-3 rounded-lg text-sm font-semibold transition-colors duration-200"
                 >
-                  Visit Veritas
+                  Rent Online for KMS Band
                 </a>
-              </div>
-            </div>
-            <div className="bg-white p-6 rounded-lg shadow">
-              <h3 className="font-semibold text-lg mb-2">RG&apos;s Music Repair-Houston</h3>
-              <p className="text-gray-dark mb-1">Houston, TX</p>
-              <p className="text-gray-dark mb-1">Phone: <a href="tel:7135697821" className="text-primary hover:underline">(713) 569-7821</a></p>
-              <p className="text-sm text-gray-dark font-medium mb-2">Call for Appointment</p>
-              <div className="mt-2 pt-2 border-t border-gray-lighter">
-                <p className="text-sm font-bold text-primary mb-1">Introductory Offer - One Month Free</p>
-                <p className="text-sm text-gray-dark">Pay for the first month, then pay nothing for the second month!</p>
-                <p className="text-xs text-gray-dark mt-1 italic">Some instruments do not qualify for offer. Choose instrument for details.</p>
               </div>
             </div>
           </div>

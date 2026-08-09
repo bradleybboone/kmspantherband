@@ -172,11 +172,25 @@ body {
 }
 
 /* Typography */
+/*
+  Headings deliberately do NOT set `color`. They inherit it.
+
+  This rule used to carry `color: var(--accent)` (black). Because that set the
+  color on the heading element itself, it beat any color inherited from an
+  ancestor -- so every <h2>/<h3> inside a navy `bg-primary` section rendered
+  black on #001689 unless the page remembered to add `!text-white`. That is
+  where the `text-white !text-white` stutter throughout this codebase came
+  from, and /join's CTA heading was missing the override entirely.
+
+  `body` already sets `color: var(--accent)`, so headings still render black
+  everywhere by inheritance. Inside a `text-secondary` / `text-white`
+  container they now correctly inherit white. Do not reintroduce a `color`
+  here -- it silently breaks contrast on every dark section.
+*/
 h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-display);
   font-weight: var(--font-normal);
   line-height: var(--leading-tight);
-  color: var(--accent);
   text-transform: uppercase;
   letter-spacing: 0.02em;
   margin-bottom: 1rem;
@@ -278,15 +292,30 @@ button, a, input, textarea, select {
   transition: all var(--transition-base);
 }
 
-/* Links */
-a {
-  color: var(--primary);
-  text-decoration: none;
-  position: relative;
-}
+/*
+  Links -- deliberately inside `@layer base`.
 
-a:hover {
-  color: var(--primary-hover);
+  This file is unlayered, and `@import "tailwindcss"` puts utilities in
+  `@layer utilities`. In the CSS cascade an unlayered rule beats ANY layered
+  rule regardless of specificity, so an unlayered `a { color: var(--primary) }`
+  overrode `text-white` on every anchor styled as a button -- painting navy
+  text on a navy button and rendering the label invisible. That is what broke
+  the vendor "Rent Online for KMS Band" buttons on /instrument-rental.
+
+  Wrapping these in `@layer base` restores normal precedence: the default link
+  colour still applies everywhere, but a Tailwind text colour utility on a
+  specific anchor now wins. Do not unwrap this block.
+*/
+@layer base {
+  a {
+    color: var(--primary);
+    text-decoration: none;
+    position: relative;
+  }
+
+  a:hover {
+    color: var(--primary-hover);
+  }
 }
 
 /* Lists */

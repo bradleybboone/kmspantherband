@@ -92,7 +92,8 @@ export default function Join() {
               <div className="ml-4">
                 <h3 className="font-semibold mb-1">Contact the Band Directors</h3>
                 <p className="text-gray-dark">
-                  Reach out to Mr. Boone or Ms. Ruiz to express your interest and schedule a meeting.
+                  Reach out to Dr. Boone, Ms. Ruiz, or Mrs. Chavez to express your interest and
+                  schedule a meeting.
                 </p>
               </div>
             </div>
