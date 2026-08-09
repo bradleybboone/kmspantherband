@@ -1,5 +1,10 @@
 # Deployment Runbook — kmspantherband.org
 
+**Phone-friendly version:** https://claude.ai/code/artifact/650ced0c-18fd-4279-863a-4cebeee7d9a4
+(private artifact — copy buttons on every pastable value, and step check-off that
+survives the propagation wait). This file is the source of truth; republish the
+artifact if you change it.
+
 **Last verified: 2026-08-09.** UI labels below were checked against current
 Cloudflare and Namecheap documentation on that date, not from memory. Where a
 label could not be confirmed in official docs, it is marked **[unverified]** and
@@ -31,6 +36,17 @@ Browsers try HTTPS first, so you get a connection error rather than a page.
 ---
 
 ## Step 0 — Does anyone actually use an @kmspantherband.org address?
+
+> ## ✅ RESOLVED 2026-08-09 — **No.**
+>
+> Namecheap's **Redirect Email** section reports *"You haven't defined any Email
+> Redirect yet."* No forwarding rules exist, so nothing depends on the MX or SPF
+> records. **Skip Step 7 entirely**, and delete the email records in Step 4
+> rather than migrating them.
+>
+> This removes the only genuinely risky part of the migration. The rest is just
+> a website move. The procedure below is retained for the day someone does set
+> up a band email address.
 
 Those five MX records are Namecheap **defaults**. Every registered domain gets
 them whether or not forwarding was ever configured. This step decides whether
@@ -206,8 +222,18 @@ Compare against the table at the top of this document.
 | A | `kmspantherband.org` | `192.64.119.217` |
 | CNAME | `www` | `parkingpage.namecheap.com` |
 
-**Confirm these five MX records exist**, adding any the scan missed. Type `MX`,
-Name `kmspantherband.org`:
+**Also delete the email records.** Step 0 confirmed no forwarding rules exist,
+so these point at a Namecheap service that will not serve this domain once the
+nameservers move. Leaving them would advertise a mail route that silently
+rejects everything. Delete all five `MX` records and the `v=spf1` `TXT` record.
+
+If you later want a band email address, Cloudflare Email Routing (Step 7)
+creates its own MX and SPF records from scratch.
+
+<details>
+<summary>Retained for reference — the records as they existed</summary>
+
+Type `MX`, Name `kmspantherband.org`:
 
 ```
 10   eforward1.registrar-servers.com
@@ -223,8 +249,7 @@ Name `kmspantherband.org`:
 v=spf1 include:spf.efwd.registrar-servers.com ~all
 ```
 
-> If Step 0 found no forwarding rules, these MX/TXT records are dead weight and
-> you may simply delete them instead. Keeping them is harmless either way.
+</details>
 
 **On the orange cloud:** you will see a **Proxy status** column with **Proxied**
 (orange) and **DNS only** (gray). Proxying is on by default for new records. You
@@ -290,7 +315,15 @@ You will know it worked when:
 
 ---
 
-## Step 7 — Recreate email forwarding (only if Step 0 found rules)
+## Step 7 — Recreate email forwarding — ⏭️ SKIP (not applicable)
+
+**Step 0 confirmed there are no forwarding rules**, so there is nothing to
+recreate. Go straight to Step 8.
+
+Keep this section for the day someone wants `director@kmspantherband.org` to
+land in a real inbox. Note the limitation first: Email Routing forwards *inbound*
+mail only and **cannot send or reply as the domain** — replies come from the
+destination inbox. Sending as the band domain needs Workspace or a paid provider.
 
 Email Routing now lives under Cloudflare Email Service.
 

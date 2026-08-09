@@ -143,7 +143,14 @@ domain — this is not optional, and it has an email side effect.
 
 ## Standing Caveats (never prune)
 
-1. **Namecheap free Email Forwarding dies when nameservers leave Namecheap.**
+1. **Email forwarding: not in use — verified 2026-08-09.** Namecheap's
+   **Redirect Email** section reports *"You haven't defined any Email Redirect
+   yet."* The five `eforward*` MX records and the SPF TXT record are Namecheap
+   defaults pointing at a service that was never switched on, so nothing depends
+   on them. They are being deleted rather than migrated. The mechanism below
+   still applies if anyone ever sets up a band address:
+
+   **Namecheap free Email Forwarding dies when nameservers leave Namecheap.**
    It only works on BasicDNS/PremiumDNS/FreeDNS. Copying the five
    `eforward*.registrar-servers.com` MX records into Cloudflare does **not**
    preserve it — the service itself refuses domains not using Namecheap DNS.
