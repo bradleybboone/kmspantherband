@@ -169,11 +169,26 @@ domain — this is not optional, and it has an email side effect.
 5. **OpenNext has no zero-config path.** `open-next.config.ts` must exist even if
    it is just `defineCloudflareConfig({})`.
 
-6. **First deploy on a fresh Cloudflare account** fails with "You need to register
-   a workers.dev subdomain," and the CLI's printed remediation URL 404s. Visiting
-   Workers & Pages in the dashboard provisions it. One-time.
+6. **First deploy on a fresh Cloudflare account.** Current Cloudflare docs say
+   Wrangler *prompts* you to set up a `workers.dev` subdomain during publish, so
+   expect a prompt rather than a hard failure. The soloensemble spike hit an
+   older path where it errored and the CLI's remediation URL 404'd — if that
+   happens, fix it at Workers & Pages → your Worker → **Your subdomain** →
+   **Change**. Docs also note transient 523 errors on a brand-new subdomain that
+   resolve on their own.
 
-7. **`*:Zone.Identifier` files** are WSL/NTFS metadata. Nine were committed and
+7. **DNSSEC must be turned off at Namecheap before changing nameservers.**
+   Cloudflare: *"Changing nameservers while DNSSEC is active can cause your
+   domain to become unreachable."* It lives on Namecheap's **Advanced DNS** tab
+   under the **DNSSEC** section. Re-enable through Cloudflare after activation.
+
+8. **Cloudflare Email Routing cannot send or reply *as* the domain.** Replies
+   come from the destination inbox. It also *"cannot be used with external mail
+   servers"* — it requires Cloudflare's own MX records. If staff ever need to
+   send as `@kmspantherband.org`, that needs Workspace or a paid mail provider,
+   not Email Routing.
+
+9. **`*:Zone.Identifier` files** are WSL/NTFS metadata. Nine were committed and
    have been removed; `.gitignore` now blocks them. They would otherwise upload
    as static assets.
 

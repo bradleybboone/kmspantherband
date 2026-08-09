@@ -1,221 +1,464 @@
 # Deployment Runbook — kmspantherband.org
 
-Last verified: 2026-08-09
+**Last verified: 2026-08-09.** UI labels below were checked against current
+Cloudflare and Namecheap documentation on that date, not from memory. Where a
+label could not be confirmed in official docs, it is marked **[unverified]** and
+described by location instead of quoted.
 
-Covers the first deploy to Cloudflare Workers and the DNS migration from
-Namecheap. Read **Step 0** before touching anything — it is the one step that can
-break something other than the website.
+Work top to bottom. Step 0 is the only step that can break something other than
+the website, so do it first.
 
 ---
 
-## Current state (as observed 2026-08-09)
+## Current state (observed 2026-08-09)
 
-The domain resolves to Namecheap's **parking page**, not to any host. The DNS
-zone has never been edited — the SOA serial `1753578494` is a Unix timestamp of
-2025-07-27, the day the domain was registered.
+The domain points at Namecheap's **parking page**, not at any host. The zone has
+never been edited — SOA serial `1753578494` is a Unix timestamp of 2025-07-27,
+the day the domain was registered.
 
-| Record | Host | Value | Purpose |
+| Type | Host | Value | Fate |
 |---|---|---|---|
-| NS | — | `dns1.registrar-servers.com`, `dns2.registrar-servers.com` | Namecheap holds the zone |
-| A | `@` | `192.64.119.217` | Namecheap parking (delete) |
-| CNAME | `www` | `parkingpage.namecheap.com` | Namecheap parking (delete) |
-| MX | `@` | `eforward1`,`eforward2`,`eforward3` (pri 10), `eforward4` (15), `eforward5` (20) `.registrar-servers.com` | Email forwarding |
-| TXT | `@` | `v=spf1 include:spf.efwd.registrar-servers.com ~all` | SPF for that forwarding |
+| NS | — | `dns1.registrar-servers.com`, `dns2.registrar-servers.com` | Replaced in Step 5 |
+| A | `@` | `192.64.119.217` | **Delete** (parking) |
+| CNAME | `www` | `parkingpage.namecheap.com` | **Delete** (parking) |
+| MX | `@` | `eforward1`, `eforward2`, `eforward3` (pri 10), `eforward4` (15), `eforward5` (20), all `.registrar-servers.com` | See Step 0 |
+| TXT | `@` | `v=spf1 include:spf.efwd.registrar-servers.com ~all` | See Step 0 |
 
-**Why the site currently reads as "unreachable":** plain HTTP returns the parking
-page, but **HTTPS times out entirely** on both apex and `www` — the parking page
-serves no TLS. Browsers try HTTPS first, so you get a connection error rather
-than a parking page.
+**Why it reads as "unreachable":** plain HTTP returns the parking page, but
+HTTPS **times out** on both apex and `www` — the parking page serves no TLS.
+Browsers try HTTPS first, so you get a connection error rather than a page.
 
 ---
 
-## Step 0 — Check whether email forwarding is actually in use
+## Step 0 — Does anyone actually use an @kmspantherband.org address?
 
-**Do this first. It determines whether the rest of the migration is risky or
-trivial.**
+Those five MX records are Namecheap **defaults**. Every registered domain gets
+them whether or not forwarding was ever configured. This step decides whether
+the rest of the migration is risky or trivial.
 
-Those five MX records are Namecheap **defaults**. Every domain they register gets
-them whether or not forwarding was ever configured.
+Namecheap uses **two separate screens** for forwarding, and you need both:
 
-1. Namecheap → **Domain List** → **Manage** next to `kmspantherband.org`
-2. Find the **Redirect Email** section
-3. Read the forwarding rules
+**0a. The rules**
+1. Sign in to Namecheap
+2. Left sidebar → **Domain List**
+3. Click **Manage** next to `kmspantherband.org`
+4. You land on the **Domain** tab. Scroll to the **Redirect Email** section.
+5. Read the rows. Columns are **Alias** and **Forward to**.
 
-**If the list is empty:** nothing is being forwarded. The MX records point at a
-service you never turned on. Ignore every email caution below and proceed freely.
+**0b. The switch**
+1. Same page, click the **Advanced DNS** tab
+2. Find the **Mail Settings** section
+3. Read the dropdown value. Forwarding only functions when it is set to
+   **Email Forwarding**.
 
-**If there are rules:** write down each one — which `@kmspantherband.org` address
-forwards to which real inbox. You will recreate them in Cloudflare Email Routing
-in Step 4. **Do not skip this**, because:
+### If Redirect Email is empty (or Mail Settings is not "Email Forwarding")
 
-> Namecheap's free Email Forwarding only works while the domain uses Namecheap's
-> BasicDNS/PremiumDNS/FreeDNS. Moving nameservers to Cloudflare breaks it.
-> Copying the MX records across does **not** preserve it — the forwarding service
-> refuses domains that aren't on Namecheap DNS.
+Nothing is being forwarded. Those MX records point at a service you never turned
+on. **Skip Step 7 entirely** and ignore every email caution in this document.
 
-The failure is silent. You get no error; senders get a bounce or nothing at all,
-and you find out when a parent says they emailed and never heard back.
+### If there are rows
+
+Write down each `Alias → Forward to` pair now. You will recreate them in Step 7,
+because:
+
+> Namecheap's free Email Forwarding is available only for domains pointed to
+> **BasicDNS, PremiumDNS or FreeDNS**. Moving nameservers to Cloudflare ends it.
+> Copying the MX records across does **not** preserve it — the service refuses
+> domains that are not on Namecheap DNS.
+
+The failure is silent. No error appears; senders get a bounce or nothing, and
+you find out when a parent says they emailed and never heard back.
+
+**Before you proceed, read this limitation of the replacement** (Cloudflare Email
+Routing), because it may change your mind:
+
+> "Email Routing does not support sending or replying from your Cloudflare
+> domain."
+
+Replies come from the destination inbox (`yourname@gmail.com`), not from
+`director@kmspantherband.org`. If staff need to *send as* the band domain, you
+need Google Workspace or a paid mail provider instead — not Email Routing.
 
 ---
 
 ## Step 1 — Deploy to Cloudflare Workers
 
-Nothing here touches DNS. The site will be live on a `workers.dev` URL first, so
-you can confirm it works before pointing the domain at it.
+Nothing here touches DNS. The site goes live on a `workers.dev` URL first so you
+can confirm it works before pointing the domain at it.
 
 ```bash
 cd ~/projects/kmspantherband
 
-# Local gate — all three must pass
+# Local gate — all three must pass before deploying
 npm run typecheck
 npm run lint
 npm run build:cf
 
-# Optional but recommended: run the real worker locally
-npm run preview:cf     # -> http://localhost:8787
+# Run the real worker locally and click around
+npm run preview:cf          # http://localhost:8787
 ```
 
-Then authenticate and deploy:
+Authenticate and deploy:
 
 ```bash
-npx wrangler login     # opens a browser to authorize
+npx wrangler login          # opens a browser for OAuth
 npm run deploy
 ```
 
-**Expected first-deploy hiccup:** if this Cloudflare account has never deployed a
-Worker, `wrangler` fails with *"You need to register a workers.dev subdomain."*
-The remediation URL it prints (`/workers/onboarding`) **404s** in the current
-dashboard. Just visit **Workers & Pages** in the Cloudflare dashboard once — that
-provisions the subdomain — then re-run `npm run deploy`. One-time per account.
+`wrangler login` prints `Attempting to login via OAuth...` and opens your
+browser. If it cannot open one, copy the printed URL into a browser manually.
 
-Verify at `https://kmspantherband.<your-subdomain>.workers.dev`. Load a few pages
-and confirm the carousel images appear.
+**On the workers.dev subdomain:** current docs say *"If you have not configured
+any subdomain or domain, Wrangler will prompt you during the publish process to
+set one up"* — so expect a prompt, not a hard failure. If you do hit an error,
+the fix is the dashboard: **Workers & Pages** → select your Worker → **Your
+subdomain** → **Change**. Docs also note transient **523 errors** on a brand-new
+`workers.dev` subdomain that *"will resolve themselves"* after a minute.
 
----
+Verify at `https://kmspantherband.<your-subdomain>.workers.dev`. Load several
+pages and confirm the carousel photos appear.
 
-## Step 2 — Add the domain to Cloudflare (nameservers NOT yet changed)
+### Optional: preview without publishing
 
-A Workers **custom domain requires the DNS zone to live on Cloudflare**. This is
-a hard requirement — there is no CNAME-from-elsewhere option for an apex domain.
-(Cloudflare Pages supports external DNS via CNAME, but *subdomains only*; the
-apex still requires the zone.)
-
-1. Cloudflare dashboard → **Add a domain** → enter `kmspantherband.org`
-2. Choose the **Free** plan
-3. Cloudflare runs a **quick scan** of your existing DNS records
-
-**Now review the scan by hand.** Cloudflare's own documentation says the scan
-"is not guaranteed to find all existing DNS records," and specifically names MX
-and SPF/TXT records as things to verify.
-
-Compare what it imported against the table at the top of this document. You want:
-
-- ✅ All five `MX` records present, with priorities 10/10/10/15/20
-- ✅ The `v=spf1 include:spf.efwd.registrar-servers.com ~all` TXT record present
-- ❌ Delete the parking `A` record (`192.64.119.217`)
-- ❌ Delete the parking `CNAME` for `www` (`parkingpage.namecheap.com`)
-
-Add anything the scan missed manually before continuing.
-
-> **Why this matters:** changing nameservers is a **replacement, not a merge**.
-> The instant the switch takes effect, only records present at Cloudflare exist.
-> Namecheap's copy is not a fallback.
-
----
-
-## Step 3 — Point Namecheap at Cloudflare's nameservers
-
-Cloudflare gives you two nameservers (e.g. `xxx.ns.cloudflare.com`). In Namecheap:
-
-1. **Domain List** → **Manage** next to `kmspantherband.org`
-2. Stay on the **Domain** tab, find the **Nameservers** section
-3. Change the dropdown from **Namecheap BasicDNS** to **Custom DNS**
-4. Enter both Cloudflare nameservers, removing `dns1`/`dns2.registrar-servers.com`
-5. Save (the green checkmark)
-
-While you're on this tab: scroll to **Other Domain Settings** and set
-**Parking Page** to **Turn Off**. Not strictly required once nameservers move,
-but it stops Namecheap re-adding parking records if you ever move DNS back.
-
-Propagation is usually well under an hour; Cloudflare emails you when the zone
-goes active.
-
----
-
-## Step 4 — Recreate email forwarding (only if Step 0 found rules)
-
-Once the zone is active on Cloudflare:
-
-1. Cloudflare dashboard → your domain → **Email** → **Email Routing**
-2. Enable it. Cloudflare will offer to add its own MX and SPF records —
-   **accept**, and let it replace the Namecheap ones. The `eforward*` records are
-   dead weight now; the service behind them no longer accepts your mail.
-3. Recreate each forwarding rule from Step 0 (custom address → destination)
-4. Cloudflare sends a verification email to each destination inbox. **Click the
-   link** — forwarding does not activate until the destination is verified.
-5. Send a test message to a forwarded address and confirm it arrives.
-
----
-
-## Step 5 — Attach the custom domain to the Worker
-
-1. Cloudflare dashboard → **Workers & Pages** → **kmspantherband**
-2. **Settings** → **Domains & Routes** → **Add** → **Custom domain**
-3. Add `kmspantherband.org`, then repeat for `www.kmspantherband.org`
-
-Cloudflare creates the DNS records and provisions the TLS certificate
-automatically. Certificate issuance typically takes a few minutes.
-
-> A Custom Domain cannot be created on a hostname that already has a conflicting
-> CNAME record. If it refuses, check that the parking `www` CNAME from Step 2 was
-> actually deleted.
-
----
-
-## Step 6 — Verify
+Useful for your weekly announcement edits — upload a version, get a private URL,
+and only promote it once it looks right.
 
 ```bash
-# Should return Cloudflare nameservers
+npx wrangler versions upload      # returns a preview URL, does NOT go live
+npx wrangler versions deploy      # promote a version to production
+```
+
+---
+
+## Step 2 — Turn OFF DNSSEC at Namecheap
+
+**Do not skip this.** Cloudflare's documentation is explicit:
+
+> "If your domain uses DNSSEC, you must turn it off at your registrar before
+> changing nameservers. Changing nameservers while DNSSEC is active can cause
+> your domain to become unreachable."
+
+1. Namecheap → **Domain List** → **Manage** next to `kmspantherband.org`
+2. Click the **Advanced DNS** tab
+3. Find the **DNSSEC** section
+4. Look at the toggle. If it is green / to the right, it is **ON** — click it to
+   turn it off. If it is already off, do nothing.
+5. Namecheap says to *"wait 60 minutes for the settings to take effect."*
+
+The toggle has no text label **[unverified]**; identify it by the **DNSSEC**
+section heading. Namecheap's docs never state whether DNSSEC is on by default,
+so look rather than assume.
+
+You can re-enable DNSSEC through Cloudflare after the domain is active.
+
+---
+
+## Step 3 — Add the domain to Cloudflare
+
+A Workers **custom domain requires the DNS zone to live on Cloudflare**. This is
+a hard requirement:
+
+> "You cannot create a Custom Domain on a hostname with an existing CNAME DNS
+> record or on a zone you do not own."
+
+(Cloudflare Pages allows external DNS via CNAME, but **subdomains only** — an
+apex domain like `kmspantherband.org` always needs the zone.)
+
+1. Sign in to the Cloudflare dashboard
+2. Go to **Domains** (account level — direct link:
+   `https://dash.cloudflare.com/?to=/:account/domains/overview`)
+3. Select **Onboard a domain**
+4. Enter the apex domain, exactly:
+
+   ```
+   kmspantherband.org
+   ```
+
+5. Choose how to add your DNS records. Cloudflare offers an automatic scan or
+   manual entry **[unverified — the literal option labels are not published;
+   pick the automatic scan]**
+6. Select **Continue**
+7. Choose the **Free** plan
+
+> **28-day clock:** *"If your domain is on the Free plan, it will be
+> automatically deleted if it is not activated within 28 days."* Finish Step 5
+> promptly.
+
+---
+
+## Step 4 — Review the imported records by hand
+
+Cloudflare's scan is explicitly not exhaustive:
+
+> "Since the quick scan is not guaranteed to find all existing DNS records, you
+> need to review your records, paying special attention to the following:
+> Zone apex records · Subdomain records · **Email records**"
+>
+> "You should always review your DNS records and manually add any missing ones
+> **before changing your nameservers**."
+
+Compare against the table at the top of this document.
+
+**Delete these two** (parking, and the `www` CNAME will block Step 8):
+
+| Type | Name | Content |
+|---|---|---|
+| A | `kmspantherband.org` | `192.64.119.217` |
+| CNAME | `www` | `parkingpage.namecheap.com` |
+
+**Confirm these five MX records exist**, adding any the scan missed. Type `MX`,
+Name `kmspantherband.org`:
+
+```
+10   eforward1.registrar-servers.com
+10   eforward2.registrar-servers.com
+10   eforward3.registrar-servers.com
+15   eforward4.registrar-servers.com
+20   eforward5.registrar-servers.com
+```
+
+**Confirm this TXT record exists.** Type `TXT`, Name `kmspantherband.org`:
+
+```
+v=spf1 include:spf.efwd.registrar-servers.com ~all
+```
+
+> If Step 0 found no forwarding rules, these MX/TXT records are dead weight and
+> you may simply delete them instead. Keeping them is harmless either way.
+
+**On the orange cloud:** you will see a **Proxy status** column with **Proxied**
+(orange) and **DNS only** (gray). Proxying is on by default for new records. You
+do not need to worry about it for email — *"Other record types (such as MX or
+TXT) are always DNS-only"* and have no toggle at all.
+
+> If you activate the domain without correct records, *"your visitors may
+> experience DNS_PROBE_FINISHED_NXDOMAIN errors."*
+
+---
+
+## Step 5 — Point Namecheap at Cloudflare's nameservers
+
+### 5a. Copy the nameservers from Cloudflare
+
+They appear during onboarding. To find them again: open the domain and go to its
+**Overview** page. You get two, formatted `<name>.ns.cloudflare.com`.
+
+> "Copy the nameserver names directly from the Cloudflare dashboard rather than
+> typing them manually. Typos such as `cloudlfare.com` or `cloudfare.com` are a
+> common cause of the zone remaining in **Pending Nameserver Update** status."
+
+### 5b. Set them at Namecheap
+
+1. Namecheap → **Domain List** → **Manage** next to `kmspantherband.org`
+2. Stay on the **Domain** tab, find the **Nameservers** section
+3. Open the dropdown and change **Namecheap BasicDNS** to **Custom DNS**
+4. Two input fields appear. Paste one Cloudflare nameserver per line, replacing
+   `dns1.registrar-servers.com` and `dns2.registrar-servers.com`. (If you ever
+   need more than two rows, there is an **Add Nameserver** control below them.)
+5. Save with the **green checkmark** at the right of the section — there is no
+   "Save" button
+
+Only the two Cloudflare nameservers may be listed:
+
+> "At the registrar (or parent zone), only the assigned Cloudflare nameservers
+> must be listed. Any nameservers from other DNS providers cause failure."
+
+### 5c. Optional cleanup
+
+While on the **Domain** tab, scroll to **Other Domain Settings** and set
+**Parking Page** to **Turn Off**. Not required once nameservers move, but it
+stops Namecheap re-adding parking records if DNS ever comes back.
+
+---
+
+## Step 6 — Wait for the zone to go Active
+
+Namecheap says *"It may take up to 24 hours (more, in rare cases)"*; in practice
+it is usually far quicker.
+
+Cloudflare checks automatically: *"The first check occurs after 60 seconds and
+the following attempts happen at gradually increased intervals."* You can request
+an earlier check from the domain's **Overview** page **[unverified — the button
+label is not published in the docs]**.
+
+You will know it worked when:
+
+- The status on the **Domains** page changes from **Pending Nameserver Update**
+  to **Active**
+- Cloudflare emails you
+- `dig +short NS kmspantherband.org` returns the `.ns.cloudflare.com` names
+
+---
+
+## Step 7 — Recreate email forwarding (only if Step 0 found rules)
+
+Email Routing now lives under Cloudflare Email Service.
+
+### 7a. Onboard the domain
+
+1. Cloudflare dashboard → **Compute** → **Email Service** → **Email Routing**
+2. Select **Onboard Domain**
+3. Choose `kmspantherband.org`. Cloudflare shows the DNS records it will add:
+   MX records for routing, a TXT record for SPF, and a TXT record for DKIM.
+4. Select **Done**
+
+Cloudflare adds its own MX records under `*.mx.cloudflare.net` and replaces the
+Namecheap `eforward*` ones. This is required and not optional:
+
+> "Email Routing requires Cloudflare MX records · Remove or update existing MX
+> records · **Cannot use Email Routing with external mail servers**"
+
+These records become **Locked** in **DNS → Records** to prevent accidental edits.
+
+### 7b. Verify each destination inbox
+
+1. Go to **Compute** → **Email Service** → **Email Routing** → **Destination
+   Addresses**
+2. Enter the real inbox each alias should forward to and submit
+3. Cloudflare emails that address. Open it and select **Verify email address**
+
+> "Until a destination address is verified, any routing rule that points to it
+> stays disabled."
+
+### 7c. Recreate each rule
+
+1. Go to **Compute** → **Email Service** → **Email Routing** → **Routing Rules**
+2. Select **Create routing rule**
+3. **Email pattern** — the local part, e.g. `director`, and pick the domain
+4. **Action** — choose **Send to an email**
+5. **Destination** — pick the verified address
+6. Select **Save**
+
+Repeat per alias from Step 0. Limits are generous: 200 rules per domain, 200
+destination addresses per account, and inbound routing is **unlimited and free**
+on the Workers Free plan.
+
+Send a real test message to a forwarded address and confirm it lands.
+
+---
+
+## Step 8 — Attach the custom domain to the Worker
+
+1. Cloudflare dashboard → **Workers & Pages**
+2. In **Overview**, select your Worker (`kmspantherband`)
+3. Go to **Settings** → **Domains & Routes** → **Add** → **Custom Domain**
+4. Enter the domain, then select **Add Custom Domain**
+
+Do this **twice** — once for each hostname:
+
+```
+kmspantherband.org
+```
+
+```
+www.kmspantherband.org
+```
+
+> "Custom Domains do not support wildcard DNS records. An incoming request must
+> exactly match the domain or subdomain your Custom Domain is registered to."
+> A Worker attached to `example.com` will not receive requests for
+> `www.example.com`, and vice versa.
+
+Cloudflare creates the DNS records and provisions the TLS certificate
+automatically, usually within a few minutes. If it refuses to add the domain,
+the parking `www` CNAME from Step 4 was probably not deleted.
+
+---
+
+## Step 9 — Verify
+
+```bash
+# Nameservers now Cloudflare's
 dig +short NS kmspantherband.org
 
-# Should NOT be 192.64.119.217
+# No longer the parking IP
 dig +short A kmspantherband.org
 dig +short www.kmspantherband.org
 
-# The real test — this currently times out; it must return headers
+# THE REAL TEST — this currently times out; it must return headers
 curl -sSI https://kmspantherband.org | head -3
 curl -sSI https://www.kmspantherband.org | head -3
 
-# Email records survived
+# Email records (Cloudflare's, if you did Step 7)
 dig +short MX kmspantherband.org
 dig +short TXT kmspantherband.org
 ```
 
-Success looks like: HTTPS returns `HTTP/2 200` instead of timing out, the apex no
-longer resolves to the parking IP, and MX records exist (Cloudflare's, if you did
-Step 4). Then load the site in a browser and click through a few pages.
+Success: HTTPS returns `HTTP/2 200` instead of timing out, and the apex no longer
+resolves to `192.64.119.217`. Then open the site in a browser and click through.
 
 ---
 
 ## Routine updates
 
+Weekly announcements and monthly photos:
+
 ```bash
-# after editing content
+# 1. Edit content, then compress any new photos
+npm run images:compress
+
+# 2. Local gate
 npm run typecheck && npm run lint && npm run build:cf
-npm run preview:cf        # spot-check locally
+
+# 3. Spot-check
+npm run preview:cf
+
+# 4. Ship
 npm run deploy
 ```
 
-After adding photos, **always** run `npm run images:compress` before committing.
-`images.unoptimized` is on, so `public/images/` is downloaded byte-for-byte with
-no resize-on-request safety net.
+**Always run `images:compress` after adding photos.** `images.unoptimized` is on,
+so `public/images/` is downloaded byte-for-byte — there is no resize-on-request
+safety net.
 
 ## Rollback
 
 ```bash
-npx wrangler deployments list
-npx wrangler rollback <version-id>
+npx wrangler deployments list          # 10 most recent
+npx wrangler rollback <VERSION_ID>     # omit ID to go back one version
 ```
 
-The flip is instant and touches no data. There is no database, so there is
-nothing else to restore.
+> "A rollback will immediately create a new deployment with the specified version
+> of your Worker and become the active deployment across all your deployed routes
+> and domains."
+
+Instant, and there is no database, so nothing else needs restoring.
+
+## Free plan headroom
+
+| Limit | Free plan | This site |
+|---|---|---|
+| Requests | 100,000/day | ~100/day expected |
+| **Static asset requests** | **Free and unlimited** | all page loads and photos |
+| CPU time per request | 10 ms | static assets use none |
+| Worker size (gzipped) | 3 MB | ~2.3 KB |
+| Static asset files | 20,000 | ~40 |
+| Individual asset file | 25 MiB | largest ~496 KB |
+| Builds | 500/month | ~4/month |
+
+> "Requests to static assets are free and unlimited. Requests to the Worker
+> script (for example, in the case of SSR content) are billed according to
+> Workers pricing."
+
+Since every route is prerendered static, effectively all traffic is free. The
+100,000/day request cap would need roughly a thousandfold traffic increase to
+matter.
+
+---
+
+## Sources
+
+- [Cloudflare — Onboard a domain](https://developers.cloudflare.com/fundamentals/manage-domains/add-site/)
+- [Cloudflare — Set up a primary zone (Full setup)](https://developers.cloudflare.com/dns/zone-setups/full-setup/setup/)
+- [Cloudflare — Records quick scan](https://developers.cloudflare.com/dns/zone-setups/reference/dns-quick-scan/)
+- [Cloudflare — Zone status](https://developers.cloudflare.com/dns/zone-setups/reference/domain-status/)
+- [Cloudflare — Proxy status](https://developers.cloudflare.com/dns/proxy-status/)
+- [Cloudflare — Workers Custom Domains](https://developers.cloudflare.com/workers/configuration/routing/custom-domains/)
+- [Cloudflare — Workers limits](https://developers.cloudflare.com/workers/platform/limits/)
+- [Cloudflare — Static assets billing and limitations](https://developers.cloudflare.com/workers/static-assets/billing-and-limitations/)
+- [Cloudflare — Preview URLs](https://developers.cloudflare.com/workers/versions-and-deployments/preview-urls/)
+- [Cloudflare — Email Service: route emails](https://developers.cloudflare.com/email-service/get-started/route-emails/)
+- [Cloudflare — Email Service limits](https://developers.cloudflare.com/email-service/platform/limits/)
+- [Namecheap — How to Change DNS For a Domain](https://www.namecheap.com/support/knowledgebase/article.aspx/767/10/how-can-i-change-the-nameservers-for-my-domain/)
+- [Namecheap — Managing DNSSEC for domains pointed to Premium or BasicDNS](https://www.namecheap.com/support/knowledgebase/article.aspx/9723/2232/managing-dnssec-for-domains-pointed-to-premium-or-basicdns/)
+- [Namecheap — How to set up Free Email Forwarding](https://www.namecheap.com/support/knowledgebase/article.aspx/308/2214/how-to-set-up-free-email-forwarding/)
