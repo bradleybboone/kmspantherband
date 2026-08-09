@@ -153,19 +153,31 @@ export default function Header() {
                     </button>
                   )}
                   
-                  {/* Desktop Dropdown */}
+                  {/*
+                    Desktop Dropdown.
+
+                    The 8px offset below the trigger is `pt-2` on this
+                    positioned wrapper, NOT `mt-2` on the white panel. A margin
+                    leaves a literal gap that belongs to no element, so moving
+                    the pointer from the trigger down to the menu left the
+                    hover wrapper, fired onMouseLeave, and closed the menu
+                    before any item could be clicked. Transparent padding keeps
+                    the hover target continuous. Do not swap this back to mt-*.
+                  */}
                   {item.subItems && openDropdown === item.name && (
-                    <div className="absolute top-full left-0 mt-2 w-56 bg-white shadow-xl py-2 animate-fadeIn">
-                      {item.subItems.map((subItem) => (
-                        <Link
-                          key={subItem.href}
-                          href={subItem.href}
-                          className="block px-4 py-2 text-sm text-gray-dark hover:bg-gray-lighter transition-colors"
-                          onClick={() => setOpenDropdown(null)}
-                        >
-                          {subItem.name}
-                        </Link>
-                      ))}
+                    <div className="absolute top-full left-0 pt-2 w-56 animate-fadeIn">
+                      <div className="bg-white shadow-xl py-2">
+                        {item.subItems.map((subItem) => (
+                          <Link
+                            key={subItem.href}
+                            href={subItem.href}
+                            className="block px-4 py-2 text-sm text-gray-dark hover:bg-gray-lighter transition-colors"
+                            onClick={() => setOpenDropdown(null)}
+                          >
+                            {subItem.name}
+                          </Link>
+                        ))}
+                      </div>
                     </div>
                   )}
                 </div>

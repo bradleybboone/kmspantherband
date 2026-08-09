@@ -46,7 +46,7 @@ export default function FutureMembers() {
         <section className="mb-12">
           <div className="bg-primary text-secondary p-8 rounded-lg">
             <h2 className="text-2xl font-semibold mb-4 text-white !text-white">
-              Instrument Drive &mdash; Friday, August 21
+              Instrument Drive &mdash; Friday, August 21, 2026
             </h2>
             <p className="mb-3">
               <strong>5:00&ndash;8:00 PM &middot; Null Middle School cafeteria</strong>

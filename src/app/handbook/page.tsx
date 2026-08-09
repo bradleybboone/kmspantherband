@@ -1,3 +1,4 @@
+import Link from "next/link";
 export default function Handbook() {
   const handbookUrl = "https://docs.google.com/document/d/1una3PXJwVNUcgznEZXNXnNqMYKTe4eacf_3yeU0BwHA/edit?usp=sharing";
   const handbookEmbedUrl = "https://docs.google.com/document/d/1una3PXJwVNUcgznEZXNXnNqMYKTe4eacf_3yeU0BwHA/preview";
@@ -113,19 +114,25 @@ export default function Handbook() {
         <section>
           <h2 className="text-2xl font-semibold mb-6 text-primary">Important Forms</h2>
           
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <div className="bg-white p-4 rounded-lg shadow">
-              <h3 className="font-semibold mb-2">Medical Information Form</h3>
-              <p className="text-sm text-gray-dark">Required for all trips and events</p>
-            </div>
-            <div className="bg-white p-4 rounded-lg shadow">
-              <h3 className="font-semibold mb-2">Field Trip Permission</h3>
-              <p className="text-sm text-gray-dark">For off-campus performances</p>
-            </div>
-            <div className="bg-white p-4 rounded-lg shadow">
-              <h3 className="font-semibold mb-2">Instrument Agreement</h3>
-              <p className="text-sm text-gray-dark">For school-owned instruments</p>
-            </div>
+          {/*
+            Single source of truth: /resources/forms. This section used to list
+            its own set of forms, which named only three, invented two that
+            appear nowhere else on the site, and called the medical release a
+            "Medical Information Form" 15 lines below Key Dates calling it a
+            medical release. Link out rather than maintain a second list that
+            can drift from the handbook again.
+          */}
+          <div className="bg-gray-100 p-6 rounded-lg">
+            <p className="text-gray-dark mb-4">
+              Every start-of-year form and its due date is listed on the Forms &amp;
+              Documents page. The forms themselves are printable from the handbook above.
+            </p>
+            <Link
+              href="/resources/forms"
+              className="inline-block bg-primary hover:bg-primary-hover text-white px-6 py-3 rounded-lg font-semibold transition-colors duration-200"
+            >
+              See Forms &amp; Due Dates
+            </Link>
           </div>
         </section>
       </div>
