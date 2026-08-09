@@ -3,21 +3,33 @@
 Raised 2026-08-09 while the 26-27 season refresh was being executed. Deliberately
 **not** in `2026-08-09-26-27-season-refresh.md` — recorded here so they survive.
 
-## 1. Contrast audit — no black text on navy
+## 1. Contrast audit — root cause FIXED 2026-08-09, sweep still owed
 
 Director requirement: **no black or dark text on navy backgrounds anywhere,
 including buttons.** `--primary` is `#001689`; black on it fails WCAG badly, and
 CLAUDE.md targets WCAG 2.1 AA at 4.5:1.
 
-The refresh plan carries a constraint preventing *new* violations, but the
-existing site was never swept. Needs: an audit of every `bg-primary` /
-`section-primary-bg` surface and every `.btn` variant in `globals.css`, checking
-the computed text color rather than trusting the class name. Watch for elements
-that set no color and inherit black from `body`.
+**The root cause was found and fixed during the season refresh.** `globals.css`
+is unlayered, and `@import "tailwindcss"` puts utilities in `@layer utilities`.
+An unlayered rule beats *any* layered rule regardless of specificity, so:
 
-Note the existing `text-white !text-white` stutter that appears on several
-headings — that `!important` is a symptom of something upstream fighting it, and
-the audit should find the real cause instead of adding more `!important`.
+- `h1..h6 { color: var(--accent) }` forced every heading black, including inside
+  navy sections — that is where the `text-white !text-white` stutter came from.
+- `a { color: var(--primary) }` painted navy text on navy buttons.
+- `* { padding: 0; margin: 0 }` and the hand-written "Responsive Utilities"
+  duplicates killed Tailwind spacing/sizing site-wide (`p-6` computed to 0px).
+
+All three are now wrapped in `@layer base` or had the `color` removed.
+
+**Still owed:** a real sweep. An ad-hoc runtime contrast checker was attempted
+and proved unreliable — it cannot parse Tailwind v4's `lab()` colours and it
+mis-resolves backgrounds for hero text sitting over an `<Image>` rather than a
+CSS background. Use a proper tool (axe-core, Lighthouse, or pa11y) rather than
+hand-rolling it. Two instances were found and fixed by inspection (`/join` CTA
+heading, `/future-members` phone link); assume others exist.
+
+The `text-white !text-white` stutter is now redundant and can be simplified to a
+single `text-white` during that sweep.
 
 ## 2. Prominent ParentSquare CTA
 
