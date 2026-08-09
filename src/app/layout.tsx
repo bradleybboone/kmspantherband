@@ -1,10 +1,14 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Inter, Oswald } from "next/font/google";
 import "./globals.css";
 import Footer from "@/components/Footer";
 import HeaderSlot, { HeaderSpacer } from "@/components/HeaderSlot";
 
-const inter = Inter({ subsets: ["latin"] });
+// Both faces self-host as single variable woff2 files via next/font — the
+// render-blocking fonts.googleapis.com @import is gone (audit P1-7). globals.css
+// resolves --font-body / --font-display against these variables.
+const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
+const oswald = Oswald({ subsets: ["latin"], variable: "--font-oswald" });
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://kmspantherband.org"),
@@ -34,7 +38,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" className={`${inter.variable} ${oswald.variable}`}>
       <body className={inter.className}>
         <div className="min-h-screen flex flex-col">
           <HeaderSlot />

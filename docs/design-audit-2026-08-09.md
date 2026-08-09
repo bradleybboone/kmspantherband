@@ -163,7 +163,12 @@ No `aria-expanded`, `aria-haspopup`, or `aria-controls` on any of the three
   text per photo.
 - **Command**: `/impeccable animate`
 
-### [ ] P1-6 · Carousel downloads 2.87 MB
+### [x] P1-6 · Carousel downloads 2.87 MB
+
+**Fixed 2026-08-09 by `/impeccable optimize`.** `ImageCarousel` now mounts only
+the current slide ± 1 (circular), and the misplaced `priority` on below-fold
+slide 1 is gone. Measured on the preview worker: initial load fetches 3 slides
+(~1.15 MB) instead of 9 (2.87 MB); the rest arrive one per autoplay tick.
 
 - **Location**: `src/app/page.tsx:67-79`
 - **Category**: Performance
@@ -176,7 +181,13 @@ resize-on-request to hide behind. Slide 1 alone is 394 KB.
 - **Fix**: Render only current ± 1 slide. Consider dropping to 5-6 photos.
 - **Command**: `/impeccable optimize`
 
-### [ ] P1-7 · Inter loaded twice + render-blocking third party
+### [x] P1-7 · Inter loaded twice + render-blocking third party
+
+**Fixed 2026-08-09 by `/impeccable optimize`.** Both faces now self-host via
+`next/font/google` as single variable woff2 files (Inter 48 KB + Oswald 28 KB,
+latin); the `fonts.googleapis.com` `@import` is deleted and `--font-body` /
+`--font-display` resolve against the `next/font` variables. Measured: exactly
+2 same-origin font requests, zero third-party.
 
 - **Location**: `src/app/layout.tsx:2,7` and `src/app/globals.css:1`
 - **Category**: Performance
@@ -252,11 +263,11 @@ across 8 pages are Tailwind defaults, not design tokens. Root cause: `@theme
 inline` (`globals.css:137-145`) bridges only **7** of ~130 `:root` tokens, so the
 rest of the scale is unreachable as a utility. → `/impeccable colorize`
 
-### [ ] P2-6 · Oversized bio images
+### [x] P2-6 · Oversized bio images
 
-`chavez-bio.jpg` 412 KB and `boone-bio.png` 258 KB for ~380px squares.
-`/about` ships roughly 800 KB of avatars. Re-run `npm run images:compress`;
-consider converting `boone-bio.png` to JPEG. → `/impeccable optimize`
+**Fixed 2026-08-09 by `/impeccable optimize`.** All three bios resized to
+800px longest side (cards render ~370px; 2× retina); `boone-bio.png` converted
+to `boone-bio.jpg`. 781 KB → 197 KB (−75%).
 
 ### [ ] P2-7 · Alt text inconsistent
 
@@ -333,8 +344,8 @@ vocabulary that will drift. Also the only home of the detector's
 1. **[P0/P1] `/impeccable harden`** — keyboard dropdowns, ARIA state on both nav
    layers, `inert` on the closed mobile panel, visible focus ring, per-route
    `metadata`. *(P0-1, P1-1..4, P1-8)*
-2. **[P1] `/impeccable optimize`** — lazy the carousel, de-duplicate Inter,
-   recompress bio images. *(P1-6, P1-7, P2-6)*
+2. ~~**[P1] `/impeccable optimize`** — lazy the carousel, de-duplicate Inter,
+   recompress bio images. *(P1-6, P1-7, P2-6)*~~ Done 2026-08-09.
 3. **[P1] `/impeccable animate`** — carousel pause, reduced-motion branch,
    scoped transitions. *(P1-5, P2-3, P2-4)*
 4. **[P2] `/impeccable adapt`** — 44px touch targets, fluid iframe heights.

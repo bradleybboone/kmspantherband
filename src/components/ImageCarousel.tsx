@@ -34,22 +34,29 @@ export default function ImageCarousel({ images, autoPlayInterval = 5000 }: Image
   return (
     <div className="relative w-full max-w-6xl mx-auto">
       <div className="relative aspect-[16/9] overflow-hidden rounded-lg shadow-lg">
-        {images.map((image, index) => (
-          <div
-            key={image}
-            className={`absolute inset-0 transition-opacity duration-500 ${
-              index === currentIndex ? "opacity-100" : "opacity-0"
-            }`}
-          >
-            <Image
-              src={image}
-              alt={`Band photo ${index + 1}`}
-              fill
-              className="object-cover"
-              priority={index === 0}
-            />
-          </div>
-        ))}
+        {images.map((image, index) => {
+          // Only mount the current slide and its neighbors (circular). Images
+          // ship byte-for-byte (CLAUDE.md D3), so mounting all nine eagerly
+          // fetched 2.87 MB below the fold (audit P1-6). Neighbors stay
+          // mounted so the crossfade always has a loaded slide to fade to.
+          const gap = Math.abs(index - currentIndex);
+          if (Math.min(gap, images.length - gap) > 1) return null;
+          return (
+            <div
+              key={image}
+              className={`absolute inset-0 transition-opacity duration-500 ${
+                index === currentIndex ? "opacity-100" : "opacity-0"
+              }`}
+            >
+              <Image
+                src={image}
+                alt={`Band photo ${index + 1}`}
+                fill
+                className="object-cover"
+              />
+            </div>
+          );
+        })}
 
         <button
           onClick={goToPrevious}

@@ -56,7 +56,7 @@ export default function About() {
           <div className="bg-white overflow-hidden">
             <div className="aspect-square relative">
               <Image
-                src="/images/boone-bio.png"
+                src="/images/boone-bio.jpg"
                 alt="Dr. Bradley Boone - Head Band Director"
                 fill
                 className="object-contain"
