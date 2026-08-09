@@ -5,13 +5,39 @@
 survives the propagation wait). This file is the source of truth; republish the
 artifact if you change it.
 
-**Last verified: 2026-08-09.** UI labels below were checked against current
-Cloudflare and Namecheap documentation on that date, not from memory. Where a
-label could not be confirmed in official docs, it is marked **[unverified]** and
-described by location instead of quoted.
+## ✅ EXECUTED 2026-08-09 — waiting on nameserver propagation only
 
-Work top to bottom. Step 0 is the only step that can break something other than
-the website, so do it first.
+Steps 0–8 are **done**. Every UI label below was verified by driving the live
+dashboards, not read from documentation.
+
+| Step | State |
+|---|---|
+| 0 · Email forwarding check | ✅ None configured — *"You haven't defined any Email Redirect yet."* |
+| 1 · Deploy Worker | ✅ Live at `kmspantherband.bradleybboone.workers.dev`, version `e10acfb5` |
+| 2 · DNSSEC off | ✅ Was already **off** — no action needed |
+| 3 · Add domain to Cloudflare | ✅ Zone created, Free plan |
+| 4 · Empty the zone | ✅ All 8 parked records deleted |
+| 5 · Nameservers → Cloudflare | ✅ `amos.ns.cloudflare.com` · `nataly.ns.cloudflare.com` |
+| 6 · Wait for Active | ⏳ **Pending** — registrar propagation, 1–2 h typical |
+| 7 · Email routing | ⏭️ Skipped, not applicable |
+| 8 · Attach custom domain | ✅ Apex + `www` attached; two locked `Worker`-type records created |
+| 9 · Verify | ⏳ Blocked on step 6 |
+
+**Nothing left to do but wait.** When the zone flips to Active, Cloudflare issues
+the certificate and the site comes up on its own. Check with:
+
+```bash
+dig +short NS kmspantherband.org        # want amos/nataly.ns.cloudflare.com
+curl -sSI https://kmspantherband.org | head -3
+```
+
+Meanwhile the site is fully working at
+`https://kmspantherband.bradleybboone.workers.dev`.
+
+---
+
+**Last verified: 2026-08-09.** Work top to bottom. Step 0 is the only step that
+can break something other than the website, so do it first.
 
 ---
 
@@ -156,14 +182,18 @@ npx wrangler versions deploy      # promote a version to production
 
 1. Namecheap → **Domain List** → **Manage** next to `kmspantherband.org`
 2. Click the **Advanced DNS** tab
-3. Find the **DNSSEC** section
-4. Look at the toggle. If it is green / to the right, it is **ON** — click it to
-   turn it off. If it is already off, do nothing.
-5. Namecheap says to *"wait 60 minutes for the settings to take effect."*
+3. Scroll to the **DNSSEC** section — it sits between the **HOST RECORDS** table
+   and **MAIL SETTINGS**, and shows a single **Status** toggle
+4. If the toggle is green / to the right it is **ON** — click to turn it off.
+   If it is already grey / left, do nothing.
+5. If you changed it, Namecheap says to *"wait 60 minutes for the settings to
+   take effect."*
 
-The toggle has no text label **[unverified]**; identify it by the **DNSSEC**
-section heading. Namecheap's docs never state whether DNSSEC is on by default,
-so look rather than assume.
+> **Checked 2026-08-09: DNSSEC was already OFF** on this domain, so this step was
+> a no-op. Namecheap's docs never state the default, so look rather than assume —
+> but the likely outcome is that there is nothing to do.
+
+The toggle has no text label; identify it by the **DNSSEC** section heading.
 
 You can re-enable DNSSEC through Cloudflare after the domain is active.
 
@@ -247,10 +277,21 @@ documentation. Page heading is **Review your DNS records**; URL ends
    **Type** column. All eight records select at once and a control bar appears
    above the table reading **8 of 8 selected · Clear selection**, with two
    buttons on the right.
-2. Click the red **Delete 8 records** button. Confirm if prompted.
+2. Click the red **Delete 8 records** button. A **Delete DNS records** modal
+   asks *"Are you sure you want to permanently delete 8 records?"* and requires
+   you to **type `DELETE`** in a confirmation field. Type it, then click
+   **Delete**. A green toast confirms *"Records successfully deleted"* and the
+   table reads *"No DNS records."*
 3. Click the blue **Continue to activation** button at the bottom of the page.
+4. An **Add records later** modal warns *"Without DNS records, Cloudflare is
+   unable to activate your site. It's best if you set up your DNS records now."*
+   Click **Confirm** — this is expected, see below.
 
 That is the entire step. It goes to Step 5.
+
+> **On that last warning:** it is advisory, not a blocker. Zone activation
+> depends on nameserver delegation, not on records. Step 8 populates the zone.
+> Verified 2026-08-09 — confirming through it works exactly as intended.
 
 ### What you should be looking at
 
@@ -333,13 +374,30 @@ They appear during onboarding. To find them again: open the domain and go to its
 ### 5b. Set them at Namecheap
 
 1. Namecheap → **Domain List** → **Manage** next to `kmspantherband.org`
-2. Stay on the **Domain** tab, find the **Nameservers** section
-3. Open the dropdown and change **Namecheap BasicDNS** to **Custom DNS**
-4. Two input fields appear. Paste one Cloudflare nameserver per line, replacing
-   `dns1.registrar-servers.com` and `dns2.registrar-servers.com`. (If you ever
-   need more than two rows, there is an **Add Nameserver** control below them.)
-5. Save with the **green checkmark** at the right of the section — there is no
-   "Save" button
+2. Stay on the **Domain** tab, find the **NAMESERVERS** section
+3. Open the dropdown. It offers exactly three options —
+   **Namecheap BasicDNS** (current), **Namecheap Web Hosting DNS**, and
+   **Custom DNS**. Choose **Custom DNS**.
+4. Two empty fields appear, **Nameserver 1** and **Nameserver 2**. Type one
+   Cloudflare nameserver in each. (An **ADD NAMESERVER** link below adds more
+   rows; you do not need it — Cloudflare assigns exactly two.)
+5. Save with the **green checkmark ✓** to the right of the dropdown — there is no
+   "Save" button. A red ✗ beside it cancels.
+
+For this domain the values were:
+
+```
+amos.ns.cloudflare.com
+nataly.ns.cloudflare.com
+```
+
+> **Side effect worth knowing:** this domain also had a Namecheap
+> **REDIRECT DOMAIN** rule (`kmspantherband.org → http://www.kmspantherband.org/`).
+> Like email forwarding, Namecheap URL redirects only work on Namecheap
+> nameservers, so it stops applying. That is fine here — Cloudflare now serves
+> both the apex and `www` directly from the Worker, so no redirect is needed.
+> After saving, the section replaces the rule with a note that redirects are now
+> managed by your DNS provider.
 
 Only the two Cloudflare nameservers may be listed:
 
@@ -360,9 +418,14 @@ Namecheap says *"It may take up to 24 hours (more, in rare cases)"*; in practice
 it is usually far quicker.
 
 Cloudflare checks automatically: *"The first check occurs after 60 seconds and
-the following attempts happen at gradually increased intervals."* You can request
-an earlier check from the domain's **Overview** page **[unverified — the button
-label is not published in the docs]**.
+the following attempts happen at gradually increased intervals."*
+
+To request an earlier check, go to the domain's **Overview** page. While pending
+it shows a panel headed **"Waiting for your registrar to propagate your new
+nameservers"** — *"This typically takes 1-2 hours but may take up to 24 hours,
+depending on your registrar"* — with a **Check nameservers now** button beneath
+it. Clicking it responds *"Cloudflare is now checking the nameservers for
+kmspantherband.org. Please wait a few hours for an update."*
 
 You will know it worked when:
 
@@ -430,29 +493,55 @@ Send a real test message to a forwarded address and confirm it lands.
 
 ## Step 8 — Attach the custom domain to the Worker
 
-1. Cloudflare dashboard → **Workers & Pages**
-2. In **Overview**, select your Worker (`kmspantherband`)
-3. Go to **Settings** → **Domains & Routes** → **Add** → **Custom Domain**
-4. Enter the domain, then select **Add Custom Domain**
+**The documented path is wrong.** Docs say *Settings → Domains & Routes → Add →
+Custom Domain*. The live dashboard has no such section. The real path:
 
-Do this **twice** — once for each hostname:
+1. Cloudflare dashboard → **Compute** → **Workers & Pages**
+2. Select the `kmspantherband` Worker
+3. Click the **Domains** tab (it sits between **Observability** and **Settings**,
+   *not* inside Settings)
+4. Under **Custom Domains and Routes**, click **+ Add Domain**
+5. A **Connect domain** modal lists the domains in your account. Click
+   `kmspantherband.org`
+6. A **Connect to kmspantherband.org** step appears with one field,
+   **Subdomain (optional)**, labelled *"Leave empty for root domain"*
+7. Click **Add domain**
 
-```
-kmspantherband.org
-```
+Do this **twice**:
 
-```
-www.kmspantherband.org
-```
+- **Apex** — leave the Subdomain field **empty**
+- **www** — type `www` in the Subdomain field
 
 > "Custom Domains do not support wildcard DNS records. An incoming request must
 > exactly match the domain or subdomain your Custom Domain is registered to."
-> A Worker attached to `example.com` will not receive requests for
-> `www.example.com`, and vice versa.
+> A Worker attached to the apex will not receive `www` requests, or vice versa.
 
-Cloudflare creates the DNS records and provisions the TLS certificate
-automatically, usually within a few minutes. If it refuses to add the domain,
-the parking `www` CNAME from Step 4 was probably not deleted.
+### It works while the zone is still pending
+
+Documented prerequisites say Custom Domains need *"an active Cloudflare zone."*
+In practice the domain appears in the Connect modal with a **pending** badge and
+attaches fine. **Verified 2026-08-09** — both hostnames were attached with the
+zone still in Pending Nameserver Update.
+
+Cloudflare immediately creates one DNS record per hostname, visible under
+**DNS → Records**:
+
+| Name | Type | Content | Proxy status |
+|---|---|---|---|
+| `kmspantherband.org` | **Worker** | `kmspantherband` | Proxied |
+| `www.kmspantherband.org` | **Worker** | `kmspantherband` | Proxied |
+
+Both carry a **padlock** — they are managed by Workers and cannot be edited from
+the DNS page. `Worker` is a record type specific to this mechanism; you will not
+see an `A` or `CNAME`. Until the zone activates, querying Cloudflare's
+nameservers directly returns only a `100::` placeholder AAAA, which is expected.
+
+If it refuses to add the domain, the parking `www` CNAME from Step 4 was probably
+not deleted.
+
+**Ignore the DNS page's "Recommendations" notice** — *"Email cannot reach
+@kmspantherband.org addresses and they could be spoofed."* That is correct and
+intentional; there is no email on this domain.
 
 ---
 
