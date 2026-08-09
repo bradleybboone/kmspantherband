@@ -123,7 +123,7 @@ on the legacy Google Site, which is stale and should not be trusted.
 ```
 src/
 ├── app/              # App Router pages (all static)
-│   ├── ensembles/    # beginner, cadet, concert, honor, symphonic
+│   ├── ensembles/    # beginner, concert, honor, symphonic (no Cadet Band in 2026-27)
 │   ├── future-members/ # Landing page for incoming students/families
 │   ├── resources/    # forms
 │   ├── layout.tsx    # Root layout — renders Header via HeaderSlot (see D5)

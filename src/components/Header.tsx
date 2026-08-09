@@ -51,7 +51,6 @@ export default function Header() {
       name: 'ENSEMBLES',
       subItems: [
         { name: 'Beginner Band', href: '/ensembles/beginner' },
-        { name: 'Cadet Band', href: '/ensembles/cadet' },
         { name: 'Concert Band', href: '/ensembles/concert' },
         { name: 'Symphonic Band', href: '/ensembles/symphonic' },
         { name: 'Honor Band', href: '/ensembles/honor' }
