@@ -19,22 +19,23 @@ export default function InstrumentRental() {
           
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div className="bg-white p-8 rounded-lg shadow">
-              <h3 className="text-xl font-semibold mb-3">School Rental Program</h3>
+              <h3 className="text-xl font-semibold mb-3">School-Owned Instruments</h3>
               <p className="text-gray-dark mb-4">
-                Limited instruments available for students with financial need.
+                Oboe, bassoon, alto saxophone, French horn, euphonium, and tuba are
+                provided by the school &mdash; no rental needed.
               </p>
               <ul className="space-y-2 text-gray-dark">
-                <li>• $50 per semester</li>
-                <li>• First come, first served</li>
-                <li>• Maintenance included</li>
-                <li>• Financial assistance available</li>
+                <li>• $100/year usage fee</li>
+                <li>• Percussion: $100/year starting Year 2</li>
+                <li>• You purchase accessories only</li>
+                <li>• Distributed on campus at the start of the year</li>
               </ul>
             </div>
             
             <div className="bg-white p-8 rounded-lg shadow">
               <h3 className="text-xl font-semibold mb-3">Music Store Partners</h3>
               <p className="text-gray-dark mb-4">
-                Rent from our approved local music stores.
+                Rent from our recommended local music stores.
               </p>
               <ul className="space-y-2 text-gray-dark">
                 <li>• Monthly payment plans</li>
@@ -76,7 +77,7 @@ export default function InstrumentRental() {
         </section>
         
         <section className="mb-12">
-          <h2 className="text-2xl font-semibold mb-6 text-primary text-center">Approved Music Stores</h2>
+          <h2 className="text-2xl font-semibold mb-6 text-primary text-center">Recommended Music Stores</h2>
           
                       <div className="space-y-6">
             <div className="bg-white p-6 rounded-lg shadow">
@@ -160,6 +161,25 @@ export default function InstrumentRental() {
                   className="inline-block bg-primary hover:bg-primary-hover text-white px-6 py-2 rounded-lg text-sm font-medium transition-colors duration-200"
                 >
                   Rent Online for KMS Band
+                </a>
+              </div>
+            </div>
+            <div className="bg-white p-6 rounded-lg shadow">
+              <h3 className="font-semibold text-lg mb-2">Veritas Instrument Rental</h3>
+              <p className="text-gray-dark mb-2">
+                Rentals delivered to your door, with weekly service visits to our campus.
+              </p>
+              <p className="text-gray-dark text-sm mb-2">
+                Rental runs approximately $30&ndash;$50/month depending on instrument and brand.
+              </p>
+              <div className="mt-4">
+                <a
+                  href="https://www.rentfromhome.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-block bg-primary hover:bg-primary-hover text-white px-6 py-2 rounded-lg text-sm font-medium transition-colors duration-200"
+                >
+                  Visit Veritas
                 </a>
               </div>
             </div>
