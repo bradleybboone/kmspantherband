@@ -1,13 +1,6 @@
-import Header from "@/components/Header";
-
 export default function InstrumentRental() {
   return (
-    <>
-      <Header variant="solid" />
-      {/* Spacer to prevent content from being hidden under fixed header */}
-      <div className="h-20 lg:h-24" />
-      
-      <div className="container mx-auto px-4 py-12">
+    <div className="container mx-auto px-4 py-12">
         <h1 className="text-4xl md:text-5xl font-bold text-primary text-center mb-8">
           Instrument Rental Program
         </h1>
@@ -192,6 +185,5 @@ export default function InstrumentRental() {
         </section>
       </div>
     </div>
-    </>
   );
 }

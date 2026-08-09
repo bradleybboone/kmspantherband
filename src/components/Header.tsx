@@ -15,20 +15,17 @@ interface NavItem {
   subItems?: SubItem[];
 }
 
-interface HeaderProps {
-  variant?: 'transparent' | 'solid';
-}
+// Routes whose hero sits under a transparent nav until the user scrolls.
+export const TRANSPARENT_NAV_PAGES = ['/', '/about'];
 
-export default function Header({ variant = 'transparent' }: HeaderProps) {
+export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
   const [mobileDropdowns, setMobileDropdowns] = useState<string[]>([]);
   const pathname = usePathname();
 
-  // Pages that should have transparent navigation
-  const transparentNavPages = ['/', '/about', '/students'];
-  const isTransparent = transparentNavPages.includes(pathname) && variant === 'transparent';
+  const isTransparent = TRANSPARENT_NAV_PAGES.includes(pathname);
 
   useEffect(() => {
     const handleScroll = () => {

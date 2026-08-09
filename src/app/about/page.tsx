@@ -1,12 +1,8 @@
 import Image from "next/image";
-import Header from "@/components/Header";
 
 export default function About() {
   return (
     <>
-      {/* Transparent header for about page */}
-      <Header variant="transparent" />
-      
       {/* Hero Section */}
       <section className="relative h-96 flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-b from-primary to-white" />

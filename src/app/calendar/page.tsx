@@ -1,14 +1,6 @@
-import Header from "@/components/Header";
-
 export default function CalendarPage() {
   return (
     <div className="min-h-screen bg-gray-50">
-      {/* Solid header for calendar page */}
-      <Header variant="solid" />
-      
-      {/* Spacer div to push content below fixed header */}
-      <div className="h-20 lg:h-24" />
-      
       {/* Page content */}
       <div className="pb-12">
         <div className="container py-12">

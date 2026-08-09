@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import Footer from "@/components/Footer";
+import HeaderSlot from "@/components/HeaderSlot";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -19,7 +20,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={inter.className}>
         <div className="min-h-screen flex flex-col">
-          {/* Header is rendered inside each page component for variant control */}
+          <HeaderSlot />
           <main className="flex-grow">
             {children}
           </main>

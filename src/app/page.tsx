@@ -1,13 +1,10 @@
 import Image from "next/image";
 import Link from "next/link";
-import Header from "@/components/Header";
 import ImageCarousel from "@/components/ImageCarousel";
 
 export default function Home() {
   return (
     <>
-      {/* Transparent header for homepage */}
-      <Header variant="transparent" />
       {/* Hero Section - Rouse Band Style with full-screen background */}
       <section className="relative h-screen flex items-center justify-center overflow-hidden">
         <Image

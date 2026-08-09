@@ -1,17 +1,9 @@
-import Header from "@/components/Header";
-
 export default function Handbook() {
   const handbookUrl = "https://docs.google.com/document/d/1una3PXJwVNUcgznEZXNXnNqMYKTe4eacf_3yeU0BwHA/edit?usp=sharing";
   const handbookEmbedUrl = "https://docs.google.com/document/d/1una3PXJwVNUcgznEZXNXnNqMYKTe4eacf_3yeU0BwHA/preview";
 
   return (
     <div className="min-h-screen bg-gray-50">
-      {/* Solid header for handbook page */}
-      <Header variant="solid" />
-      
-      {/* Spacer div to push content below fixed header */}
-      <div className="h-20 lg:h-24" />
-      
       {/* Page content */}
       <div className="container mx-auto px-4 py-12">
       <h1 className="text-4xl md:text-5xl font-bold text-primary text-center mb-8">

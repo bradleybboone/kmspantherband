@@ -1,14 +1,8 @@
-import Header from "@/components/Header";
 import Link from "next/link";
 
 export default function SymphonicBand() {
   return (
-    <>
-      <Header variant="solid" />
-      {/* Spacer to prevent content from being hidden under fixed header */}
-      <div className="h-20 lg:h-24" />
-      
-      <div className="container mx-auto px-4 py-12">
+    <div className="container mx-auto px-4 py-12">
         <h1 className="text-4xl md:text-5xl font-bold text-primary text-center mb-8">
           Symphonic Band
         </h1>
@@ -43,6 +37,5 @@ export default function SymphonicBand() {
           </section>
         </div>
       </div>
-    </>
   );
 }

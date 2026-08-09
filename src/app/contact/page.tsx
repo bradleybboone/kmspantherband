@@ -1,7 +1,6 @@
 'use client';
 
 import { useState } from 'react';
-import Header from "@/components/Header";
 
 export default function Contact() {
   const [formData, setFormData] = useState({
@@ -27,12 +26,6 @@ export default function Contact() {
 
   return (
     <div className="min-h-screen bg-gray-50">
-      {/* Solid header for contact page */}
-      <Header variant="solid" />
-      
-      {/* Spacer div to push content below fixed header */}
-      <div className="h-20 lg:h-24" />
-      
       {/* Page content */}
       <div className="max-w-7xl mx-auto px-8 lg:px-16 py-20">
       <h1 className="text-4xl md:text-5xl font-bold text-primary text-center mb-24">
