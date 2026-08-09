@@ -183,18 +183,33 @@ apex domain like `kmspantherband.org` always needs the zone.)
 1. Sign in to the Cloudflare dashboard
 2. Go to **Domains** (account level — direct link:
    `https://dash.cloudflare.com/?to=/:account/domains/overview`)
-3. Select **Onboard a domain**
+3. Select **Add a site**. Three options appear — **pick the first one:**
+
+   | Option | Its description | Use it? |
+   |---|---|---|
+   | **Connect a domain** | *"Make your site faster, more secure, and more reliable"* | ✅ **Yes — this one** |
+   | **Transfer a domain** | *"Move your domain registration to Cloudflare and save on renewals"* | ❌ No |
+   | **Buy a domain** | *"Register a new domain with zero markup fees"* | ❌ No |
+
+   > ⚠️ **"Transfer a domain" is the trap.** It sounds like what you're doing, but it
+   > moves the *domain registration itself* off Namecheap — an auth code, a 60-day
+   > transfer lock, and a renewal charge. You are not changing registrars. You are
+   > only changing which nameservers answer for the domain, which is
+   > **Connect a domain**. The registration stays at Namecheap, where you renew it.
+
 4. Enter the apex domain, exactly:
 
    ```
    kmspantherband.org
    ```
 
-5. Choose how to add your DNS records. Cloudflare offers an automatic scan or
-   manual entry **[unverified — the literal option labels are not published;
-   pick the automatic scan]**
+5. Choose how to add your DNS records — take the automatic scan
 6. Select **Continue**
 7. Choose the **Free** plan
+
+> **Docs vs. live UI:** Cloudflare's published documentation calls this entry point
+> "Onboard a domain." The live dashboard says **Add a site → Connect a domain**
+> (observed 2026-08-09). Trust the screen in front of you; the docs lag.
 
 > **28-day clock:** *"If your domain is on the Free plan, it will be
 > automatically deleted if it is not activated within 28 days."* Finish Step 5
