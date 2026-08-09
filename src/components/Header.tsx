@@ -98,7 +98,15 @@ export default function Header() {
 
   return (
     <header className={`w-full fixed top-0 left-0 right-0 z-50 transition-all duration-300`}>
-      <nav className={`${navBackground} ${scrolled ? 'shadow-lg' : ''}`}>
+      {/*
+        `relative z-50` keeps the bar -- and the hamburger toggle -- above the
+        mobile menu overlay below, which is `fixed inset-0 z-40`. Without a
+        z-index here the nav is unpositioned, so inside <header>'s stacking
+        context the positioned overlay paints over it and swallows taps on the
+        toggle: the menu opened and could not be closed except by following a
+        link. The overlay's own `pt-24` already assumes a visible bar above it.
+      */}
+      <nav className={`relative z-50 ${navBackground} ${scrolled ? 'shadow-lg' : ''}`}>
         <div className="px-6 lg:px-12">
           <div className="flex items-center justify-between h-20 lg:h-24">
             {/* Logo */}
