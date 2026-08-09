@@ -59,9 +59,9 @@ export default function About() {
               <h3 className="text-xl font-semibold mb-2">Dr. Bradley Boone</h3>
               <p className="text-primary font-medium mb-3">Head Band Director</p>
               <p className="text-gray-dark mb-3">
-                This is Dr. Boone&apos;s fourth year at C.E. King Middle School. He holds a Bachelor 
-                of Music Education from Stetson University in Deland, Florida, as well as Master 
-                of Music and Doctor of Musical Arts degrees from Louisiana State University. He is 
+                This is Dr. Boone&apos;s fifth year at C.E. King Middle School. He holds a Bachelor
+                of Music Education from Stetson University in Deland, Florida, as well as Master
+                of Music and Doctor of Musical Arts degrees from Louisiana State University. He is
                 a euphonium and trombone player.
               </p>
               <p className="text-gray-dark mb-3">
@@ -95,9 +95,9 @@ export default function About() {
               <h3 className="text-xl font-semibold mb-2">Ms. Catherine Ruiz</h3>
               <p className="text-primary font-medium mb-3">Assistant Band Director</p>
               <p className="text-gray-dark mb-3">
-                My name is Catherine Ruiz and I am so excited to join the team at C.E. King 
-                Middle School! I received my Music Education degree from Sam Houston State 
-                University in 2020 and started my career on staff at MacArthur High School 
+                My name is Catherine Ruiz and I am so glad to be back with the team at C.E. King
+                Middle School! I received my Music Education degree from Sam Houston State
+                University in 2020 and started my career on staff at MacArthur High School
                 in Aldine ISD.
               </p>
               <p className="text-gray-dark mb-3">
@@ -116,46 +116,36 @@ export default function About() {
             </div>
           </div>
 
-          {/* Director 3 - Cooper */}
+          {/* Director 3 - Chavez */}
           <div className="bg-white overflow-hidden">
             <div className="aspect-square relative">
               <Image
-                src="/images/cooper-bio.jpg"
-                alt="Ms. Jenny Cooper - Assistant Band Director"
+                src="/images/chavez-bio.jpg"
+                alt="Mrs. Amanda Chavez - Assistant Band Director"
                 fill
-                className="object-contain"
+                className="object-cover"
               />
             </div>
             <div className="p-6">
-              <h3 className="text-xl font-semibold mb-2">Ms. Jenny Cooper</h3>
+              <h3 className="text-xl font-semibold mb-2">Mrs. Amanda Chavez</h3>
               <p className="text-primary font-medium mb-3">Assistant Band Director</p>
               <p className="text-gray-dark mb-3">
-                B.M. – Music Education; Tarleton State University
+                B.M. and M.M. &ndash; Stephen F. Austin State University
               </p>
               <p className="text-gray-dark mb-3">
-                I was born in Germany and came over to the United States when I was 5. I spent 
-                the majority of my life in the Western Texas area, which is very different from 
-                Houston! If you were to ask my parents, they would tell you that I&apos;ve always 
-                loved music. They knew after my 6th grade year of band that I would be pursuing 
-                a career with music. At the end of that year my father gave me my very first 
-                baton, which still travels with me everywhere I go.
+                Mrs. Chavez will be joining the KMS team all the way from Lubbock ISD, where
+                she spent her first two years teaching at Atkins Middle School. She holds a
+                bachelor&apos;s and master&apos;s degree from Stephen F. Austin State University
+                (Go Jacks!) and is a clarinet player by trade.
               </p>
               <p className="text-gray-dark mb-3">
-                As I continued in the band I took all the opportunities to play different 
-                instruments and different music groups. This taught me how important my individual 
-                musicianship, practice and consistency is to every group. I know how lucky I am 
-                that my parents supported my love for music and for band. Music has been such a 
-                wonderful experience and has enriched my life in ways I couldn&apos;t even imagine.
-              </p>
-              <p className="text-gray-dark mb-3">
-                I have been able to travel the country, meet new musicians and composers, 
-                performing, teaching and sharing my love for music. DCI has taken me to almost 
-                all 50 states as performer and as a music educator. I am licensed to teach in 
-                Wisconsin, Oklahoma and of course TEXAS! I spent the last two years at Null and 
-                I&apos;m excited to be joining the C.E. King Middle School Band team!
+                Mrs. Chavez loves spending her time outside of school with her husband, Esteban,
+                and their baby girl, Alondra. She loves playing board games, going on walks, and
+                cooking. She also has two cats, Pepper and Sugar, who love to be lazy, snuggle
+                and get into general cat trouble.
               </p>
               <p className="text-gray-dark">
-                <strong>Email:</strong> <a href="mailto:jennycooper@sheldonisd.com" className="text-primary hover:underline">jennycooper@sheldonisd.com</a>
+                <strong>Email:</strong> <a href="mailto:amandachavez@sheldonisd.com" className="text-primary hover:underline">amandachavez@sheldonisd.com</a>
               </p>
             </div>
           </div>

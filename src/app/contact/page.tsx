@@ -66,8 +66,8 @@ export default function Contact() {
                   <p className="text-gray-dark">Email: catherineruiz@sheldonisd.com</p>
                 </div>
                 <div>
-                  <p className="font-medium">Ms. Jenny Cooper - Assistant Band Director</p>
-                  <p className="text-gray-dark">Email: jennycooper@sheldonisd.com</p>
+                  <p className="font-medium">Mrs. Amanda Chavez - Assistant Band Director</p>
+                  <p className="text-gray-dark">Email: amandachavez@sheldonisd.com</p>
                 </div>
               </div>
             </div>
