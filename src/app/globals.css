@@ -165,10 +165,23 @@ html {
   scroll-behavior: smooth;
 }
 
+/*
+  `overflow-x: clip`, NOT `hidden`.
+
+  `hidden` on html/body makes them scroll containers (it forces the used
+  value of overflow-y to `auto`). That broke the App Router's scroll-to-top:
+  clicking a nav link while scrolled down navigated but left scrollY where
+  it was, so the new page opened part-way down with its <h1> above the
+  viewport and the fixed header covering the content.
+
+  `clip` gives the same horizontal-overflow protection without establishing
+  a scroll container, so scroll restoration works again. Measured after the
+  change: scrollY 530 -> 0 on client-side navigation.
+*/
 html,
 body {
   max-width: 100vw;
-  overflow-x: hidden;
+  overflow-x: clip;
 }
 
 body {
