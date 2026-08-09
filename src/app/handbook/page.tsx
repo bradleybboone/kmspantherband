@@ -123,10 +123,6 @@ export default function Handbook() {
               <p className="text-sm text-gray-dark">For off-campus performances</p>
             </div>
             <div className="bg-white p-4 rounded-lg shadow">
-              <h3 className="font-semibold mb-2">Practice Log</h3>
-              <p className="text-sm text-gray-dark">Weekly practice record sheet</p>
-            </div>
-            <div className="bg-white p-4 rounded-lg shadow">
               <h3 className="font-semibold mb-2">Instrument Agreement</h3>
               <p className="text-sm text-gray-dark">For school-owned instruments</p>
             </div>
