@@ -6,24 +6,31 @@
     "dev": "next dev --turbopack",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "eslint",
+    "typecheck": "tsc --noEmit",
+    "build:cf": "opennextjs-cloudflare build",
+    "preview:cf": "opennextjs-cloudflare preview",
+    "deploy": "opennextjs-cloudflare deploy",
+    "images:compress": "node scripts/compress-images.mjs"
   },
   "dependencies": {
-    "@stagewise-plugins/react": "^0.6.2",
-    "@stagewise/toolbar-next": "^0.6.2",
-    "next": "15.4.4",
-    "react": "19.1.0",
-    "react-dom": "19.1.0"
+    "next": "^16.2.6",
+    "react": "^19.2.4",
+    "react-dom": "^19.2.4"
   },
   "devDependencies": {
-    "@eslint/eslintrc": "^3",
+    "@opennextjs/cloudflare": "^1.20.2",
+    "@stagewise-plugins/react": "^0.6.2",
+    "@stagewise/toolbar-next": "^0.6.2",
     "@tailwindcss/postcss": "^4",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "eslint": "^9",
-    "eslint-config-next": "15.4.4",
+    "eslint-config-next": "^16.2.6",
+    "sharp": "^0.34.5",
     "tailwindcss": "^4",
-    "typescript": "^5"
+    "typescript": "^5",
+    "wrangler": "^4.120.0"
   }
 }

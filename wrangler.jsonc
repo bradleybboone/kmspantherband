@@ -1,0 +1,21 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "kmspantherband",
+  "main": ".open-next/worker.js",
+  "compatibility_date": "2026-05-09",
+  "compatibility_flags": ["nodejs_compat"],
+  "assets": {
+    "directory": ".open-next/assets",
+    "binding": "ASSETS"
+  },
+  "observability": {
+    "enabled": true
+  }
+  // No `env` blocks and no `vars`: this site has zero environment-specific
+  // config. Nothing here is a secret, and nothing differs between deploys.
+  //
+  // Deliberately NOT using NEXT_PUBLIC_* for anything. Next.js inlines those
+  // at build time from .env*, which is what baked the local Supabase URL into
+  // the soloensemble spike's first Cloudflare deploy. Not a risk today because
+  // there are no env vars at all -- keep it that way.
+}
