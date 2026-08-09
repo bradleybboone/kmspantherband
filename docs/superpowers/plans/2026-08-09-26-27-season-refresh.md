@@ -1217,10 +1217,16 @@ Expected: clean. Confirm the route table shows **18** routes, all `○ (Static)`
 ```bash
 cd /home/waffles/projects/kmspantherband
 echo "--- these must all return nothing ---"
-grep -rniE 'cooper|approved music|2025-2026|coming soon!|per semester|white button-up|tel:2812817900|href="#"' src/ || echo "CLEAN"
+grep -rniE 'cooper|approved music|2025-2026|per semester|white button-up|tel:2812817900|href="#"' src/ || echo "CLEAN"
+
+echo "--- Coming Soon: only the five deferred ensemble pages may match ---"
+grep -rln 'Coming Soon!' src/ | grep -v '^src/app/ensembles/' || echo "CLEAN"
 ```
 
-Expected: `CLEAN`. Any hit is a regression from an earlier task.
+Expected: `CLEAN` for both. Any other hit is a regression from an earlier task.
+
+The `/ensembles/*` pages are deliberately excluded — they remain "Coming Soon"
+placeholders and are listed under Deferred. Do not fix them in this plan.
 
 - [ ] **Step 3: Drive the real worker**
 
