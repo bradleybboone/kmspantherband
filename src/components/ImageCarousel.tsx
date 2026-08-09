@@ -160,12 +160,17 @@ export default function ImageCarousel({ images, autoPlayInterval = 5000 }: Image
         </button>
       </div>
 
-      <div className="flex justify-center mt-2">
+      {/*
+        flex-wrap, not shrink: nine 44px buttons need 396px, so on a phone a
+        non-wrapping row silently squeezed each below the 44px touch floor.
+        Wrapping keeps every target full-size and just adds a second row.
+      */}
+      <div className="flex flex-wrap justify-center mt-2">
         {images.map((image, index) => (
           <button
             key={image.src}
             onClick={() => goToSlide(index)}
-            className="w-11 h-11 flex items-center justify-center group"
+            className="w-11 h-11 shrink-0 flex items-center justify-center group"
             aria-label={`Go to slide ${index + 1}`}
             aria-current={index === currentIndex ? "true" : undefined}
           >

@@ -46,9 +46,8 @@ export default function Handbook() {
           <div className="bg-white rounded-lg shadow-lg overflow-hidden mb-12">
             <iframe
               src={handbookEmbedUrl}
-              width="100%"
-              height="800"
-              className="w-full"
+              className="w-full iframe-fluid-tall"
+              loading="lazy"
               title="C.E. King Middle School Band Handbook"
             >
               Loading handbook...

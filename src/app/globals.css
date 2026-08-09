@@ -808,6 +808,23 @@ li {
   }
 }
 
+/*
+  Embedded documents and calendars (audit P2-8): the frame tracks the
+  viewport instead of a fixed pixel height, so a phone isn't stuck scrolling
+  inside a 600px box and a desktop isn't wasting half the screen. `svh`
+  keeps the mobile URL bar's show/hide from resizing the frame; the plain
+  `vh` line above it is the fallback for older browsers.
+*/
+.iframe-fluid {
+  height: 70vh;
+  height: clamp(480px, 70svh, 900px);
+}
+
+.iframe-fluid-tall {
+  height: 80vh;
+  height: clamp(560px, 80svh, 1100px);
+}
+
 /* Footer Styles */
 footer a {
   color: var(--gray-lighter);

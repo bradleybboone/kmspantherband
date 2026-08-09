@@ -219,7 +219,7 @@ export default function Header() {
             <button
               type="button"
               ref={mobileToggleRef}
-              className={`lg:hidden p-2 ${textColor}`}
+              className={`lg:hidden p-2.5 ${textColor}`}
               aria-expanded={mobileMenuOpen}
               aria-controls="mobile-menu"
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}

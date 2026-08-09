@@ -241,7 +241,14 @@ to-white`. At 61% down the gradient the background computes to
 `rgb(155,163,209)` → **2.46:1**, under even the 3:1 large-text floor. The `<h1>`
 sits at 39% and scrapes by at 4.65:1. → `/impeccable colorize`
 
-### [ ] P2-2 · Touch targets under 44px
+### [x] P2-2 · Touch targets under 44px
+
+**Fixed 2026-08-09 by `/impeccable animate` + `/impeccable adapt`.** Carousel
+arrows, dots, and pause button hit 44×44 in the animate pass; adapt finished
+the job: hamburger `p-2` → `p-2.5` (44×44 measured), and the dot row gained
+`flex-wrap` + `shrink-0` — nine 44px buttons need 396px, so on a phone the
+non-wrapping row had silently squeezed each dot to ~37px. Measured ≥44px at
+375px and 320px (two rows).
 
 CLAUDE.md sets ≥44px. Measured:
 
@@ -252,10 +259,6 @@ CLAUDE.md sets ≥44px. Measured:
 | Hamburger | `Header.tsx:190` | 40×40 |
 
 Dots also fail WCAG 2.5.8's 24px floor. → `/impeccable adapt`
-
-*Partial 2026-08-09 (`/impeccable animate`): rebuilding the carousel controls
-brought arrows, dots, and the new pause button to 44×44 (measured). Only the
-40×40 hamburger remains for `adapt`.*
 
 ### [x] P2-3 · No `prefers-reduced-motion` anywhere
 
@@ -297,7 +300,15 @@ to `boone-bio.jpg`. 781 KB → 197 KB (−75%).
 `about/page.tsx:90` — `alt="Assistant Band Director"` does not name Ms. Ruiz,
 unlike the other two directors. → `/impeccable clarify`
 
-### [ ] P2-8 · Fixed-height iframes
+### [x] P2-8 · Fixed-height iframes
+
+**Fixed 2026-08-09 by `/impeccable adapt`.** Both embeds now use fluid-height
+utilities in `globals.css` (`.iframe-fluid` = clamp(480px, 70svh, 900px);
+`.iframe-fluid-tall` = clamp(560px, 80svh, 1100px), plain-`vh` fallback for
+older browsers). Measured: calendar 568px at 375×812, 630px at 1440×900,
+480px floor at 320px and landscape; handbook 650/720px. Inline styles,
+deprecated `frameBorder`, and raw width/height attributes removed; handbook
+embed also gained `loading="lazy"`.
 
 `calendar/page.tsx:25` is 600px — **74%** of a 375×812 viewport.
 `handbook/page.tsx:43` is 800px. Both use inline styles / raw attributes rather
@@ -371,8 +382,8 @@ vocabulary that will drift. Also the only home of the detector's
    recompress bio images. *(P1-6, P1-7, P2-6)*~~ Done 2026-08-09.
 3. ~~**[P1] `/impeccable animate`** — carousel pause, reduced-motion branch,
    scoped transitions. *(P1-5, P2-3, P2-4)*~~ Done 2026-08-09.
-4. **[P2] `/impeccable adapt`** — 44px touch targets, fluid iframe heights.
-   *(P2-2, P2-8)*
+4. ~~**[P2] `/impeccable adapt`** — 44px touch targets, fluid iframe heights.
+   *(P2-2, P2-8)*~~ Done 2026-08-09.
 5. **[P2] `/impeccable colorize`** — `/about` gradient contrast, widen
    `@theme inline`. *(P2-1, P2-5)*
 6. **[P3] `/impeccable distill`** — delete dead modules, `!text-white`, inline
