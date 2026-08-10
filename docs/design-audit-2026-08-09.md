@@ -234,7 +234,12 @@ class Facebook group renders untitled and imageless.
 
 ## P2 — Minor
 
-### [ ] P2-1 · `/about` hero subtitle fails contrast
+### [x] P2-1 · `/about` hero subtitle fails contrast
+
+**Fixed 2026-08-09 by `/impeccable colorize`.** The gradient now runs
+`from-primary to-primary-active` (#001689 → #001260) — navy into deeper navy,
+never into white — so white text is ≥14.9:1 at every point. A comment in the
+markup records why `to-white` must not return.
 
 `src/app/about/page.tsx:8,13` — white text on `bg-gradient-to-b from-primary
 to-white`. At 61% down the gradient the background computes to
@@ -282,7 +287,15 @@ change.
 Confirmed `transition-property: all` on links — animates layout properties by
 default. → `/impeccable animate`
 
-### [ ] P2-5 · Off-token colors throughout
+### [x] P2-5 · Off-token colors throughout
+
+**Fixed 2026-08-09 by `/impeccable colorize`.** Zero Tailwind default colors
+remain in `src/` (verified by grep). The 19 `bg-gray-100` panels and 3
+`bg-gray-50` grounds moved onto two new opaque navy-wash tokens
+(`--primary-tint` #E8EAF4, `--primary-canvas` #F5F6FA — District Navy mixed
+over white, District Ink Rule intact); `text-green-600` checkmarks became
+`text-primary`; `text-gray-600` became the bridged `text-gray-dark`. The
+bridge also gained `--color-primary-active`. Tokens documented in DESIGN.md.
 
 `bg-gray-50`, `bg-gray-100`, `bg-gray-300`, `text-gray-600`, `text-green-600`
 across 8 pages are Tailwind defaults, not design tokens. Root cause: `@theme
@@ -384,8 +397,8 @@ vocabulary that will drift. Also the only home of the detector's
    scoped transitions. *(P1-5, P2-3, P2-4)*~~ Done 2026-08-09.
 4. ~~**[P2] `/impeccable adapt`** — 44px touch targets, fluid iframe heights.
    *(P2-2, P2-8)*~~ Done 2026-08-09.
-5. **[P2] `/impeccable colorize`** — `/about` gradient contrast, widen
-   `@theme inline`. *(P2-1, P2-5)*
+5. ~~**[P2] `/impeccable colorize`** — `/about` gradient contrast, widen
+   `@theme inline`. *(P2-1, P2-5)*~~ Done 2026-08-09.
 6. **[P3] `/impeccable distill`** — delete dead modules, `!text-white`, inline
    padding. *(P2-9, P3-2, P3-3)*
 7. **`/impeccable polish`** — final pass.
