@@ -588,13 +588,37 @@ npm run typecheck && npm run lint && npm run build:cf
 # 3. Spot-check
 npm run preview:cf
 
-# 4. Ship
+# 4. Ship — then see "Deploying does not purge the edge cache" below
 npm run deploy
 ```
 
 **Always run `images:compress` after adding photos.** `images.unoptimized` is on,
 so `public/images/` is downloaded byte-for-byte — there is no resize-on-request
 safety net.
+
+### Deploying does not purge the edge cache
+
+`npm run deploy` replaces the Worker immediately, but the prerendered HTML
+pages ship `cache-control: s-maxage=31536000`, and Cloudflare's edge keeps
+serving whatever copy it already has. Observed 2026-08-09: minutes after a
+deploy, `kmspantherband.org/contact` still returned the *previous* deploy's
+HTML from cache while the same URL with a cache-busting query string
+(`?nocache=1`) returned the new one. Staleness is per-URL and per-location,
+so it looks random: one visitor sees the update, another doesn't.
+
+In practice the stale copies observed that day rolled over within minutes,
+but the header permits up to a year — there is no guarantee. If a deploy
+changes something families must see (a corrected date, an urgent
+announcement), purge after shipping:
+
+**Dashboard → kmspantherband.org zone → Caching → Configuration →
+Purge Everything.** It takes seconds and costs nothing at this site's
+traffic; the only effect is a brief cache re-warm.
+
+This cannot be scripted with the current wrangler login — its OAuth token
+carries `zone (read)` only, and cache purge needs the separate
+Zone → Cache Purge permission on an API token. Verify with
+`npx wrangler whoami` before assuming otherwise.
 
 ## Rollback
 
