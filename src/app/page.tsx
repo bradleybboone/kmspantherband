@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import AnnouncementPanel from "@/components/AnnouncementPanel";
 import ImageCarousel from "@/components/ImageCarousel";
 
 export default function Home() {
@@ -32,34 +33,7 @@ export default function Home() {
       </section>
 
 
-      {/*
-        SEASONAL — August 2026 only. Instrument-drive CTA pointing at the
-        rental page while families are getting instruments. Director's call
-        2026-08-09: revert this commit in September once the drive has passed.
-        This is the page's one Announcement Panel (see DESIGN.md) — don't add
-        a second while it's here.
-      */}
-      <section className="py-12 bg-white">
-        <div className="container">
-          <div className="bg-primary text-secondary p-8 rounded-lg text-center">
-            <h2 className="text-2xl lg:text-3xl mb-4">
-              INSTRUMENT DRIVE &mdash; FRIDAY, AUGUST&nbsp;21
-            </h2>
-            <p className="mb-6 max-w-2xl mx-auto">
-              Need an instrument? All three recommended vendors in one room,
-              5:00&ndash;8:00 PM at the <strong>Null Middle School cafeteria</strong>{" "}
-              (not C.E. King) &mdash; rental and purchase options plus the required
-              accessories.
-            </p>
-            <Link
-              href="/instrument-rental"
-              className="inline-block bg-secondary hover:bg-gray-light text-primary px-8 py-3 rounded-lg font-semibold transition-colors duration-200"
-            >
-              See Rental Options
-            </Link>
-          </div>
-        </div>
-      </section>
+      <AnnouncementPanel />
 
       {/* Quick Links Section */}
       <section className="py-20 bg-primary-canvas">
