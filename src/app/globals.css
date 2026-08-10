@@ -179,7 +179,28 @@
 
 @media (prefers-reduced-motion: no-preference) {
   html {
+    /*
+      `scroll-behavior: smooth` here requires data-scroll-behavior="smooth"
+      on <html> in layout.tsx — see the comment there. Remove both together
+      or neither.
+    */
     scroll-behavior: smooth;
+  }
+}
+
+/*
+  Offset every anchor/scrollIntoView target by the fixed header's height
+  (h-20 mobile / lg:h-24 — keep in sync with Header.tsx), so hash links like
+  /about#directors land with the section heading below the nav instead of
+  behind it. Applies regardless of motion preference.
+*/
+html {
+  scroll-padding-top: 5rem;
+}
+
+@media (min-width: 64rem) {
+  html {
+    scroll-padding-top: 6rem;
   }
 }
 

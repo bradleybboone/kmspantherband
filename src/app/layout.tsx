@@ -37,8 +37,19 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  // data-scroll-behavior="smooth" is REQUIRED alongside the CSS
+  // `scroll-behavior: smooth` in globals.css. Next 16 only suspends smooth
+  // scrolling during route transitions when this attribute is present;
+  // without it, its scroll-to-top starts an async animated scroll, the
+  // synchronous "am I at the top yet?" re-check reads the old position, and
+  // it falls back to scrollIntoView() — every nav click from a scrolled page
+  // landed with the new page's heading under the fixed header.
   return (
-    <html lang="en" className={`${inter.variable} ${oswald.variable}`}>
+    <html
+      lang="en"
+      data-scroll-behavior="smooth"
+      className={`${inter.variable} ${oswald.variable}`}
+    >
       <body className={inter.className}>
         <div className="min-h-screen flex flex-col">
           <HeaderSlot />
