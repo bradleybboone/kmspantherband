@@ -27,15 +27,22 @@ export default function Contact() {
 
         <section className="mb-12">
           <h2 className="text-2xl font-semibold mb-6 text-primary">Band Directors</h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
             {directors.map((d) => (
-              <div key={d.email} className="bg-white p-6 rounded-lg shadow">
-                <h3 className="font-semibold mb-1">{d.name}</h3>
+              <a
+                key={d.email}
+                href={`mailto:${d.email}`}
+                className="group block bg-white p-6 rounded-lg shadow-md hover:shadow-xl motion-safe:hover:-translate-y-0.5 transition-[box-shadow,transform] duration-300"
+              >
+                <h3 className="text-xl font-semibold mb-1">{d.name}</h3>
                 <p className="text-primary text-sm font-medium mb-3">{d.role}</p>
-                <a href={`mailto:${d.email}`} className="text-primary hover:underline break-words">
-                  {d.email}
-                </a>
-              </div>
+                {/* <wbr> before the @ so narrow cards wrap the email as
+                    name / @domain instead of splitting it mid-word */}
+                <p className="text-primary break-words group-hover:underline underline-offset-2">
+                  {d.email.split("@")[0]}
+                  <wbr />@{d.email.split("@")[1]}
+                </p>
+              </a>
             ))}
           </div>
         </section>
