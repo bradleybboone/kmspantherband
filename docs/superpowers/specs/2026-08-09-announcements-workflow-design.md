@@ -65,6 +65,11 @@ export const announcement: Announcement | null = {
 - `body` is a ReactNode so `<strong>` and non-breaking spaces survive. A
   header comment in the file states the boundary: text-level markup only;
   layout, color, and spacing belong to the component.
+- **Character fidelity:** the current markup uses `&nbsp;`, `&ndash;`, and
+  `&mdash;` entities (e.g. `AUGUST&nbsp;21`). The migrated content must
+  preserve them (as entities in JSX or their literal characters in
+  strings) — a plain space or hyphen breaks verification #1. The example
+  above is illustrative, not the migration source; `page.tsx` is.
 - A worked "empty" example (`= null;`) and a filled example live in the
   file's header comment so a future edit is copy-paste, not recall.
 
@@ -72,11 +77,12 @@ export const announcement: Announcement | null = {
 
 `src/components/AnnouncementPanel.tsx`, a client component:
 
-- Renders the exact current design, lifted verbatim from `page.tsx`:
-  `py-12 bg-white` section wrapper → navy `bg-primary text-secondary p-8
-  rounded-lg text-center` panel → heading, body, optional CTA button
-  (`bg-secondary hover:bg-gray-light text-primary px-8 py-3 rounded-lg
-  font-semibold`).
+- Renders the exact current design, **lifted verbatim from
+  `src/app/page.tsx:42-62`** — that file is the source of truth, including
+  the `container` wrapper div and the CTA's `inline-block` and
+  `transition-colors duration-200` classes. (Shorthand: `py-12 bg-white`
+  section → `container` → navy `bg-primary text-secondary p-8 rounded-lg
+  text-center` panel → heading, body, optional CTA button.)
 - Returns `null` when the content file exports `null` — no empty section,
   no layout gap.
 - `src/app/page.tsx` renders `<AnnouncementPanel />` where the hardcoded
@@ -89,9 +95,17 @@ export const announcement: Announcement | null = {
 - The static build always includes the banner HTML. A `useEffect` hides
   the panel once the viewer's local date is past `expires`.
 - **Hydration:** the expiry check lives in the effect, not in render, so
-  server HTML and first client render always agree. Cost: a brief flash of
-  an expired banner, only in the window between expiry and the next
-  deploy. Accepted.
+  server HTML and first client render always agree. Costs, all confined to
+  the window between expiry and the next deploy and all accepted: a brief
+  flash of the expired banner followed by a layout jump as the section
+  unmounts, and no-JS visitors see the expired banner until the next
+  deploy.
+- **Stale-edge-cache robustness (why client-side beats build-time):** the
+  runbook records that deploys do not purge Cloudflare's edge cache, so a
+  deploy that removes a banner can keep serving old HTML for a while.
+  Client-side expiry hides an expired banner even on stale cached HTML —
+  the one page element where staleness matters most is exactly the one
+  this design makes self-correcting.
 - **Timezone:** parse by splitting `"YYYY-MM-DD"` and constructing
   end-of-day local time (`new Date(y, m - 1, d, 23, 59, 59)`). A naïve
   `new Date("2026-08-21")` is UTC midnight — 7:00 PM the *previous*
