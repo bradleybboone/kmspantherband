@@ -94,7 +94,7 @@ export default function About() {
             <div className="aspect-square relative">
               <Image
                 src="/images/ruiz-bio.jpg"
-                alt="Assistant Band Director"
+                alt="Ms. Catherine Ruiz - Assistant Band Director"
                 fill
                 className="object-cover"
               />

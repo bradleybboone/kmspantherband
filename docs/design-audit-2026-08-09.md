@@ -308,7 +308,11 @@ rest of the scale is unreachable as a utility. → `/impeccable colorize`
 800px longest side (cards render ~370px; 2× retina); `boone-bio.png` converted
 to `boone-bio.jpg`. 781 KB → 197 KB (−75%).
 
-### [ ] P2-7 · Alt text inconsistent
+### [x] P2-7 · Alt text inconsistent
+
+**Fixed 2026-08-09.** Ms. Ruiz's photo now reads
+`alt="Ms. Catherine Ruiz - Assistant Band Director"`, matching the format of
+the other two directors.
 
 `about/page.tsx:90` — `alt="Assistant Band Director"` does not name Ms. Ruiz,
 unlike the other two directors. → `/impeccable clarify`
@@ -328,7 +332,9 @@ embed also gained `loading="lazy"`.
 than the token system, and `calendar` still carries deprecated `frameBorder`.
 → `/impeccable adapt`
 
-### [ ] P2-9 · Dead CSS modules
+### [x] P2-9 · Dead CSS modules
+
+**Fixed 2026-08-09 by `3226660` (distill).** `src/styles/` is deleted.
 
 `src/styles/{Button,Card,Form,Navigation}.module.css` — 1,634 lines, **zero
 imports**. Not bundled, so no user-facing cost, but a second competing design
@@ -339,14 +345,19 @@ vocabulary that will drift. Also the only home of the detector's
 
 ## P3 — Polish
 
-- **[ ] P3-1 · Five identical "Coming Soon" pages** — `/ensembles/*` all render
+- **[x] P3-1 · Five identical "Coming Soon" pages** — `/ensembles/*` all render
   the same placeholder. The nav promises five ensembles and delivers five
   identical dead ends. Content decision, not a code fix.
-- **[ ] P3-2 · `text-white !text-white` ×9** — vestigial; `globals.css:199-213`
+  **Fixed 2026-08-09 by `2488b9e`** — real content on all four ensemble pages
+  (Cadet Band removed for 2026-27 in `b39ebf5`).
+- **[x] P3-2 · `text-white !text-white` ×9** — vestigial; `globals.css:199-213`
   documents the fix that made the override unnecessary.
-- **[ ] P3-3 · Inline styles beside Tailwind** — `page.tsx:109`
+  **Fixed 2026-08-09 by `3226660`** — zero occurrences left in code; only the
+  historical comment in `globals.css` mentions the pattern.
+- **[x] P3-3 · Inline styles beside Tailwind** — `page.tsx:109`
   `style={{ padding: '32px' }}` where `p-8` exists. Leftover from the
   spacing-inert bug, now fixed.
+  **Fixed 2026-08-09 by `3226660`.**
 - **[ ] P3-4 · `.section-full-width` bleeds 10px** — measured 1440px wide inside
   a 1430px layout viewport, saved only by `overflow-x: clip`. Content stays
   centered so nothing visibly breaks; recorded as a latent dependency, not a
@@ -388,9 +399,9 @@ vocabulary that will drift. Also the only home of the detector's
 
 ## Recommended Order
 
-1. **[P0/P1] `/impeccable harden`** — keyboard dropdowns, ARIA state on both nav
-   layers, `inert` on the closed mobile panel, visible focus ring, per-route
-   `metadata`. *(P0-1, P1-1..4, P1-8)*
+1. ~~**[P0/P1] `/impeccable harden`** — keyboard dropdowns, ARIA state on both
+   nav layers, `inert` on the closed mobile panel, visible focus ring,
+   per-route `metadata`. *(P0-1, P1-1..4, P1-8)*~~ Done 2026-08-09.
 2. ~~**[P1] `/impeccable optimize`** — lazy the carousel, de-duplicate Inter,
    recompress bio images. *(P1-6, P1-7, P2-6)*~~ Done 2026-08-09.
 3. ~~**[P1] `/impeccable animate`** — carousel pause, reduced-motion branch,
@@ -399,9 +410,13 @@ vocabulary that will drift. Also the only home of the detector's
    *(P2-2, P2-8)*~~ Done 2026-08-09.
 5. ~~**[P2] `/impeccable colorize`** — `/about` gradient contrast, widen
    `@theme inline`. *(P2-1, P2-5)*~~ Done 2026-08-09.
-6. **[P3] `/impeccable distill`** — delete dead modules, `!text-white`, inline
-   padding. *(P2-9, P3-2, P3-3)*
-7. **`/impeccable polish`** — final pass.
+6. ~~**[P3] `/impeccable distill`** — delete dead modules, `!text-white`, inline
+   padding. *(P2-9, P3-2, P3-3)*~~ Done 2026-08-09 by `3226660`; P2-7 alt text
+   ticked in the same cleanup.
+7. **`/impeccable polish`** — final pass. Not run as a formal pass; every
+   scored finding is closed except P3-4 (recorded latent dependency, no
+   action) and P3-5 (copyright year frozen at build — accepted while the site
+   deploys weekly).
 
 ## Reproducing This Audit
 
