@@ -126,6 +126,7 @@ src/
 │   ├── ensembles/    # beginner, concert, honor, symphonic (no Cadet Band in 2026-27)
 │   ├── future-members/ # Landing page for incoming students/families
 │   ├── resources/    # forms
+│   ├── supply-list/  # per-instrument models & supplies (source: supply-list Google Doc)
 │   ├── layout.tsx    # Root layout — renders Header via HeaderSlot (see D5)
 │   └── page.tsx      # Homepage (hero + ImageCarousel)
 ├── content/          # announcement.tsx — the homepage banner (banner-as-data)
@@ -243,6 +244,13 @@ layers, per-route `metadata` + Open Graph, and a styled `not-found.tsx`
   loop; `expires` auto-hides a stale banner client-side even on stale
   edge-cached HTML. Recipe: runbook → "Change the homepage banner". Spec:
   `docs/superpowers/specs/2026-08-09-announcements-workflow-design.md`.
+- **Sectional grid is seasonal content.** `/schedule` shows the fall 2026
+  weekly sectional grid, derived from the Teamup calendar (handbook p. 31 is
+  generic). Skipped weeks and Friday make-ups are deliberately not mirrored —
+  the calendar is authoritative. The grid needs a rewrite when spring
+  sectionals start (week of 2027-01-11). Beginners have no sectionals
+  (director-confirmed 2026-08-10) — do not reintroduce that claim; it was
+  removed from /ensembles/beginner and the /future-members FAQ.
 - **Dev-dependency audit warnings.** `npm audit` reports ReDoS/DoS advisories in
   ESLint's transitive tree (ajv, brace-expansion, flatted, js-yaml, minimatch).
   All dev-only build tooling, none shipped to visitors.
