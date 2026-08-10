@@ -110,7 +110,12 @@ export default function Handbook() {
                 Forms section below), so they are not repeated here.
               */}
               <ul className="space-y-2 text-gray-dark">
-                <li>• <strong>Aug 17</strong> &mdash; Fall sectionals begin (Mon&ndash;Thu, 4:00&ndash;5:00 PM)</li>
+                <li>
+                  • <strong>Week of Aug 17</strong> &mdash; Fall sectionals begin &mdash; see the{" "}
+                  <Link href="/schedule" className="text-primary hover:underline font-medium">
+                    rehearsal schedule
+                  </Link>
+                </li>
                 <li>• <strong>Sept 28</strong> &mdash; Sheldon ISD District Honor Band</li>
                 <li>• <strong>Oct 31</strong> &mdash; Region 33 All-Region Auditions</li>
                 <li>• <strong>March 2027</strong> &mdash; UIL Concert &amp; Sightreading Assessment</li>

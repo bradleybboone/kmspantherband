@@ -26,7 +26,7 @@ export default function FutureMembers() {
     },
     {
       q: "What is the time commitment?",
-      a: "Band meets daily as a regular class. Sectionals run Monday through Thursday, 4:00–5:00 PM, and each student attends the one for their instrument.",
+      a: "Band meets daily as a regular class. Beginners have no after-school rehearsals. From the second year on, students attend one after-school sectional per week for their instrument (Monday–Thursday, 4:00–5:00 PM).",
     },
     {
       q: "What if we cannot afford an instrument or the fees?",
@@ -105,9 +105,12 @@ export default function FutureMembers() {
               </p>
             </div>
           </div>
-          <div className="text-center mt-6">
+          <div className="text-center mt-6 flex flex-col sm:flex-row gap-2 sm:gap-6 justify-center">
             <Link href="/instrument-rental" className="text-primary hover:underline font-medium">
               See recommended music stores and rental details &rarr;
+            </Link>
+            <Link href="/supply-list" className="text-primary hover:underline font-medium">
+              See the full supply list per instrument &rarr;
             </Link>
           </div>
         </section>
