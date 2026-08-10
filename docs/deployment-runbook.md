@@ -603,7 +603,7 @@ carries copy-paste examples for a filled banner and for none (`null`).
 Always set `expires` ("YYYY-MM-DD", the last day the banner shows) so the
 panel retires itself even if nobody deploys. Then run the four-step loop
 above. The edge-cache note below applies to *new* banners; an *expired*
-banner hides itself client-side even on stale cached HTML.
+banner hides itself client-side even on stale cached HTML. (One caveat: during the brief post-deploy staleness window, stale cached HTML may reference dropped JS chunks and the expiry script may not run; any subsequent deploy resolves this.)
 
 ### Deploying does not purge the edge cache
 

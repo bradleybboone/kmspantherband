@@ -128,6 +128,7 @@ src/
 │   ├── resources/    # forms
 │   ├── layout.tsx    # Root layout — renders Header via HeaderSlot (see D5)
 │   └── page.tsx      # Homepage (hero + ImageCarousel)
+├── content/          # announcement.tsx — the homepage banner (banner-as-data)
 └── components/       # Header, Footer, ImageCarousel, ...
 scripts/
 └── compress-images.mjs
