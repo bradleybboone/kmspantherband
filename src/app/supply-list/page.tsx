@@ -165,11 +165,12 @@ export default function SupplyList() {
         </section>
 
         <section className="mb-12">
+          <h2 className="text-2xl font-semibold mb-6 text-primary">Instruments &amp; Supplies</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {instruments.map((inst) => (
               <div key={inst.name} className="bg-white p-6 rounded-lg shadow">
                 <div className="flex flex-col gap-1 mb-3">
-                  <h2 className="font-semibold text-lg text-primary">{inst.name}</h2>
+                  <h3 className="font-semibold text-lg text-primary">{inst.name}</h3>
                   {inst.schoolOwned && (
                     <p className="text-sm font-medium text-gray-dark">
                       School-owned &mdash; $100/year usage fee
@@ -207,6 +208,10 @@ export default function SupplyList() {
           <div className="bg-white p-6 rounded-lg shadow">
             <p className="text-sm font-medium text-gray-dark mb-3">
               School-owned &mdash; $100/year usage fee beginning in Year 2
+            </p>
+            <p className="text-gray-dark text-sm mb-3">
+              The school provides the large percussion instruments &mdash;
+              families provide the personal kit below.
             </p>
             <p className="text-gray-dark text-sm font-medium mb-2">
               Beginner percussion kit:
@@ -248,10 +253,11 @@ export default function SupplyList() {
             <ul className="space-y-2 text-gray-dark">
               <li>
                 &bull; The class textbook <strong>&ldquo;Standard of Excellence Book 1&rdquo;</strong>{" "}
-                (percussion: <strong>&ldquo;Simple Steps to Successful Beginning Percussion&rdquo;</strong>)
+                (percussion: <strong>&ldquo;Simple Steps to Successful Beginning Percussion&rdquo;</strong>),
+                included in the $25 activity fee &mdash; no separate purchase needed
               </li>
               <li>
-                &bull; The band performance uniform, included in the $25 activity fee
+                &bull; The band T-shirt uniform, included in the $25 activity fee &mdash; no separate purchase needed
               </li>
             </ul>
           </div>
@@ -280,7 +286,7 @@ export default function SupplyList() {
             your money&rsquo;s worth. Please try to stick to the brands given
             to you on this list.
           </p>
-          <h3 className="text-xl font-semibold mb-4 text-primary">
+          <h3 className="text-xl font-semibold mb-4 text-primary" lang="es">
             Una nota para los padres sobre los instrumentos de compra
           </h3>
           <p className="text-gray-dark leading-relaxed" lang="es">

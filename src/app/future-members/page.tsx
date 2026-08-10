@@ -11,7 +11,7 @@ export default function FutureMembers() {
   const schoolOwned = ["Oboe", "Bassoon", "Alto Saxophone", "French Horn", "Euphonium", "Tuba"];
   const parentProvided = ["Flute", "Clarinet", "Trumpet", "Trombone", "Percussion"];
 
-  const faqs = [
+  const faqs: { q: string; a: React.ReactNode }[] = [
     {
       q: "Does my child need musical experience?",
       a: "No. Most of our beginners have never played an instrument before. We teach everything from the first note.",
@@ -26,7 +26,16 @@ export default function FutureMembers() {
     },
     {
       q: "What is the time commitment?",
-      a: "Band meets daily as a regular class. Beginners have no after-school rehearsals. From the second year on, students attend one after-school sectional per week for their instrument (Monday–Thursday, 4:00–5:00 PM).",
+      a: (
+        <>
+          Band meets daily as a regular class. Beginners have no after-school
+          rehearsals. From the second year on, students attend{" "}
+          <Link href="/schedule" className="text-primary hover:underline font-medium">
+            one after-school sectional per week
+          </Link>{" "}
+          for their instrument (Monday&ndash;Thursday, 4:00&ndash;5:00 PM).
+        </>
+      ),
     },
     {
       q: "What if we cannot afford an instrument or the fees?",

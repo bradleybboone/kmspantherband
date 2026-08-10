@@ -72,8 +72,8 @@ export default function BeginnerBand() {
             Beginners spend the fall on fundamentals: making a good first sound,
             reading music, and playing together as a class. By the winter and
             spring concerts, students are performing real band music on stage.
-            Everything happens during the school day &mdash; beginners have no
-            after-school rehearsals.
+            Class time is all it takes &mdash; beginners have no after-school
+            rehearsals.
           </p>
           <p className="text-gray-dark leading-relaxed">
             Worried about cost or getting an instrument? Don&apos;t be &mdash;

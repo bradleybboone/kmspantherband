@@ -56,7 +56,7 @@ export default function Schedule() {
             per week for their instrument. All sectionals meet{" "}
             <strong>4:00&ndash;5:00 PM</strong> in the <strong>KMS Band Hall</strong>{" "}
             and run through late October. Beginner Band students do not attend
-            sectionals.
+            sectionals in any semester.
           </p>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
