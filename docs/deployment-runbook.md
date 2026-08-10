@@ -596,6 +596,15 @@ npm run deploy
 so `public/images/` is downloaded byte-for-byte — there is no resize-on-request
 safety net.
 
+### Change the homepage banner
+
+Edit **`src/content/announcement.tsx`** — nothing else. Its header comment
+carries copy-paste examples for a filled banner and for none (`null`).
+Always set `expires` ("YYYY-MM-DD", the last day the banner shows) so the
+panel retires itself even if nobody deploys. Then run the four-step loop
+above. The edge-cache note below applies to *new* banners; an *expired*
+banner hides itself client-side even on stale cached HTML.
+
 ### Deploying does not purge the edge cache
 
 `npm run deploy` replaces the Worker immediately, but the prerendered HTML

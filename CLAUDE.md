@@ -234,9 +234,14 @@ harden`**, along with the invisible-on-navy focus ring, ARIA state on both nav
 layers, per-route `metadata` + Open Graph, and a styled `not-found.tsx`
 (P0-1, P1-1..4, P1-8 in the audit doc).
 
-- **Content editing friction.** Announcements are hardcoded in `.tsx`, so a
-  weekly update is a commit and a deploy. Embedding the Google Calendar handles
-  the highest-churn content. Worth solving before November.
+- **Content editing friction — resolved 2026-08-09 (banner-as-data).** The
+  homepage Announcement Panel is the only churn surface not already
+  externalized (events live in the embedded Teamup calendar; weekly parent
+  news goes out via ParentSquare). Post or clear a banner by editing
+  **`src/content/announcement.tsx` only**, then run the routine-update
+  loop; `expires` auto-hides a stale banner client-side even on stale
+  edge-cached HTML. Recipe: runbook → "Change the homepage banner". Spec:
+  `docs/superpowers/specs/2026-08-09-announcements-workflow-design.md`.
 - **Dev-dependency audit warnings.** `npm audit` reports ReDoS/DoS advisories in
   ESLint's transitive tree (ajv, brace-expansion, flatted, js-yaml, minimatch).
   All dev-only build tooling, none shipped to visitors.
