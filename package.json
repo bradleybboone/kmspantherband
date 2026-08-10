@@ -10,7 +10,7 @@
     "typecheck": "tsc --noEmit",
     "build:cf": "opennextjs-cloudflare build",
     "preview:cf": "opennextjs-cloudflare preview",
-    "deploy": "opennextjs-cloudflare deploy",
+    "deploy": "opennextjs-cloudflare build && opennextjs-cloudflare deploy",
     "images:compress": "node scripts/compress-images.mjs"
   },
   "dependencies": {
