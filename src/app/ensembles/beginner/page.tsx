@@ -72,12 +72,8 @@ export default function BeginnerBand() {
             Beginners spend the fall on fundamentals: making a good first sound,
             reading music, and playing together as a class. By the winter and
             spring concerts, students are performing real band music on stage.
-            Each instrument also has one after-school sectional per week &mdash;
-            see the{" "}
-            <Link href="/schedule" className="text-primary hover:underline font-medium">
-              rehearsal schedule
-            </Link>{" "}
-            for days and times.
+            Everything happens during the school day &mdash; beginners have no
+            after-school rehearsals.
           </p>
           <p className="text-gray-dark leading-relaxed">
             Worried about cost or getting an instrument? Don&apos;t be &mdash;
@@ -85,7 +81,11 @@ export default function BeginnerBand() {
             <Link href="/future-members" className="text-primary hover:underline font-medium">
               Future Panthers page
             </Link>{" "}
-            walks through instruments, fees, and payment options.
+            walks through instruments, fees, and payment options, and the{" "}
+            <Link href="/supply-list" className="text-primary hover:underline font-medium">
+              supply list
+            </Link>{" "}
+            shows exactly what to buy for each instrument.
           </p>
         </section>
 

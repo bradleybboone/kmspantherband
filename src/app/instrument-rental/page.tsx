@@ -36,7 +36,12 @@ export default function InstrumentRental() {
               <ul className="space-y-2 text-gray-dark">
                 <li>• $100/year usage fee</li>
                 <li>• Percussion: $100/year starting Year 2</li>
-                <li>• You purchase accessories only</li>
+                <li>
+                  • You purchase accessories only &mdash; see the{" "}
+                  <Link href="/supply-list" className="text-primary hover:underline font-medium">
+                    supply list
+                  </Link>
+                </li>
                 <li>• Distributed on campus at the start of the year</li>
               </ul>
             </div>
