@@ -66,11 +66,12 @@ scale). Future edits are edit-a-list, not edit-JSX.
   Percussion James Ross Medium Soft mallets (INN-IP902), Innovative
   Percussion Medium Birch Marimba Mallets (IP240), Innovative Percussion
   Practice Pad (CP-1R), Yamaha Black Folding Music Stand with bag
-  (YAM-MS1000), Innovative Percussion Stick Bag (SB-3). The kit rents
-  from the same three stores `/instrument-rental` already covers in
-  full detail (addresses, phones, hours) — **link there rather than
-  duplicate the vendor list** (single source, no drift). Keep only the
-  percussion-equipment vendors, which appear nowhere else on the site:
+  (YAM-MS1000), Innovative Percussion Stick Bag (SB-3). Two ways to get
+  the kit (per Bradley, 2026-08-10): **rent-to-own** through the same
+  three stores `/instrument-rental` already covers in full detail —
+  link there rather than duplicate the vendor list (single source, no
+  drift) — or **purchase outright** from the percussion vendors, which
+  appear nowhere else on the site and are listed on this page:
   Steve Weiss (steveweissmusic.com), Percussion Source
   (percussionsource.com), Sam Ash (samash.com).
 
