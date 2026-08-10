@@ -114,7 +114,7 @@ export default function FutureMembers() {
 
         <section className="mb-12">
           <h2 className="text-2xl font-semibold mb-6 text-primary">What It Costs</h2>
-          <div className="bg-gray-100 p-6 rounded-lg">
+          <div className="bg-primary-tint p-6 rounded-lg">
             <ul className="space-y-2 text-gray-dark mb-4">
               <li>• <strong>$25/year</strong> band activity fee &mdash; every student</li>
               <li>• <strong>$100/year</strong> school-owned instrument usage fee, if applicable</li>

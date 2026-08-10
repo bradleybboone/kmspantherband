@@ -8,7 +8,7 @@ export const metadata: Metadata = {
 
 export default function CalendarPage() {
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-primary-canvas">
       {/* Page content */}
       <div className="pb-12">
         <div className="container py-12">

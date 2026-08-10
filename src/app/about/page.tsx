@@ -12,7 +12,11 @@ export default function About() {
     <>
       {/* Hero Section */}
       <section className="relative h-96 flex items-center justify-center overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-b from-primary to-white" />
+        {/*
+          Navy into deeper navy, never into white: the old `to-white` gradient
+          put the white hero text on mid-tones that fail 4.5:1 (Overlay Rule).
+        */}
+        <div className="absolute inset-0 bg-gradient-to-b from-primary to-primary-active" />
         <div className="relative z-10 text-center px-8">
           <h1 className="hero-title mb-4">
             ABOUT US

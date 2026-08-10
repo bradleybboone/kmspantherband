@@ -11,7 +11,7 @@ export default function Handbook() {
   const handbookEmbedUrl = "https://docs.google.com/document/d/1una3PXJwVNUcgznEZXNXnNqMYKTe4eacf_3yeU0BwHA/preview";
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-primary-canvas">
       {/* Page content */}
       <div className="container mx-auto px-4 py-12">
       <h1 className="text-4xl md:text-5xl font-bold text-primary text-center mb-8">
@@ -59,7 +59,7 @@ export default function Handbook() {
           <h2 className="text-2xl font-semibold mb-6 text-primary">Quick Reference</h2>
           
           <div className="space-y-6">
-            <div className="bg-gray-100 p-6 rounded-lg">
+            <div className="bg-primary-tint p-6 rounded-lg">
               <h3 className="text-xl font-semibold mb-3">Grading</h3>
               <ul className="space-y-2 text-gray-dark">
                 <li>• 50% Major Grades &mdash; playing tests and performances</li>
@@ -71,7 +71,7 @@ export default function Handbook() {
               </p>
             </div>
 
-            <div className="bg-gray-100 p-6 rounded-lg">
+            <div className="bg-primary-tint p-6 rounded-lg">
               <h3 className="text-xl font-semibold mb-3">Fees</h3>
               <ul className="space-y-2 text-gray-dark">
                 <li>• <strong>$25/year</strong> band activity fee &mdash; all students</li>
@@ -84,7 +84,7 @@ export default function Handbook() {
               </p>
             </div>
 
-            <div className="bg-gray-100 p-6 rounded-lg">
+            <div className="bg-primary-tint p-6 rounded-lg">
               <h3 className="text-xl font-semibold mb-3">Concert Attire</h3>
               <p className="text-gray-dark mb-2"><strong>Beginners:</strong></p>
               <ul className="space-y-1 text-gray-dark mb-4">
@@ -102,7 +102,7 @@ export default function Handbook() {
               </p>
             </div>
 
-            <div className="bg-gray-100 p-6 rounded-lg">
+            <div className="bg-primary-tint p-6 rounded-lg">
               <h3 className="text-xl font-semibold mb-3">Key Dates</h3>
               <ul className="space-y-2 text-gray-dark">
                 <li>• <strong>Aug 14</strong> &mdash; Sectional acknowledgement form due</li>
@@ -128,7 +128,7 @@ export default function Handbook() {
             medical release. Link out rather than maintain a second list that
             can drift from the handbook again.
           */}
-          <div className="bg-gray-100 p-6 rounded-lg">
+          <div className="bg-primary-tint p-6 rounded-lg">
             <p className="text-gray-dark mb-4">
               Every start-of-year form and its due date is listed on the Forms &amp;
               Documents page. The forms themselves are printable from the handbook above.

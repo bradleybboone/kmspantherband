@@ -28,7 +28,7 @@ export default function Join() {
         {/* Who Can Join */}
         <section className="mb-12">
           <h2 className="text-2xl font-semibold mb-4 text-primary">Who Can Join?</h2>
-          <div className="bg-gray-100 p-6 rounded-lg">
+          <div className="bg-primary-tint p-6 rounded-lg">
             <ul className="space-y-3 text-gray-dark">
               <li className="flex items-start">
                 <span className="text-primary mr-2">•</span>
@@ -160,28 +160,28 @@ export default function Join() {
         <section className="mb-12">
           <h2 className="text-2xl font-semibold mb-4 text-primary">What to Expect</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div className="bg-gray-100 p-6 rounded-lg">
+            <div className="bg-primary-tint p-6 rounded-lg">
               <h3 className="font-semibold mb-2">Daily Band Class</h3>
               <p className="text-gray-dark">
                 Band meets every day during the regular school schedule. You&apos;ll learn 
                 fundamentals, practice ensemble playing, and prepare for performances.
               </p>
             </div>
-            <div className="bg-gray-100 p-6 rounded-lg">
+            <div className="bg-primary-tint p-6 rounded-lg">
               <h3 className="font-semibold mb-2">After-School Rehearsals</h3>
               <p className="text-gray-dark">
                 Occasional after-school rehearsals before major performances. Schedule 
                 provided well in advance.
               </p>
             </div>
-            <div className="bg-gray-100 p-6 rounded-lg">
+            <div className="bg-primary-tint p-6 rounded-lg">
               <h3 className="font-semibold mb-2">Performances</h3>
               <p className="text-gray-dark">
                 Multiple concerts throughout the year including Winter Concert, Spring 
                 Concert, and festival performances.
               </p>
             </div>
-            <div className="bg-gray-100 p-6 rounded-lg">
+            <div className="bg-primary-tint p-6 rounded-lg">
               <h3 className="font-semibold mb-2">Practice Expectations</h3>
               <p className="text-gray-dark">
                 Regular home practice is essential. Beginners start with 15-20 minutes 

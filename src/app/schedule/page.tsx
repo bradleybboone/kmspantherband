@@ -17,7 +17,7 @@ export default function Schedule() {
       <div className="max-w-4xl mx-auto">
         <section className="mb-12">
           <h2 className="text-2xl font-semibold mb-6 text-primary">Fall Sectionals</h2>
-          <div className="bg-gray-100 p-6 rounded-lg">
+          <div className="bg-primary-tint p-6 rounded-lg">
             <p className="text-gray-dark mb-3">
               Sectionals run <strong>Monday through Thursday, 4:00&ndash;5:00 PM</strong>,
               beginning <strong>August 17, 2026</strong>.
@@ -31,7 +31,7 @@ export default function Schedule() {
 
         <section className="mb-12">
           <h2 className="text-2xl font-semibold mb-6 text-primary">Band Class</h2>
-          <div className="bg-gray-100 p-6 rounded-lg">
+          <div className="bg-primary-tint p-6 rounded-lg">
             <p className="text-gray-dark">
               Band meets daily as a regular class period. Placement is set by the campus
               master schedule &mdash; check your student&apos;s schedule in Skyward.

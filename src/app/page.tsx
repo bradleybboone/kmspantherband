@@ -33,7 +33,7 @@ export default function Home() {
 
 
       {/* Quick Links Section */}
-      <section className="py-20 bg-gray-50">
+      <section className="py-20 bg-primary-canvas">
         <div className="container">
           <h2 className="text-center text-3xl lg:text-4xl mb-12 text-primary">
             QUICK LINKS
@@ -95,7 +95,11 @@ export default function Home() {
             Whether you&apos;re a beginner or an experienced musician, there&apos;s a place for you in our band.<br /> 
             Join us and be part of something special!
           </p>
-          <Link href="/join" className="btn btn-primary">
+          {/*
+            On the black band a navy-filled button is invisible (~1.5:1 edge
+            contrast) -- use the documented on-dark outline variant instead.
+          */}
+          <Link href="/join" className="btn btn-outline">
             LEARN HOW TO JOIN
           </Link>
         </div>
@@ -115,7 +119,7 @@ function QuickLinkCard({ title, description, href }: {
         <h3 className="text-lg font-display font-medium mb-3 text-primary group-hover:text-primary-hover transition-colors">
           {title}
         </h3>
-        <p className="text-sm text-gray-600 mb-4 font-body flex-grow">
+        <p className="text-sm text-gray-dark mb-4 font-body flex-grow">
           {description}
         </p>
         <p className="text-primary font-medium text-sm uppercase tracking-wide group-hover:text-primary-hover transition-colors">

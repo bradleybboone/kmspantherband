@@ -42,7 +42,7 @@ export default function Contact() {
 
         <section className="mb-12">
           <h2 className="text-2xl font-semibold mb-6 text-primary">Band Office</h2>
-          <div className="bg-gray-100 p-6 rounded-lg">
+          <div className="bg-primary-tint p-6 rounded-lg">
             <p className="text-gray-dark mb-3">
               C.E. King Middle School<br />
               8540 C.E. King Parkway<br />

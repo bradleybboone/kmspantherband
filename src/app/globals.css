@@ -8,6 +8,17 @@
   --primary-active: #001260;
   --primary-light: rgba(0, 22, 137, 0.1);
   --primary-lighter: rgba(0, 22, 137, 0.05);
+  /*
+    Opaque navy washes -- District Navy mixed over white (no new hue, so the
+    District Ink Rule holds). Opaque on purpose: the alpha tints above make
+    contrast depend on whatever sits underneath, so they stay reserved for
+    selection and focus glows. `--primary-tint` (~9% navy) is the branded
+    info-panel fill that replaces the old Tailwind `bg-gray-100` boxes;
+    `--primary-canvas` (~4%) is the quieter page/section ground that replaces
+    `bg-gray-50`. A tint panel on a canvas ground stays legibly deeper.
+  */
+  --primary-tint: #e8eaf4;
+  --primary-canvas: #f5f6fa;
   
   --secondary: #ffffff; /* White */
   --secondary-rgb: 255, 255, 255;
@@ -139,6 +150,9 @@
 @theme inline {
   --color-primary: var(--primary);
   --color-primary-hover: var(--primary-hover);
+  --color-primary-active: var(--primary-active);
+  --color-primary-tint: var(--primary-tint);
+  --color-primary-canvas: var(--primary-canvas);
   --color-secondary: var(--secondary);
   --color-accent: var(--accent);
   --color-gray-light: var(--gray-light);

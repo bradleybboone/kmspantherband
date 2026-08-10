@@ -16,7 +16,7 @@ export default function ConcertBand() {
         
         <div className="max-w-4xl mx-auto">
           <section className="mb-12">
-            <div className="bg-gray-100 p-12 rounded-lg text-center">
+            <div className="bg-primary-tint p-12 rounded-lg text-center">
               <h2 className="text-2xl font-semibold mb-4 text-primary">Coming Soon!</h2>
               <p className="text-lg text-gray-dark mb-6">
                 We&apos;re currently updating information about our Concert Band program. 
