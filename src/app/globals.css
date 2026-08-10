@@ -527,30 +527,11 @@ li {
   cursor: not-allowed;
 }
 
-/* Button Variants */
-.btn-primary {
-  background-color: var(--primary);
-  color: var(--secondary);
-  border-color: var(--primary);
-}
-
-.btn-primary:hover:not(:disabled) {
-  background-color: var(--primary-hover);
-  border-color: var(--primary-hover);
-  color: var(--secondary);
-}
-
-.btn-secondary {
-  background-color: var(--secondary);
-  color: var(--primary);
-  border-color: var(--primary);
-}
-
-.btn-secondary:hover:not(:disabled) {
-  background-color: var(--primary);
-  color: var(--secondary);
-}
-
+/*
+  Button variants: only the on-dark outline (homepage CTA band) survives.
+  The primary/secondary/ghost/sm/lg variants, .card, and the form vocabulary
+  were removed in the 2026-08-09 distill pass — nothing in src/ used them.
+*/
 .btn-outline {
   background-color: transparent;
   color: var(--secondary);
@@ -560,97 +541,6 @@ li {
 .btn-outline:hover:not(:disabled) {
   background-color: var(--secondary);
   color: var(--primary);
-}
-
-.btn-ghost {
-  background-color: transparent;
-  color: var(--accent);
-  border-color: transparent;
-}
-
-.btn-ghost:hover:not(:disabled) {
-  background-color: var(--gray-lighter);
-}
-
-/* Button Sizes */
-.btn-sm {
-  padding: var(--space-2) var(--space-4);
-  font-size: var(--text-sm);
-}
-
-.btn-lg {
-  padding: var(--space-4) var(--space-8);
-  font-size: var(--text-lg);
-}
-
-/* Card Styles */
-.card {
-  background-color: var(--secondary);
-  border-radius: 0;
-  box-shadow: var(--shadow-md);
-  overflow: hidden;
-  transition: box-shadow var(--transition-base), transform var(--transition-base);
-}
-
-.card:hover {
-  box-shadow: var(--shadow-lg);
-  transform: translateY(-2px);
-}
-
-.card-body {
-  padding: var(--space-6);
-}
-
-/* Form Styles */
-.form-group {
-  margin-bottom: var(--space-6);
-}
-
-.form-label {
-  display: block;
-  margin-bottom: var(--space-2);
-  font-size: var(--text-sm);
-  font-weight: var(--font-medium);
-  color: var(--accent);
-}
-
-.form-control {
-  width: 100%;
-  padding: var(--space-3) var(--space-4);
-  font-size: var(--text-base);
-  line-height: var(--leading-normal);
-  color: var(--accent);
-  background-color: var(--secondary);
-  border: 2px solid var(--gray-light);
-  border-radius: var(--radius-md);
-  transition: border-color var(--transition-base), box-shadow var(--transition-base);
-}
-
-.form-control:focus {
-  outline: none;
-  border-color: var(--primary);
-  box-shadow: 0 0 0 3px var(--primary-light);
-}
-
-.form-control::placeholder {
-  color: var(--gray-light);
-}
-
-/* Loading States */
-@keyframes spin {
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-.spinner {
-  display: inline-block;
-  width: 1.25rem;
-  height: 1.25rem;
-  border: 2px solid currentColor;
-  border-right-color: transparent;
-  border-radius: 50%;
-  animation: spin 0.75s linear infinite;
 }
 
 /* Animation Classes */
@@ -665,38 +555,8 @@ li {
   }
 }
 
-@keyframes slideUp {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@keyframes slideDown {
-  from {
-    opacity: 0;
-    transform: translateY(-20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
 .animate-fadeIn {
   animation: fadeIn 250ms var(--ease-emphatic);
-}
-
-.animate-slideUp {
-  animation: slideUp var(--transition-slow) var(--ease-out);
-}
-
-.animate-slideDown {
-  animation: slideDown var(--transition-slow) var(--ease-out);
 }
 
 /*
@@ -719,15 +579,6 @@ li {
 
   .animate-fadeIn {
     animation: fade-only 150ms var(--ease-out);
-  }
-
-  .animate-slideUp,
-  .animate-slideDown {
-    animation: fade-only var(--transition-slow) var(--ease-out);
-  }
-
-  .card:hover {
-    transform: none;
   }
 }
 

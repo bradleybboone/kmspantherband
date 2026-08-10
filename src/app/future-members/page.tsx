@@ -52,7 +52,7 @@ export default function FutureMembers() {
         {/* Instrument Drive — the single most time-sensitive item on this page */}
         <section className="mb-12">
           <div className="bg-primary text-secondary p-8 rounded-lg">
-            <h2 className="text-2xl font-semibold mb-4 text-white !text-white">
+            <h2 className="text-2xl font-semibold mb-4">
               Instrument Drive &mdash; Friday, August 21, 2026
             </h2>
             <p className="mb-3">
@@ -144,7 +144,7 @@ export default function FutureMembers() {
         </section>
 
         <section className="text-center bg-primary text-secondary p-8 rounded-lg">
-          <h2 className="text-2xl font-semibold mb-4 text-white !text-white">Still Have Questions?</h2>
+          <h2 className="text-2xl font-semibold mb-4">Still Have Questions?</h2>
           <p className="mb-6">
             Call the band office at{" "}
             <a href="tel:+12817273500" className="text-white underline hover:no-underline">(281) 727-3500</a>{" "}

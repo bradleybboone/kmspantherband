@@ -40,10 +40,10 @@ export default function NotFound() {
             Band Handbook
           </Link>
           <Link
-            href="/join"
+            href="/future-members"
             className="inline-block bg-primary hover:bg-primary-hover text-secondary px-8 py-3 rounded-lg font-semibold transition-colors duration-200"
           >
-            Join Band
+            Future Panthers
           </Link>
         </nav>
         <p className="text-lg text-gray-dark leading-relaxed">

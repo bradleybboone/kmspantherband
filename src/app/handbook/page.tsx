@@ -26,7 +26,7 @@ export default function Handbook() {
           </p>
           
           <div className="bg-primary text-secondary p-8 rounded-lg text-center mb-8">
-            <h2 className="text-2xl font-semibold mb-4 text-white !text-white">View or Download Band Handbook</h2>
+            <h2 className="text-2xl font-semibold mb-4">View or Download Band Handbook</h2>
             <p className="mb-6">
               View the handbook below or open in Google Docs to download in your preferred format (PDF, Word, etc.)
             </p>
@@ -104,11 +104,13 @@ export default function Handbook() {
 
             <div className="bg-primary-tint p-6 rounded-lg">
               <h3 className="text-xl font-semibold mb-3">Key Dates</h3>
+              {/*
+                Event dates only. Form and fee due dates live on
+                /resources/forms (single source of truth — see the Important
+                Forms section below), so they are not repeated here.
+              */}
               <ul className="space-y-2 text-gray-dark">
-                <li>• <strong>Aug 14</strong> &mdash; Sectional acknowledgement form due</li>
                 <li>• <strong>Aug 17</strong> &mdash; Fall sectionals begin (Mon&ndash;Thu, 4:00&ndash;5:00 PM)</li>
-                <li>• <strong>Aug 21</strong> &mdash; Handbook acknowledgement, medical release, and random drug test forms due</li>
-                <li>• <strong>Sept 4</strong> &mdash; Activity fees and shirt orders due</li>
                 <li>• <strong>Sept 28</strong> &mdash; Sheldon ISD District Honor Band</li>
                 <li>• <strong>Oct 31</strong> &mdash; Region 33 All-Region Auditions</li>
                 <li>• <strong>March 2027</strong> &mdash; UIL Concert &amp; Sightreading Assessment</li>

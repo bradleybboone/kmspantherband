@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 
 export const metadata: Metadata = {
   title: "Instrument Rental",
@@ -16,9 +17,9 @@ export default function InstrumentRental() {
       <div className="max-w-4xl mx-auto">
         <section className="mb-12">
           <p className="text-lg text-gray-dark leading-relaxed text-center">
-            KMS offers an instrument rental program to ensure every student has access to a 
-            quality instrument. We work with local music stores to provide affordable rental 
-            options for families.
+            Every student gets a quality instrument: some come from the school, and the rest
+            rent from one of our three recommended music stores. No student is turned away
+            from band over cost.
           </p>
         </section>
         
@@ -52,35 +53,6 @@ export default function InstrumentRental() {
                 <li>• New and used instruments</li>
               </ul>
             </div>
-          </div>
-        </section>
-        
-        <section className="mb-12">
-          <h2 className="text-2xl font-semibold mb-6 text-primary text-center">How to Rent</h2>
-          
-          <div className="bg-primary-tint p-8 rounded-lg">
-            <ol className="space-y-4">
-              <li className="flex items-start">
-                <span className="font-semibold mr-2">1.</span>
-                <span>Attend instrument fitting with band directors</span>
-              </li>
-              <li className="flex items-start">
-                <span className="font-semibold mr-2">2.</span>
-                <span>Receive instrument recommendation</span>
-              </li>
-              <li className="flex items-start">
-                <span className="font-semibold mr-2">3.</span>
-                <span>Complete rental application form</span>
-              </li>
-              <li className="flex items-start">
-                <span className="font-semibold mr-2">4.</span>
-                <span>Submit payment or set up payment plan</span>
-              </li>
-              <li className="flex items-start">
-                <span className="font-semibold mr-2">5.</span>
-                <span>Pick up instrument and begin playing!</span>
-              </li>
-            </ol>
           </div>
         </section>
         
@@ -126,41 +98,9 @@ export default function InstrumentRental() {
                 <p className="text-sm text-gray-dark">Monday - Friday: 11:00 AM - 8:00 PM</p>
                 <p className="text-sm text-gray-dark">Saturday: 10:00 AM - 5:00 PM</p>
               </div>
-              <div className="mt-2 pt-2 border-t border-gray-lighter">
-                <p className="text-sm font-medium text-gray-dark mb-1">Available Services:</p>
-                <div className="grid grid-cols-2 gap-1">
-                  <p className="text-sm text-gray-dark flex items-center">
-                    <svg className="w-4 h-4 mr-1 text-primary" fill="currentColor" viewBox="0 0 20 20">
-                      <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd"/>
-                    </svg>
-                    Curbside Pickup
-                  </p>
-                  <p className="text-sm text-gray-dark flex items-center">
-                    <svg className="w-4 h-4 mr-1 text-primary" fill="currentColor" viewBox="0 0 20 20">
-                      <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd"/>
-                    </svg>
-                    Lessons
-                  </p>
-                  <p className="text-sm text-gray-dark flex items-center">
-                    <svg className="w-4 h-4 mr-1 text-primary" fill="currentColor" viewBox="0 0 20 20">
-                      <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd"/>
-                    </svg>
-                    Rentals
-                  </p>
-                  <p className="text-sm text-gray-dark flex items-center">
-                    <svg className="w-4 h-4 mr-1 text-primary" fill="currentColor" viewBox="0 0 20 20">
-                      <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd"/>
-                    </svg>
-                    Returns Allowed
-                  </p>
-                  <p className="text-sm text-gray-dark flex items-center">
-                    <svg className="w-4 h-4 mr-1 text-primary" fill="currentColor" viewBox="0 0 20 20">
-                      <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd"/>
-                    </svg>
-                    Ship to Store
-                  </p>
-                </div>
-              </div>
+              <p className="text-sm text-gray-dark mt-2">
+                Available Services: Rentals, lessons, and returns
+              </p>
               <div className="mt-4">
                 <a 
                   href="https://www.musicarts.com/rentals?schoolTypeId=0&schoolId=14443" 
@@ -205,10 +145,16 @@ export default function InstrumentRental() {
         </section>
         
         <section className="text-center bg-primary text-secondary p-8 rounded-lg">
-          <h2 className="text-2xl font-semibold mb-4 text-white !text-white">Need Help?</h2>
-          <p className="mb-4">
-            Contact the band office for rental forms and assistance.
+          <h2 className="text-2xl font-semibold mb-4">Need Help?</h2>
+          <p className="mb-6">
+            Not sure which option fits? The directors will walk you through it.
           </p>
+          <Link
+            href="/contact"
+            className="inline-block bg-secondary hover:bg-gray-light text-primary px-8 py-3 rounded-lg font-semibold transition-colors duration-200"
+          >
+            Contact the Directors
+          </Link>
         </section>
       </div>
     </div>

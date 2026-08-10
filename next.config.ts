@@ -1,6 +1,15 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
+  redirects: async () => [
+    {
+      // /join was a weaker duplicate of the director-confirmed Future
+      // Panthers page and was removed in the 2026-08-09 distill pass.
+      source: "/join",
+      destination: "/future-members",
+      permanent: true,
+    },
+  ],
   images: {
     // Serve pre-compressed files straight from the Workers ASSETS binding.
     // On-the-fly optimization would run per-request inside the Worker and eat

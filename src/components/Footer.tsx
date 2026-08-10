@@ -7,7 +7,7 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           {/* About Section */}
           <div>
-            <h3 className="text-lg font-display font-medium mb-4 text-white !text-white">KMS PANTHER BAND</h3>
+            <h3 className="text-lg font-display font-medium mb-4">KMS PANTHER BAND</h3>
             <p className="text-sm text-gray-lighter">
               Excellence in music education at <br />
               <a href="https://kms.sheldonisd.com" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">
@@ -18,7 +18,7 @@ export default function Footer() {
 
           {/* Quick Links */}
           <div>
-            <h3 className="text-lg font-display font-medium mb-4 text-white !text-white">QUICK LINKS</h3>
+            <h3 className="text-lg font-display font-medium mb-4">QUICK LINKS</h3>
             <ul className="space-y-2">
               <li>
                 <Link href="/calendar" className="text-sm text-gray-lighter hover:text-white transition-colors">
@@ -31,8 +31,8 @@ export default function Footer() {
                 </Link>
               </li>
               <li>
-                <Link href="/join" className="text-sm text-gray-lighter hover:text-white transition-colors">
-                  Join Band
+                <Link href="/resources/forms" className="text-sm text-gray-lighter hover:text-white transition-colors">
+                  Forms &amp; Documents
                 </Link>
               </li>
             </ul>
@@ -40,7 +40,7 @@ export default function Footer() {
 
           {/* Contact Info */}
           <div>
-            <h3 className="text-lg font-display font-medium mb-4 text-white !text-white">CONTACT</h3>
+            <h3 className="text-lg font-display font-medium mb-4">CONTACT</h3>
             <ul className="space-y-1 text-sm text-gray-lighter">
               <li>C.E. King Middle School</li>
               <li>8540 C.E. King Parkway</li>
@@ -55,7 +55,7 @@ export default function Footer() {
 
           {/* Future Members */}
           <div>
-            <h3 className="text-lg font-display font-medium mb-4 text-white !text-white">NEW TO BAND?</h3>
+            <h3 className="text-lg font-display font-medium mb-4">NEW TO BAND?</h3>
             <p className="text-sm text-gray-lighter mb-2">
               Incoming students and families start here.
             </p>

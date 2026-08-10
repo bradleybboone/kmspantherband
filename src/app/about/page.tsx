@@ -29,22 +29,19 @@ export default function About() {
       
       {/* Main Content */}
       <div className="container mx-auto px-4 py-12">
-      {/* Remove duplicate header as we now have hero section */}
-      
       {/* Program Overview */}
       <section className="max-w-4xl mx-auto mb-16">
         <div className="prose prose-lg mx-auto text-gray-dark">
           <p className="text-lg leading-relaxed mb-6">
-            The KMS Panther Band program has been a cornerstone of instrumental music education in our community 
-            for over two decades. We believe that every student has the potential to excel in music, 
-            and our program is designed to nurture that potential through comprehensive instruction, 
-            engaging performances, and a supportive community.
+            The KMS Panther Band program has been a cornerstone of instrumental music education in our
+            community for over two decades. We believe every student has the potential to excel in
+            music &mdash; over 250 students strong, band is one of the largest and most successful
+            groups at C.E. King Middle School.
           </p>
           <p className="text-lg leading-relaxed mb-6">
-            Our curriculum covers a wide range of musical styles and techniques, from classical to 
-            contemporary, ensuring that students receive a well-rounded musical education. Through 
-            participation in the band program, students develop not only musical skills but also 
-            discipline, teamwork, and confidence that will serve them throughout their lives.
+            Students perform in concerts through the year and compete at the UIL Concert &amp;
+            Sight-reading Assessment each spring. They also help run the band themselves &mdash;
+            section leaders, setup crew, and load crew are student jobs.
           </p>
         </div>
       </section>
@@ -163,49 +160,6 @@ export default function About() {
         </div>
       </section>
 
-      {/* Program Features */}
-      <section className="max-w-5xl mx-auto">
-        <h2 className="text-3xl font-bold text-primary text-center mb-12">
-          What Makes Our Program Special
-        </h2>
-        
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          <div className="p-8">
-            <h3 className="text-xl font-semibold mb-3 text-primary">Comprehensive Instruction</h3>
-            <p className="text-gray-dark">
-              We offer instruction in all concert band instruments including: flute, oboe, bassoon,clarinet, 
-              saxophone, trumpet, horn, trombone, euphonium, tuba, percussion, and more. Students receive both 
-              small group and ensemble instruction.
-            </p>
-          </div>
-          
-          <div className="p-8">
-            <h3 className="text-xl font-semibold mb-3 text-primary">Performance Opportunities</h3>
-            <p className="text-gray-dark">
-              Students perform in multiple concerts throughout the year, participate in 
-              regional competitions, and have opportunities to play at community events 
-              and school functions.
-            </p>
-          </div>
-          
-          <div className="p-8">
-            <h3 className="text-xl font-semibold mb-3 text-primary">Leadership Development</h3>
-            <p className="text-gray-dark">
-              Our program includes student leadership positions such as section leaders, setup crew, and 
-              load crew, helping students develop valuable leadership and organizational skills.
-            </p>
-          </div>
-          
-          <div className="p-8">
-            <h3 className="text-xl font-semibold mb-3 text-primary">Inclusive Community</h3>
-            <p className="text-gray-dark">
-              We pride ourselves on creating a welcoming environment where students of 
-              all skill levels and backgrounds can thrive. The band is truly a family 
-              where lasting friendships are formed.
-            </p>
-          </div>
-        </div>
-      </section>
     </div>
     </>
   );

@@ -50,8 +50,7 @@ export default function Header() {
       ]
     },
     { name: 'CALENDAR', href: '/calendar' },
-    { name: 'INSTRUMENT RENTAL', href: '/instrument-rental' },
-    { 
+    {
       name: 'ENSEMBLES',
       subItems: [
         { name: 'Beginner Band', href: '/ensembles/beginner' },
@@ -60,7 +59,7 @@ export default function Header() {
         { name: 'Honor Band', href: '/ensembles/honor' }
       ]
     },
-    { name: 'FUTURE MEMBERS', href: '/future-members' },
+    { name: 'FUTURE PANTHERS', href: '/future-members' },
     {
       name: 'RESOURCES',
       subItems: [
@@ -70,7 +69,6 @@ export default function Header() {
         { name: 'Forms & Documents', href: '/resources/forms' }
       ]
     },
-    { name: 'JOIN BAND', href: '/join' },
     { name: 'CONTACT', href: '/contact' }
   ];
 

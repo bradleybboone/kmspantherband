@@ -40,7 +40,7 @@ export default function Schedule() {
         </section>
 
         <section className="text-center bg-primary text-secondary p-8 rounded-lg">
-          <h2 className="text-2xl font-semibold mb-4 text-white !text-white">
+          <h2 className="text-2xl font-semibold mb-4">
             Performances &amp; Event Dates
           </h2>
           <p className="mb-6">

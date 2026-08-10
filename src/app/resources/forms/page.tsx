@@ -67,7 +67,7 @@ export default function FormsDocuments() {
         </section>
 
         <section className="text-center bg-primary text-secondary p-8 rounded-lg">
-          <h2 className="text-2xl font-semibold mb-4 text-white !text-white">
+          <h2 className="text-2xl font-semibold mb-4">
             Find the Forms in the Handbook
           </h2>
           <p className="mb-6">

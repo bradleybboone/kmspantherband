@@ -58,7 +58,7 @@ export default function Contact() {
         </section>
 
         <section className="bg-primary text-secondary p-8 rounded-lg text-center">
-          <h2 className="text-2xl font-semibold mb-4 text-white !text-white">Weekly Updates</h2>
+          <h2 className="text-2xl font-semibold mb-4">Weekly Updates</h2>
           <p>
             Announcements and schedule changes go out through ParentSquare. Please make sure
             the band directors have a current parent email address on file.

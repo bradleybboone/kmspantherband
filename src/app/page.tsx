@@ -99,7 +99,7 @@ export default function Home() {
             On the black band a navy-filled button is invisible (~1.5:1 edge
             contrast) -- use the documented on-dark outline variant instead.
           */}
-          <Link href="/join" className="btn btn-outline">
+          <Link href="/future-members" className="btn btn-outline">
             LEARN HOW TO JOIN
           </Link>
         </div>
@@ -115,7 +115,7 @@ function QuickLinkCard({ title, description, href }: {
 }) {
   return (
     <Link href={href} className="group block">
-      <div className="bg-white shadow-md hover:shadow-xl motion-safe:hover:-translate-y-0.5 transition-[box-shadow,transform] duration-300 h-full min-h-[240px] flex flex-col" style={{ padding: '32px' }}>
+      <div className="bg-white p-8 shadow-md hover:shadow-xl motion-safe:hover:-translate-y-0.5 transition-[box-shadow,transform] duration-300 h-full min-h-[240px] flex flex-col">
         <h3 className="text-lg font-display font-medium mb-3 text-primary group-hover:text-primary-hover transition-colors">
           {title}
         </h3>
