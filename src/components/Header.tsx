@@ -66,6 +66,7 @@ export default function Header() {
         { name: 'Band Handbook', href: '/handbook' },
         { name: 'Rehearsal Schedule', href: '/schedule' },
         { name: 'Instrument Rental', href: '/instrument-rental' },
+        { name: 'Supply List', href: '/supply-list' },
         { name: 'Forms & Documents', href: '/resources/forms' }
       ]
     },
