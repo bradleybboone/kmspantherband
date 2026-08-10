@@ -19,9 +19,9 @@ export default function ConcertBand() {
           <p className="text-lg text-gray-dark leading-relaxed">
             Concert Band is the next step after the beginner year: a full
             concert ensemble that performs throughout the year and competes at
-            the UIL Concert &amp; Sight-reading Assessment in the spring.
-            Students keep building on their fundamentals while learning what it
-            means to play as a section and as a band.
+            either the King Music Festival or UIL Concert &amp; Sight-reading Assessment
+            in the spring. Students keep building on their fundamentals while
+            learning what it means to play as a section and as a band.
           </p>
         </section>
 
@@ -56,8 +56,8 @@ export default function ConcertBand() {
               <div className="flex flex-col sm:flex-row sm:gap-4">
                 <dt className="font-semibold sm:w-44 shrink-0">Performances</dt>
                 <dd className="text-gray-dark">
-                  Concerts through the year and the UIL Concert &amp;
-                  Sight-reading Assessment in the spring.
+                  Concerts through the year and the King Music Festival or
+                  UIL Concert &amp; Sight-reading Assessment in the spring.
                 </dd>
               </div>
             </dl>
