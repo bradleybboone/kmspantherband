@@ -1,7 +1,8 @@
 # Supply List Page & Fall Sectionals Grid — Design
 
 **Date**: 2026-08-10
-**Status**: Approved (placement, detail level, and full design confirmed by Bradley)
+**Status**: Approved; revised after spec review (contradiction fixes,
+beginner-sectional reconciliation, mobile layout, dedup)
 
 ## Goal
 
@@ -65,11 +66,13 @@ scale). Future edits are edit-a-list, not edit-JSX.
   Percussion James Ross Medium Soft mallets (INN-IP902), Innovative
   Percussion Medium Birch Marimba Mallets (IP240), Innovative Percussion
   Practice Pad (CP-1R), Yamaha Black Folding Music Stand with bag
-  (YAM-MS1000), Innovative Percussion Stick Bag (SB-3). Kit rental
-  vendors: H&H Music (hhmusic.com), Music & Arts (musicarts.com),
-  Veritas (rentfromhome.com — the doc's "rentfromthome.com" is a typo).
-  Percussion equipment vendors: Steve Weiss (steveweissmusic.com),
-  Percussion Source (percussionsource.com), Sam Ash (samash.com).
+  (YAM-MS1000), Innovative Percussion Stick Bag (SB-3). The kit rents
+  from the same three stores `/instrument-rental` already covers in
+  full detail (addresses, phones, hours) — **link there rather than
+  duplicate the vendor list** (single source, no drift). Keep only the
+  percussion-equipment vendors, which appear nowhere else on the site:
+  Steve Weiss (steveweissmusic.com), Percussion Source
+  (percussionsource.com), Sam Ash (samash.com).
 
 **Bottom sections**:
 
@@ -85,6 +88,9 @@ scale). Future edits are edit-a-list, not edit-JSX.
 Rental); cross-links from `/instrument-rental`, `/ensembles/beginner`,
 and `/future-members`.
 
+**Metadata**: per-route `metadata` with title, description, and Open
+Graph fields, matching the site convention added by the harden pass.
+
 ## 2. `/schedule` — Fall Sectionals grid
 
 Replace the current generic blurb — which is wrong ("Monday through
@@ -98,23 +104,55 @@ Thursday, beginning August 17") — with a weekly grid. All sectionals are
 | Wednesday | Honor Band | Low Brass, Horn, Clarinet | Aug 19 |
 | Thursday | Honor Band | Flute, Trumpet, Oboe/Sax | Aug 20 |
 
+**Layout**: mobile-first stacked per-day cards (one card per day: day
+name, group, instruments, first date), arranged as a 2×2 grid at `md`
+and up. No `<table>`, no horizontal scroll at 375px.
+
 Accompanying copy:
 
-- Fall sectionals run through late October.
+- Fall sectionals run through late October (last occurrences Oct 20/21/
+  26/29 plus an Oct 30 Friday makeup, per the Teamup ICS feed).
 - Some weeks are skipped and occasional Friday makeup days are scheduled
   — **the band calendar is authoritative**; changes are announced via
   ParentSquare. Link to `/calendar`.
-- The sectional acknowledgement form (due Aug 14) note stays.
-- Spring sectionals begin January 11, 2027 (per the calendar); the fall
-  grid covers Honor, Symphonic, and Concert bands only.
+- The sectional acknowledgement form is mentioned with a link to
+  `/resources/forms` for its due date — **no hardcoded date**, honoring
+  the single-source-of-truth rule established at
+  `handbook/page.tsx:107–110`.
+- **Beginner Band students do not attend sectionals** (confirmed by
+  Bradley 2026-08-10) — the grid covers Honor, Symphonic, and Concert
+  only, and the page says so explicitly.
+- Spring sectionals begin January 11, 2027 (per the calendar).
+
+## 3. Contradiction fixes on existing pages
+
+The grid's corrected facts collide with three existing claims, all
+calendar-derived (not handbook-derived, so D6 does not protect them):
+
+- **`handbook/page.tsx:113`** — "Aug 17 — Fall sectionals begin
+  (Mon–Thu, 4:00–5:00 PM)" becomes "**Week of Aug 17** — Fall sectionals
+  begin" with a link to `/schedule` (Aug 19 is the first one; the
+  schedule page is the single source for days/times).
+- **`ensembles/beginner/page.tsx:75`** — remove the promise that "each
+  instrument also has one after-school sectional per week." Beginners
+  have no sectionals; reword the paragraph (fundamentals → winter/spring
+  concerts) without the sectional claim.
+- **`future-members/page.tsx:29`** — the FAQ answer aimed at incoming
+  (beginner) families claims Mon–Thu sectionals for every student.
+  Reword: band meets daily as a class; beginners have no after-school
+  sectionals; the older ensembles rehearse by instrument one afternoon
+  a week (link to `/schedule`). The sports FAQ at line 21 ("we build the
+  sectional schedule expecting it") stays — it is about 7th/8th graders
+  and remains true.
 
 ## Non-goals
 
 - No date-by-date sectional listing (duplicates the Teamup embed and
   drifts the first time a week moves).
-- No changes to the handbook Quick Reference (D6 untouched — sectionals
-  are sourced from the calendar at the user's direction because the
-  handbook lists them generically).
+- No changes to handbook-derived facts in the Quick Reference (grading,
+  attire, etc. — D6 untouched). The Key Dates sectional line is edited
+  because it is calendar-derived; D6's authority chain does not apply
+  to it.
 
 ## Maintenance / churn
 
