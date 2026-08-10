@@ -120,10 +120,13 @@ Accompanying copy:
   `/resources/forms` for its due date — **no hardcoded date**, honoring
   the single-source-of-truth rule established at
   `handbook/page.tsx:107–110`.
-- **Beginner Band students do not attend sectionals** (confirmed by
-  Bradley 2026-08-10) — the grid covers Honor, Symphonic, and Concert
-  only, and the page says so explicitly.
-- Spring sectionals begin January 11, 2027 (per the calendar).
+- **Beginner Band students do not attend sectionals — in any semester,
+  fall or spring** (confirmed by Bradley 2026-08-10; this reverses the
+  beginner page's old weekly-sectional promise, which was wrong). The
+  grid covers Honor, Symphonic, and Concert only, and the page says so
+  explicitly. The January 2027 grid update must not add beginners.
+- Spring sectionals begin the week of January 11, 2027 (per the
+  calendar's "Spring Sectionals Begin" event, Mon Jan 11).
 
 ## 3. Contradiction fixes on existing pages
 
