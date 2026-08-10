@@ -37,7 +37,13 @@ export default function AnnouncementPanel() {
       announcement?.expires &&
       Date.now() > endOfDayLocal(announcement.expires).getTime()
     ) {
-      queueMicrotask(() => setExpired(true));
+      // Deliberate "hasMounted"-style SSR escape hatch, not the cascading-
+      // render pattern this rule guards against: this branch only fires
+      // client-side, after hydration, when the viewer's clock has already
+      // passed `expires`. The set is conditional and idempotent (it never
+      // re-fires with the same result), so there is no render loop.
+      // eslint-disable-next-line react-hooks/set-state-in-effect
+      setExpired(true);
     }
   }, []);
 
