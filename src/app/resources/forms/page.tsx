@@ -64,7 +64,7 @@ export default function FormsDocuments() {
           <h2 className="text-2xl font-semibold mb-6 text-primary">Start-of-Year Forms</h2>
           <div className="space-y-4">
             {forms.map((f) => (
-              <div key={f.name} className="bg-white p-6 rounded-lg shadow">
+              <div key={f.name} className="bg-primary-tint p-6 rounded-lg">
                 <div className="flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-1 mb-2">
                   <h3 className="font-semibold text-lg">{f.name}</h3>
                   <p className="text-primary font-medium text-sm">Due {f.due}</p>
@@ -98,13 +98,13 @@ export default function FormsDocuments() {
               href={formsFolderUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-block bg-secondary hover:bg-gray-light text-primary px-8 py-3 font-semibold transition-colors duration-200"
+              className="inline-block bg-secondary hover:bg-gray-light text-primary px-8 py-3 rounded-lg font-semibold transition-colors duration-200"
             >
               Open the Forms Folder
             </a>
             <Link
               href="/handbook"
-              className="inline-block bg-secondary hover:bg-gray-light text-primary px-8 py-3 font-semibold transition-colors duration-200"
+              className="inline-block bg-secondary hover:bg-gray-light text-primary px-8 py-3 rounded-lg font-semibold transition-colors duration-200"
             >
               View the Handbook
             </Link>
@@ -112,7 +112,7 @@ export default function FormsDocuments() {
               href={handbookUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-block bg-secondary hover:bg-gray-light text-primary px-8 py-3 font-semibold transition-colors duration-200"
+              className="inline-block bg-secondary hover:bg-gray-light text-primary px-8 py-3 rounded-lg font-semibold transition-colors duration-200"
             >
               Open in Google Docs
             </a>

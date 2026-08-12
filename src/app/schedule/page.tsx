@@ -109,7 +109,7 @@ export default function Schedule() {
           </p>
           <Link
             href="/calendar"
-            className="inline-block bg-secondary hover:bg-gray-light text-primary px-8 py-3 font-semibold transition-colors duration-200"
+            className="inline-block bg-secondary hover:bg-gray-light text-primary px-8 py-3 rounded-lg font-semibold transition-colors duration-200"
           >
             View the Calendar
           </Link>

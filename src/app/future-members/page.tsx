@@ -82,7 +82,7 @@ export default function FutureMembers() {
         <section className="mb-12">
           <h2 className="text-2xl font-semibold mb-6 text-primary">Choosing an Instrument</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div className="bg-white p-6 rounded-lg shadow">
+            <div className="bg-primary-tint p-6 rounded-lg">
               <h3 className="font-semibold text-lg mb-2 text-primary">Provided by the School</h3>
               <p className="text-gray-dark text-sm mb-3">
                 No rental needed. A <strong>$100/year</strong> usage fee applies, and you buy
@@ -97,7 +97,7 @@ export default function FutureMembers() {
                 Percussion becomes a $100/year school-owned instrument starting in Year 2.
               </p>
             </div>
-            <div className="bg-white p-6 rounded-lg shadow">
+            <div className="bg-primary-tint p-6 rounded-lg">
               <h3 className="font-semibold text-lg mb-2 text-primary">Provided by the Family</h3>
               <p className="text-gray-dark text-sm mb-3">
                 Rent or purchase from a recommended vendor. Rental runs about
@@ -147,7 +147,7 @@ export default function FutureMembers() {
           <h2 className="text-2xl font-semibold mb-6 text-primary">Common Questions</h2>
           <div className="space-y-4">
             {faqs.map((f) => (
-              <div key={f.q} className="bg-white p-6 rounded-lg shadow">
+              <div key={f.q} className="bg-primary-tint p-6 rounded-lg">
                 <h3 className="font-semibold mb-2">{f.q}</h3>
                 <p className="text-gray-dark">{f.a}</p>
               </div>
@@ -164,7 +164,7 @@ export default function FutureMembers() {
           </p>
           <Link
             href="/contact"
-            className="inline-block bg-secondary hover:bg-gray-light text-primary px-8 py-3 font-semibold transition-colors duration-200"
+            className="inline-block bg-secondary hover:bg-gray-light text-primary px-8 py-3 rounded-lg font-semibold transition-colors duration-200"
           >
             Contact the Directors
           </Link>

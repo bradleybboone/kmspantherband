@@ -55,7 +55,7 @@ export default function About() {
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
           {/* Director 1 - Boone */}
           <div className="bg-white overflow-hidden">
-            <div className="aspect-square relative">
+            <div className="aspect-square relative rounded-lg overflow-hidden">
               <Image
                 src="/images/boone-bio.jpg"
                 alt="Dr. Bradley Boone - Head Band Director"
@@ -91,7 +91,7 @@ export default function About() {
 
           {/* Director 2 - Ruiz */}
           <div className="bg-white overflow-hidden">
-            <div className="aspect-square relative">
+            <div className="aspect-square relative rounded-lg overflow-hidden">
               <Image
                 src="/images/ruiz-bio.jpg"
                 alt="Ms. Catherine Ruiz - Assistant Band Director"
@@ -126,7 +126,7 @@ export default function About() {
 
           {/* Director 3 - Chavez */}
           <div className="bg-white overflow-hidden">
-            <div className="aspect-square relative">
+            <div className="aspect-square relative rounded-lg overflow-hidden">
               <Image
                 src="/images/chavez-bio.jpg"
                 alt="Mrs. Amanda Chavez - Assistant Band Director"

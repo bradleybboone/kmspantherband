@@ -35,15 +35,16 @@ export default function Handbook() {
                 href={handbookUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-block bg-secondary hover:bg-gray-light text-primary px-8 py-3 font-semibold transition-colors duration-200"
+                className="inline-block bg-secondary hover:bg-gray-light text-primary px-8 py-3 rounded-lg font-semibold transition-colors duration-200"
               >
                 Open in Google Docs
               </a>
             </div>
           </div>
 
-          {/* Embedded Google Doc Viewer */}
-          <div className="bg-white rounded-lg shadow-lg overflow-hidden mb-12">
+          {/* Embedded Google Doc Viewer — capped near the Doc's own page width so
+              the document doesn't sit pinned-left inside a mostly empty card */}
+          <div className="max-w-4xl mx-auto bg-white rounded-lg shadow-lg overflow-hidden mb-12">
             <iframe
               src={handbookEmbedUrl}
               className="w-full iframe-fluid-tall"

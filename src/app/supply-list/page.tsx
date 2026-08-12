@@ -168,7 +168,7 @@ export default function SupplyList() {
           <h2 className="text-2xl font-semibold mb-6 text-primary">Instruments &amp; Supplies</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {instruments.map((inst) => (
-              <div key={inst.name} className="bg-white p-6 rounded-lg shadow">
+              <div key={inst.name} className="bg-primary-tint p-6 rounded-lg">
                 <div className="flex flex-col gap-1 mb-3">
                   <h3 className="font-semibold text-lg text-primary">{inst.name}</h3>
                   {inst.schoolOwned && (
@@ -205,7 +205,7 @@ export default function SupplyList() {
 
         <section className="mb-12">
           <h2 className="text-2xl font-semibold mb-6 text-primary">Percussion</h2>
-          <div className="bg-white p-6 rounded-lg shadow">
+          <div className="bg-primary-tint p-6 rounded-lg">
             <p className="text-sm font-medium text-gray-dark mb-3">
               School-owned &mdash; $100/year usage fee beginning in Year 2
             </p>
@@ -323,7 +323,7 @@ export default function SupplyList() {
             href={supplyDocUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-block bg-secondary hover:bg-gray-light text-primary px-8 py-3 font-semibold transition-colors duration-200"
+            className="inline-block bg-secondary hover:bg-gray-light text-primary px-8 py-3 rounded-lg font-semibold transition-colors duration-200"
           >
             Open in Google Docs
           </a>
