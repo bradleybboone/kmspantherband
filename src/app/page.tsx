@@ -66,6 +66,35 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Upcoming Events — same Teamup calendar as /calendar, agenda view.
+          The calendar is the single source of truth (D6): no event data in
+          code, ever. Fixed height means the agenda scrolls inside the frame;
+          that is deliberate (a date-range cap would need periodic re-tuning).
+          showDateControls=1 keeps forward paging available. */}
+      <section className="py-20 bg-white">
+        <div className="container">
+          <h2 className="text-center text-3xl lg:text-4xl mb-12 text-primary">
+            UPCOMING EVENTS
+          </h2>
+          <div className="max-w-4xl mx-auto bg-white shadow-lg rounded-lg overflow-hidden border border-gray-light/40">
+            <iframe
+              src="https://teamup.com/ksy2fym655un5pdh88?view=a&tz=Calendar%20default&showProfileAndInfo=0&showSidepanel=0&showViewHeader=0&showAgendaDetails=0&showDateControls=1&showDateRange=0"
+              className="w-full h-[420px]"
+              loading="lazy"
+              title="Upcoming KMS Panther Band events"
+            />
+          </div>
+          <p className="text-center mt-8">
+            <Link
+              href="/calendar"
+              className="inline-block py-3 text-primary font-medium text-sm uppercase tracking-wide hover:text-primary-hover transition-colors"
+            >
+              View Full Calendar &rarr;
+            </Link>
+          </p>
+        </div>
+      </section>
+
       {/* Image Gallery Section */}
       <section className="py-20 bg-white">
         <div className="container">
