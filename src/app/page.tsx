@@ -95,6 +95,46 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Stay Connected — ParentSquare push. External links only; weekly
+          news itself lives in ParentSquare, not on this site. */}
+      <section className="py-16 bg-primary-canvas">
+        <div className="container text-center">
+          <h2 className="text-3xl lg:text-4xl mb-6 text-primary">
+            STAY CONNECTED
+          </h2>
+          <p className="text-base text-gray-dark max-w-2xl mx-auto mb-6">
+            Weekly band news goes out on ParentSquare &mdash; the district&apos;s
+            family communication app.
+          </p>
+          <div className="flex flex-wrap justify-center gap-x-10">
+            <a
+              href="https://www.sheldonisd.com/departments/communications/parent-square"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-block py-3 text-primary font-medium text-sm uppercase tracking-wide hover:text-primary-hover transition-colors"
+            >
+              About ParentSquare &rarr;
+            </a>
+            <a
+              href="https://apps.apple.com/us/app/parentsquare/id908126679"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-block py-3 text-primary font-medium text-sm uppercase tracking-wide hover:text-primary-hover transition-colors"
+            >
+              App Store &rarr;
+            </a>
+            <a
+              href="https://play.google.com/store/apps/details?id=com.parentsquare.psapp"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-block py-3 text-primary font-medium text-sm uppercase tracking-wide hover:text-primary-hover transition-colors"
+            >
+              Google Play &rarr;
+            </a>
+          </div>
+        </div>
+      </section>
+
       {/* Image Gallery Section */}
       <section className="py-20 bg-white">
         <div className="container">
