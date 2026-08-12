@@ -43,7 +43,7 @@ export default function Home() {
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             <QuickLinkCard
-              title="UPCOMING EVENTS"
+              title="BAND CALENDAR"
               description="Stay updated with our concerts, competitions, and performances"
               href="/calendar"
             />
@@ -68,7 +68,7 @@ export default function Home() {
 
       {/* Upcoming Events — same Teamup calendar as /calendar, agenda view.
           The calendar is the single source of truth (D6): no event data in
-          code, ever. Fixed height means the agenda scrolls inside the frame;
+          code, ever. Fixed height (320px mobile / 420px desktop) means the agenda scrolls inside the frame;
           that is deliberate (a date-range cap would need periodic re-tuning).
           showDateControls=1 keeps forward paging available. */}
       <section className="py-20 bg-white">
@@ -79,7 +79,7 @@ export default function Home() {
           <div className="max-w-4xl mx-auto bg-white shadow-lg rounded-lg overflow-hidden border border-gray-light/40">
             <iframe
               src="https://teamup.com/ksy2fym655un5pdh88?view=a&tz=Calendar%20default&showProfileAndInfo=0&showSidepanel=0&showViewHeader=0&showAgendaDetails=0&showDateControls=1&showDateRange=0"
-              className="w-full h-[420px]"
+              className="w-full h-[320px] md:h-[420px]"
               loading="lazy"
               title="Upcoming KMS Panther Band events"
             />
@@ -106,7 +106,7 @@ export default function Home() {
             Weekly band news goes out on ParentSquare &mdash; the district&apos;s
             family communication app.
           </p>
-          <div className="flex flex-wrap justify-center gap-x-10">
+          <div className="flex flex-wrap justify-center gap-x-10 gap-y-2">
             <a
               href="https://www.sheldonisd.com/departments/communications/parent-square"
               target="_blank"

@@ -3,7 +3,7 @@ import Link from 'next/link';
 
 /*
   Every link in the footer carries `inline-block py-3`: with text-sm's 20px
-  line-height that is exactly a 44px tap target (WCAG target size), applied
+  line-height (Tailwind's default --text-sm--line-height — do not add a leading-* utility here or the math breaks) that is exactly a 44px tap target (WCAG target size), applied
   uniformly so new and old links stay visually consistent. List rhythm comes
   from the link padding, so the <ul>s have no space-y-*.
 */
