@@ -177,7 +177,10 @@ export default function Footer() {
               <li>C.E. King Middle School</li>
               <li>8540 C.E. King Parkway</li>
               <li>Houston, TX 77044</li>
-              <li className="pt-2">
+              {/* No pt-2 on this li: the link's own py-3 already provides
+                  the separation the old pt-2 gave, and stacking both would
+                  make the phone number sit lower than the address block. */}
+              <li>
                 <a href="tel:+12817273500" className="inline-block py-3 hover:text-white transition-colors">
                   (281) 727-3500
                 </a>
@@ -277,7 +280,7 @@ Directly after the Quick Links `</section>` and before `{/* Image Gallery Sectio
       </section>
 ```
 
-(`Link` is already imported at the top of `page.tsx`. If `border-gray-light/40` fails the build because the token lacks opacity support, drop the `/40` — the border is cosmetic.)
+(`Link` is already imported at the top of `page.tsx`. `border-gray-light/40` is valid: `--color-gray-light` is registered in the `@theme` block at `globals.css:158` and Tailwind v4 handles opacity modifiers on plain hex tokens via color-mix.)
 
 - [ ] **Step 3: Run the checks**
 
