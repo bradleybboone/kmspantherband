@@ -29,7 +29,7 @@ export default function CalendarPage() {
           {/* Team Up Calendar Embed */}
           <div className="bg-white shadow-lg rounded-lg overflow-hidden">
             <iframe
-              src="https://teamup.com/ksy2fym655un5pdh88?tz=Calendar%20default&showProfileAndInfo=0&showSidepanel=1&showViewHeader=1&showAgendaDetails=0&showDateControls=1&showDateRange=1"
+              src="https://teamup.com/ksy2fym655un5pdh88?view=w&tz=Calendar%20default&showProfileAndInfo=0&showSidepanel=1&showViewHeader=1&showAgendaDetails=0&showDateControls=1&showDateRange=1"
               className="w-full iframe-fluid"
               loading="lazy"
               title="KMS Band Calendar"
