@@ -128,7 +128,9 @@ src/
 │   ├── resources/    # forms
 │   ├── supply-list/  # per-instrument models & supplies (source: supply-list Google Doc)
 │   ├── layout.tsx    # Root layout — renders Header via HeaderSlot (see D5)
-│   └── page.tsx      # Homepage (hero + ImageCarousel)
+│   └── page.tsx      # Homepage (hero + announcement + quick links + Teamup
+│                     #   agenda embed + Stay Connected/ParentSquare + carousel;
+│                     #   second Teamup iframe besides /calendar — same calendar)
 ├── content/          # announcement.tsx — the homepage banner (banner-as-data)
 └── components/       # Header, Footer, ImageCarousel, ...
 scripts/
