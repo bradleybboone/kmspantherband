@@ -40,6 +40,11 @@ without inheriting their maintenance surface:
 - **Quick Links column:** add **ParentSquare** →
   `https://www.sheldonisd.com/departments/communications/parent-square`
   (external, same treatment).
+- **Tap targets:** give *all* footer links — existing and new — a uniform
+  invisible vertical padding (e.g. `inline-block py-2.5`) so every footer
+  link meets the 44px target consistently. Padding only the new links would
+  make the columns visually inconsistent; padding all of them is invisible
+  and fixes the whole footer in one pass.
 - Everything else in the footer is unchanged.
 
 ### 2. Asset: `public/images/kms-school-logo.png`
@@ -48,7 +53,13 @@ without inheriting their maintenance surface:
   (`resources.finalsite.net/.../CEKingMiddleSchool.png`), 512×512 transparent
   PNG, ~31 KB. Committed locally — never hotlinked (external hosts can move
   files; we serve our own bytes).
-- Run `npm run images:compress` after adding, per D3.
+- **Downscale to 160×160 before committing** (2× the ~80px render size, so
+  Retina stays sharp). Note: `scripts/compress-images.mjs` only resizes
+  images wider than 1600px, so it will pass a 512px PNG through nearly
+  unchanged — the downscale is a one-off step (sharp via a node one-liner or
+  ImageMagick), not something the D3 script does for us. Alt text:
+  **"C.E. King Middle School logo"** — the logo is informative (it signals
+  affiliation), not decorative.
 
 ### 3. Homepage upcoming-events section (`src/app/page.tsx`)
 
@@ -56,14 +67,23 @@ without inheriting their maintenance surface:
   - Heading: `UPCOMING EVENTS` (same heading style as sibling sections).
   - A second Teamup iframe embed of the **same calendar** in agenda/list
     view, minimal chrome (no sidepanel, no view header), height ≈ 420px,
-    `loading="lazy"` (below the fold; zero cost at first paint), with a
-    descriptive `title` attribute.
+    `loading="lazy"` (below the fold; zero cost at first paint).
+    `title="Upcoming KMS Panther Band events"` — deliberately distinct from
+    the `/calendar` iframe's title, since this is a different view serving a
+    different purpose.
+  - **Scrolling:** a fixed-height frame over an agenda list means nested
+    scrolling. Accepted deliberately — capping to a date range would need
+    periodic re-tuning (a D6-shaped maintenance leak). Keep
+    `showDateControls=1` so users can page forward in time inside the frame.
   - Centered below the embed: **VIEW FULL CALENDAR →** linking to
     `/calendar`, using the existing link/button vocabulary.
 - The exact Teamup view/chrome query params are verified during
   implementation against the params already used in
   `src/app/calendar/page.tsx` (same param family; only the view and chrome
-  toggles differ).
+  toggles differ). **Load the actual embed URL against the live calendar**
+  and confirm users can still navigate beyond the initially loaded window
+  with the reduced chrome; if stripping the view header also kills date
+  navigation, re-enable whichever toggle restores it.
 - The existing "UPCOMING EVENTS" quick-link card stays as-is — it remains
   the navigation path to the full calendar page.
 
@@ -107,4 +127,6 @@ without inheriting their maintenance surface:
 - Visual check at 375px and desktop: footer chip legible on navy; events
   embed usable at mobile width; strip links wrap cleanly.
 - Confirm the events iframe carries `loading="lazy"` and sits below the fold.
-- Tap-target sanity: the three strip links and new footer links ≥ 44px.
+- Tap-target sanity: strip links and **all** footer links ≥ 44px (via the
+  uniform footer-link padding in §1).
+- Confirm date navigation works inside the live events embed (see §3).
