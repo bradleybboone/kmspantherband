@@ -368,8 +368,27 @@ body {
   animation: hero-bloom 900ms var(--ease-emphatic) 420ms both;
 }
 
-/* Navigation Links */
+/*
+  Navigation Links.
+
+  `display: inline-flex` is load-bearing, not cosmetic. Without it an <a>
+  here stays `display: inline`, so the 0.5rem vertical padding adds no
+  layout height and the wrapper's height comes from the 16px strut it
+  inherits from `body` -- the 14px label is then baseline-aligned to that
+  strut rather than centred. The dropdown triggers are <button>s that were
+  carrying `flex items-center`, so those centred their label instead. Two
+  centring models in one row: the three trigger labels sat 0.79px above the
+  three plain links, and `.nav-link-active`'s underline landed 10px below
+  the text on a link but 13.4px below it on a trigger.
+
+  Both branches now share one box model. Do not drop this back to the
+  default `inline`, and do not re-add `flex` on the trigger -- this rule is
+  unlayered, so it outranks Tailwind's utilities and that class would be
+  dead weight.
+*/
 .nav-link {
+  display: inline-flex;
+  align-items: center;
   font-family: var(--font-body);
   font-size: 0.875rem;
   font-weight: var(--font-medium);

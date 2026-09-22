@@ -169,7 +169,7 @@ export default function Header() {
                       onClick={() =>
                         setOpenDropdown(openDropdown === item.name ? null : item.name)
                       }
-                      className={`nav-link ${textColor} hover:opacity-70 transition-opacity flex items-center ${
+                      className={`nav-link ${textColor} hover:opacity-70 transition-opacity ${
                         isActiveNavItem(item) ? 'nav-link-active' : ''
                       }`}
                     >
