@@ -30,13 +30,13 @@ const sectionals = [
   {
     day: "Wednesday",
     group: "Honor Band",
-    instruments: "Low Brass, Horn, Clarinet",
+    instruments: "Low Brass, Clarinet",
     first: "August 19",
   },
   {
     day: "Thursday",
     group: "Honor Band",
-    instruments: "Flute, Trumpet, Oboe/Sax",
+    instruments: "Flute, Trumpet, Horn, Oboe/Sax",
     first: "August 20",
   },
 ];

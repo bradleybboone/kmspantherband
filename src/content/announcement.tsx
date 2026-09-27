@@ -29,16 +29,43 @@ export interface Announcement {
   expires?: string;
 }
 
+const districtAwardees: [name: string, instrument: string][] = [
+  ["Abigail Alvarado", "Flute"],
+  ["Angel Sanchez", "Bass Clarinet"],
+  ["Anthony Maldonado", "Trumpet"],
+  ["Ava Salazar", "Trombone"],
+  ["Daniel Barretero", "Tuba"],
+  ["Eric Cerf Jr.", "Percussion"],
+  ["Jacob White", "Percussion"],
+  ["Jason Argueta", "Clarinet"],
+  ["Kaleb Mendoza Barbosa", "Trumpet"],
+  ["Kaylee Schexsnaider", "Clarinet"],
+  ["Lauren Espinoza", "Oboe"],
+  ["Litzy Mejia Ayala", "Alto Saxophone"],
+  ["Violetta Rodriguez", "Flute"],
+];
+
 export const announcement: Announcement | null = {
-  heading: <>INSTRUMENT DRIVE &mdash; FRIDAY, AUGUST&nbsp;21</>,
+  heading: <>CONGRATULATIONS TO OUR DISTRICT AWARDEES!</>,
   body: (
     <>
-      Need an instrument? All three recommended vendors in one room,
-      5:00&ndash;8:00 PM at the <strong>Null Middle School cafeteria</strong>{" "}
-      (not C.E. King) &mdash; rental and purchase options plus the required
-      accessories.
+      We are proud to celebrate 13 C.E. King Middle School Band students who
+      earned recognition at the District competition on Saturday,
+      September&nbsp;26! These students prepared for weeks, gave a strong
+      performance, and represented our band program with excellence. Please
+      join us in congratulating them:
+      <br />
+      <br />
+      {districtAwardees.map(([name, instrument]) => (
+        <span key={name}>
+          <strong>{name}</strong> &mdash; {instrument}
+          <br />
+        </span>
+      ))}
+      <br />
+      We are so proud of the hard work and dedication these students showed.
+      Way to represent the Panthers!
     </>
   ),
-  cta: { label: "See Rental Options", href: "/instrument-rental" },
-  expires: "2026-08-21",
+  expires: "2026-10-11",
 };
